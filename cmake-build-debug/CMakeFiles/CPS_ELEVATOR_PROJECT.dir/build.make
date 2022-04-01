@@ -89,19 +89,49 @@ CMakeFiles/CPS_ELEVATOR_PROJECT.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CPS_ELEVATOR_PROJECT.dir/main.cpp.s"
 	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\main.cpp -o CMakeFiles\CPS_ELEVATOR_PROJECT.dir\main.cpp.s
 
+CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.obj: CMakeFiles/CPS_ELEVATOR_PROJECT.dir/flags.make
+CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.obj: ../classes/elevator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\CPS_ELEVATOR_PROJECT.dir\classes\elevator.cpp.obj -c D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\classes\elevator.cpp
+
+CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.i"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\classes\elevator.cpp > CMakeFiles\CPS_ELEVATOR_PROJECT.dir\classes\elevator.cpp.i
+
+CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.s"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\classes\elevator.cpp -o CMakeFiles\CPS_ELEVATOR_PROJECT.dir\classes\elevator.cpp.s
+
+CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.obj: CMakeFiles/CPS_ELEVATOR_PROJECT.dir/flags.make
+CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.obj: ../classes/node.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.obj"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\CPS_ELEVATOR_PROJECT.dir\classes\node.cpp.obj -c D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\classes\node.cpp
+
+CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.i"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\classes\node.cpp > CMakeFiles\CPS_ELEVATOR_PROJECT.dir\classes\node.cpp.i
+
+CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.s"
+	C:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\classes\node.cpp -o CMakeFiles\CPS_ELEVATOR_PROJECT.dir\classes\node.cpp.s
+
 # Object files for target CPS_ELEVATOR_PROJECT
 CPS_ELEVATOR_PROJECT_OBJECTS = \
-"CMakeFiles/CPS_ELEVATOR_PROJECT.dir/main.cpp.obj"
+"CMakeFiles/CPS_ELEVATOR_PROJECT.dir/main.cpp.obj" \
+"CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.obj" \
+"CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.obj"
 
 # External object files for target CPS_ELEVATOR_PROJECT
 CPS_ELEVATOR_PROJECT_EXTERNAL_OBJECTS =
 
 CPS_ELEVATOR_PROJECT.exe: CMakeFiles/CPS_ELEVATOR_PROJECT.dir/main.cpp.obj
+CPS_ELEVATOR_PROJECT.exe: CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.obj
+CPS_ELEVATOR_PROJECT.exe: CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.obj
 CPS_ELEVATOR_PROJECT.exe: CMakeFiles/CPS_ELEVATOR_PROJECT.dir/build.make
 CPS_ELEVATOR_PROJECT.exe: CMakeFiles/CPS_ELEVATOR_PROJECT.dir/linklibs.rsp
 CPS_ELEVATOR_PROJECT.exe: CMakeFiles/CPS_ELEVATOR_PROJECT.dir/objects1.rsp
 CPS_ELEVATOR_PROJECT.exe: CMakeFiles/CPS_ELEVATOR_PROJECT.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable CPS_ELEVATOR_PROJECT.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable CPS_ELEVATOR_PROJECT.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\CPS_ELEVATOR_PROJECT.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

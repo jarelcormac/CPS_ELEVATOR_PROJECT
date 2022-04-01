@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.obj"
+  "CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.obj"
   "CMakeFiles/CPS_ELEVATOR_PROJECT.dir/main.cpp.obj"
   "CPS_ELEVATOR_PROJECT.exe"
   "CPS_ELEVATOR_PROJECT.exe.manifest"

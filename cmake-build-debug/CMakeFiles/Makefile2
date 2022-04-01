@@ -93,12 +93,12 @@ clean: CMakeFiles/CPS_ELEVATOR_PROJECT.dir/clean
 CMakeFiles/CPS_ELEVATOR_PROJECT.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CPS_ELEVATOR_PROJECT.dir\build.make CMakeFiles/CPS_ELEVATOR_PROJECT.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CPS_ELEVATOR_PROJECT.dir\build.make CMakeFiles/CPS_ELEVATOR_PROJECT.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target CPS_ELEVATOR_PROJECT"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4 "Built target CPS_ELEVATOR_PROJECT"
 .PHONY : CMakeFiles/CPS_ELEVATOR_PROJECT.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/CPS_ELEVATOR_PROJECT.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\cmake-build-debug\CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/CPS_ELEVATOR_PROJECT.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/CPS_ELEVATOR_PROJECT.dir/rule

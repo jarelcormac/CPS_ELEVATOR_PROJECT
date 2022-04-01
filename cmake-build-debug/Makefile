@@ -142,6 +142,60 @@ CPS_ELEVATOR_PROJECT/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CPS_ELEVATOR_PROJECT.dir\build.make CMakeFiles/CPS_ELEVATOR_PROJECT.dir/build
 .PHONY : CPS_ELEVATOR_PROJECT/fast
 
+classes/elevator.obj: classes/elevator.cpp.obj
+
+.PHONY : classes/elevator.obj
+
+# target to build an object file
+classes/elevator.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CPS_ELEVATOR_PROJECT.dir\build.make CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.obj
+.PHONY : classes/elevator.cpp.obj
+
+classes/elevator.i: classes/elevator.cpp.i
+
+.PHONY : classes/elevator.i
+
+# target to preprocess a source file
+classes/elevator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CPS_ELEVATOR_PROJECT.dir\build.make CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.i
+.PHONY : classes/elevator.cpp.i
+
+classes/elevator.s: classes/elevator.cpp.s
+
+.PHONY : classes/elevator.s
+
+# target to generate assembly for a file
+classes/elevator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CPS_ELEVATOR_PROJECT.dir\build.make CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/elevator.cpp.s
+.PHONY : classes/elevator.cpp.s
+
+classes/node.obj: classes/node.cpp.obj
+
+.PHONY : classes/node.obj
+
+# target to build an object file
+classes/node.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CPS_ELEVATOR_PROJECT.dir\build.make CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.obj
+.PHONY : classes/node.cpp.obj
+
+classes/node.i: classes/node.cpp.i
+
+.PHONY : classes/node.i
+
+# target to preprocess a source file
+classes/node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CPS_ELEVATOR_PROJECT.dir\build.make CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.i
+.PHONY : classes/node.cpp.i
+
+classes/node.s: classes/node.cpp.s
+
+.PHONY : classes/node.s
+
+# target to generate assembly for a file
+classes/node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CPS_ELEVATOR_PROJECT.dir\build.make CMakeFiles/CPS_ELEVATOR_PROJECT.dir/classes/node.cpp.s
+.PHONY : classes/node.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -178,6 +232,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... CPS_ELEVATOR_PROJECT
+	@echo ... classes/elevator.obj
+	@echo ... classes/elevator.i
+	@echo ... classes/elevator.s
+	@echo ... classes/node.obj
+	@echo ... classes/node.i
+	@echo ... classes/node.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

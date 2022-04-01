@@ -80,6 +80,18 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/CLion_2020.2.1_Projects/Personal/CPS_ELEVATOR_PROJECT/classes/elevator.cpp">
+			<Option target="CPS_ELEVATOR_PROJECT"/>
+		</Unit>
+		<Unit filename="D:/CLion_2020.2.1_Projects/Personal/CPS_ELEVATOR_PROJECT/classes/elevator.h">
+			<Option target="CPS_ELEVATOR_PROJECT"/>
+		</Unit>
+		<Unit filename="D:/CLion_2020.2.1_Projects/Personal/CPS_ELEVATOR_PROJECT/classes/node.cpp">
+			<Option target="CPS_ELEVATOR_PROJECT"/>
+		</Unit>
+		<Unit filename="D:/CLion_2020.2.1_Projects/Personal/CPS_ELEVATOR_PROJECT/classes/node.h">
+			<Option target="CPS_ELEVATOR_PROJECT"/>
+		</Unit>
 		<Unit filename="D:/CLion_2020.2.1_Projects/Personal/CPS_ELEVATOR_PROJECT/main.cpp">
 			<Option target="CPS_ELEVATOR_PROJECT"/>
 		</Unit>
