@@ -27,10 +27,7 @@
  ***************************************************/
 class elevator {
 public:
-    struct Location {
-        unsigned int locX;
-        unsigned int locY;
-    };
+
 private:
 
 };

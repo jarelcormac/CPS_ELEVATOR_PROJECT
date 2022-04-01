@@ -95,6 +95,9 @@
 		<Unit filename="D:/CLion_2020.2.1_Projects/Personal/CPS_ELEVATOR_PROJECT/main.cpp">
 			<Option target="CPS_ELEVATOR_PROJECT"/>
 		</Unit>
+		<Unit filename="D:/CLion_2020.2.1_Projects/Personal/CPS_ELEVATOR_PROJECT/standalone_headers/location.h">
+			<Option target="CPS_ELEVATOR_PROJECT"/>
+		</Unit>
 		<Unit filename="D:/CLion_2020.2.1_Projects/Personal/CPS_ELEVATOR_PROJECT/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
