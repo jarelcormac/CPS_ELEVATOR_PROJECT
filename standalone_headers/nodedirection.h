@@ -5,9 +5,9 @@
 //           Shoh Allan Sewell
 //
 // Create Date: 31 MAR 2022
-// Filename: location.h
+// Filename: nodedirection.h
 // Project Name: CPS_ELEVATOR_PROJECT
-// Description: Header file defining location structure of nodes/elevator.
+// Description: Header file containing structures that define the direction of nodes
 //
 //
 // Version 1.00 - File Created
@@ -16,24 +16,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "enumerations.h"
-
-#ifndef CPS_ELEVATOR_PROJECT_LOCATION_H
-#define CPS_ELEVATOR_PROJECT_LOCATION_H
+#include "../classes/node.h"
+#ifndef CPS_ELEVATOR_PROJECT_NODEDIRECTION_H
+#define CPS_ELEVATOR_PROJECT_NODEDIRECTION_H
 
 /******************************************************************************
  *
- * LOCATION STRUCTURE
+ * NODE DIRECTION STRUCTURE
  *
- * Notes: This structure combines the section and floor enumerations to
- *        calculate the current location of the elevator. Additionally, it is
- *        used to keep track of create node locations that the elevator may
- *        traverse to.
+ * Notes: ADD STUFF HERE
  *
 ******************************************************************************/
-struct Location {
+struct NodeDirection {
 public:
-    enum Section section;
-    enum Floor floor;
+    Node* node;
+    enum Direction direction;
 };
-
-#endif //CPS_ELEVATOR_PROJECT_LOCATION_H
+#endif //CPS_ELEVATOR_PROJECT_NODEDIRECTION_H
