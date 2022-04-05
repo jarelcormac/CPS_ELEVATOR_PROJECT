@@ -15,7 +15,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "vector"
+#include "node.h"
 
 #ifndef CPS_ELEVATOR_PROJECT_ELEVATOR_H
 #define CPS_ELEVATOR_PROJECT_ELEVATOR_H
@@ -25,11 +25,46 @@
  * ELEVATOR CLASS
  *
  ***************************************************/
-class elevator {
-public:
-
+class Elevator {
 private:
+    //====== PRIVATE VARIABLES ======//
+    std::vector<struct Location> travelBuffer;  // This stores the order in which location buttons are pressed by
+                                                // elevator patrons in order to determine the pathfinding order.
 
+    //====== PRIVATE METHODS ======//
+    // Move elevator one node up
+    int moveUp();
+
+    // Move elevator one node down
+    int moveDown();
+
+    // Move elevator one node left
+    int moveLeft();
+
+    // Move elevator one node right
+    int moveRight();
+
+    // moveHere() will attempt to move the elevator to any other node within the 3x3 array of nodes as efficiently as possible.
+    int moveHere();
+
+    // Open elevator doors
+    int openDoors();
+
+    // Close elevator doors
+    int closeDoors();
+
+public:
+    //====== PUBLIC VARIABLES ======//
+    struct Node::Location location;
+    bool btnPressed[3][3];
+    bool doorsOpen();
+    unsigned int occupancy;
+
+    //====== PUBLIC METHODS ======//
+    // Default Constructor
+    Elevator();
+
+    // Need to add parameterized constructor???
 };
 
 

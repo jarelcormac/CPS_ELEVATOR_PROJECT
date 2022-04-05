@@ -15,21 +15,82 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "vector"
+#include <vector>
+#include "../standalone_headers/enumerations.h"
+
 
 #ifndef CPS_ELEVATOR_PROJECT_NODE_H
 #define CPS_ELEVATOR_PROJECT_NODE_H
 
-/****************************************************
+
+/******************************************************************************
  *
  * NODE CLASS
  *
- ***************************************************/
-class node {
+ * Notes: This class defines the properties and methods of a Node when created.
+ *
+ *        Each node has its own unique ID and the counter that keeps track of
+ *        the number of people waiting for the elevator to stop at that node.
+ *
+ *        Each node keeps track of the immediate nodes on the left, right,
+ *        upwards, and downwards (relative to current node).
+ *
+ *        Each node has an assigned location and a boolean variable indicating
+ *        whether or not the button for the node has been pressed.
+ *
+******************************************************************************/
+class Node {
 public:
+    //====== PUBLIC STRUCTURES (SHARED WITH ELEVATOR CLASS) ======//
+    // I made these public so that elevator.h can access these and didn't want to copy these into elevator.h
+    // Eliminated redundancy but I'm not sure if this is the best solution
+    // NodeDirection
+    struct NodeDirection {
+        Node* node;
+        enum Direction direction;
+    };
+
+    // Location Structure
+    struct Location {
+        enum Section section;
+        enum Floor floor;
+    };
 
 private:
+    //====== PRIVATE VARIABLES ======//
+    Node* upNode;
+    Node* downNode;
+    Node* leftNode;
+    Node* rightNode;
+    unsigned short int id;
+    unsigned int peopleWaiting;
 
+public:
+    //====== PUBLIC VARIABLES ======//
+    bool btnCalled;
+    struct Node::Location location;
+
+    //====== PUBLIC METHODS ======//
+    // Default Constructor
+    Node();
+
+    // Need to add parameterized constructor???
+
+    // isElevatorHere() checks to see if the elevator resides in the current node this method is called at
+    bool isElevatorHere();
+        // Need to come up with some if conditions to properly return true or false
+        // Possibly compare elevator's known position vs. current node location
+
+    // nearbyNodes() lists the the nodes immediately upwards, downwards, left, and right of the current node
+    std::vector<NodeDirection> nearbyNodes();
+        // Should return null if there are no nodes residing next to the current node
+        // Decide if we return the nearby nodes' IDs or the nearby nodes' locations
+
+    // addNode(...) will add a node in the required direction relative to the current node
+    int addNode(Node* node, enum Direction direction);
+
+    // Not too sure what this method does or what's different than the previous addNode(...)
+    int addNode(NodeDirection nodeDirect);
 };
 
 
