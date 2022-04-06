@@ -17,6 +17,7 @@
 
 #include <vector>
 #include "../standalone_headers/enumerations.h"
+#include "elevator.h"
 
 
 #ifndef CPS_ELEVATOR_PROJECT_NODE_H
@@ -77,11 +78,11 @@ public:
     // Need to add parameterized constructor???
     // Yeeeees
     Node(   const unsigned int id, struct Location location,
-            Node *upNode = null, Node *rightNode = null, Node *leftNode = null, Node *downNode = null,
+            Node *upNode = nullptr, Node *rightNode = nullptr, Node *leftNode = nullptr, Node *downNode = nullptr,
             unsigned int peopleWaiting = 0, bool btnCalled = false);
 
     // isElevatorHere() checks to see if the elevator resides in the current node this method is called at
-    bool isElevatorHere();
+    bool isElevatorHere(Elevator * elevator);
         // Need to come up with some if conditions to properly return true or false
         // Possibly compare elevator's known position vs. current node location
             // ^^ that's exactly how we'll do it

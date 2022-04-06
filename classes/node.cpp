@@ -16,3 +16,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "node.h"
+
+bool Node::isElevatorHere(Elevator * elevator){
+    if(elevator->location == this->location) return true;
+    else return false;
+}

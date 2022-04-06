@@ -1,4 +1,16 @@
-"C:\Program Files\JetBrains\CLion 2020.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/MinGW/bin/mingw32-make.exe -DCMAKE_C_COMPILER=C:/MinGW/bin/gcc.exe -DCMAKE_CXX_COMPILER=C:/MinGW/bin/g++.exe -G "CodeBlocks - MinGW Makefiles" D:\CLion_2020.2.1_Projects\Personal\CPS_ELEVATOR_PROJECT
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja /Users/allansewell/CLionProjects/CPS_ELEVATOR_PROJECT
+-- The C compiler identification is AppleClang 13.1.6.13160021
+-- The CXX compiler identification is AppleClang 13.1.6.13160021
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: D:/CLion_2020.2.1_Projects/Personal/CPS_ELEVATOR_PROJECT/cmake-build-debug
+-- Build files have been written to: /Users/allansewell/CLionProjects/CPS_ELEVATOR_PROJECT/cmake-build-debug

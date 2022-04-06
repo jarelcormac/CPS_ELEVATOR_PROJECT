@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\CPS_ELEVATOR_PROJECT.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\CPS_ELEVATOR_PROJECT.dir/objects.a @CMakeFiles\CPS_ELEVATOR_PROJECT.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\CPS_ELEVATOR_PROJECT.dir/objects.a -Wl,--no-whole-archive  -o CPS_ELEVATOR_PROJECT.exe -Wl,--out-implib,libCPS_ELEVATOR_PROJECT.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\CPS_ELEVATOR_PROJECT.dir\linklibs.rsp
