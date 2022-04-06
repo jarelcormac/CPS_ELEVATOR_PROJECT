@@ -17,7 +17,7 @@
 
 #include <vector>
 #include "../standalone_headers/enumerations.h"
-#include "elevator.h"
+//#include "elevator.h" // This will create a circular dependency error
 
 
 #ifndef CPS_ELEVATOR_PROJECT_NODE_H
@@ -40,6 +40,8 @@
  *        whether or not the button for the node has been pressed.
  *
 ******************************************************************************/
+class Elevator; // Forward declares Elevator so the compiler knows what it is without causing a circular dependency
+
 class Node {
 public:
     //====== PUBLIC STRUCTURES (SHARED WITH ELEVATOR CLASS) ======//
@@ -77,7 +79,7 @@ public:
 
     // Need to add parameterized constructor???
     // Yeeeees
-    Node(   const unsigned int id, struct Location location,
+    Node(   unsigned int id, struct Location location,
             Node *upNode = nullptr, Node *rightNode = nullptr, Node *leftNode = nullptr, Node *downNode = nullptr,
             unsigned int peopleWaiting = 0, bool btnCalled = false);
 
