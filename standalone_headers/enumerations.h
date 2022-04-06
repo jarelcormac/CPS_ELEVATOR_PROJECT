@@ -38,9 +38,9 @@
  *
 ******************************************************************************/
 enum Floor {
-    First,      // First floor will be indexed as 2 in C++ 2D array.
-    Second,     // Second floor will be indexed as 1 in C++ 2D array.
-    Third       // Third floor will be indexed as 0 in C++ 2D array.
+    First = 2,      // First floor will be indexed as 2 in C++ 2D array.
+    Second = 1,     // Second floor will be indexed as 1 in C++ 2D array.
+    Third = 0       // Third floor will be indexed as 0 in C++ 2D array.
 };
 
 
@@ -50,9 +50,9 @@ enum Floor {
  *
 ******************************************************************************/
 enum Section {
-    A,      // A represents the leftmost column of nodes.
-    B,      // B represents the middle column of nodes.
-    C       // C represents the rightmost column of nodes.
+    A = 0,      // A represents the leftmost column of nodes.
+    B = 1,      // B represents the middle column of nodes.
+    C = 2       // C represents the rightmost column of nodes.
 };
 
 #endif //CPS_ELEVATOR_PROJECT_ENUMERATIONS_H

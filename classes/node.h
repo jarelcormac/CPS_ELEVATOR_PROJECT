@@ -75,21 +75,27 @@ public:
     Node();
 
     // Need to add parameterized constructor???
+    // Yeeeees
+    Node(   const unsigned int id, struct Location location,
+            Node *upNode = null, Node *rightNode = null, Node *leftNode = null, Node *downNode = null,
+            unsigned int peopleWaiting = 0, bool btnCalled = false);
 
     // isElevatorHere() checks to see if the elevator resides in the current node this method is called at
     bool isElevatorHere();
         // Need to come up with some if conditions to properly return true or false
         // Possibly compare elevator's known position vs. current node location
+            // ^^ that's exactly how we'll do it
 
-    // nearbyNodes() lists the the nodes immediately upwards, downwards, left, and right of the current node
+    // nearbyNodes() lists the nodes immediately upwards, downwards, left, and right of the current node
     std::vector<NodeDirection> nearbyNodes();
-        // Should return null if there are no nodes residing next to the current node
-        // Decide if we return the nearby nodes' IDs or the nearby nodes' locations
+        // Should return empty vector if there are no nodes residing next to the current node
+        // Tentative if we return the nearby nodes' IDs or the nearby nodes' locations
 
     // addNode(...) will add a node in the required direction relative to the current node
     int addNode(Node* node, enum Direction direction);
 
     // Not too sure what this method does or what's different than the previous addNode(...)
+        // It's the same thing just with the NodeDirection struct.
     int addNode(NodeDirection nodeDirect);
 };
 
