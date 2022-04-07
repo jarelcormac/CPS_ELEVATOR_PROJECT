@@ -1,3 +1,0 @@
-D:/CLion_2020.2.1_Projects/Personal/CPS_ELEVATOR_PROJECT/cmake-build-debug/CMakeFiles/CPS_ELEVATOR_PROJECT.dir
-D:/CLion_2020.2.1_Projects/Personal/CPS_ELEVATOR_PROJECT/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/CLion_2020.2.1_Projects/Personal/CPS_ELEVATOR_PROJECT/cmake-build-debug/CMakeFiles/rebuild_cache.dir
