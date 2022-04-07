@@ -28,7 +28,7 @@
 class Elevator {
 private:
     //====== PRIVATE VARIABLES ======//
-    std::vector<struct Location> travelBuffer;  // This stores the order in which location buttons are pressed by
+    std::vector<struct Node::Location> travelBuffer;  // This stores the order in which location buttons are pressed by
                                                 // elevator patrons in order to determine the pathfinding order.
 
     //====== PRIVATE METHODS ======//
@@ -43,7 +43,6 @@ private:
 
     // Move elevator one node right
     int moveRight();
-
 
     // Open elevator doors
     int openDoors();
@@ -62,9 +61,10 @@ public:
     // Default Constructor
     Elevator();
 
-    // Need to add parameterized constructor???
+    Elevator(struct Node::Location* x1, bool* x2[3][3], bool x3, unsigned int x4);
 
-    // moveHere() will attempt to move the elevator to any other node within the 3x3 array of nodes as efficiently as possible.
+    // moveHere()
+    // Attempts to move the elevator to any other node within the 3x3 array of nodes as efficiently as possible.
     int moveHere();
 };
 
