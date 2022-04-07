@@ -57,6 +57,10 @@ public:
     struct Location {
         enum Section section;
         enum Floor floor;
+        bool operator==(Location const &other){
+            if(floor == other.floor && section == other.section) return true;
+            else return false;
+        }
     };
 
 private:
