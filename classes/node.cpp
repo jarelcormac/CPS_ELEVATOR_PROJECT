@@ -32,6 +32,22 @@ Node::Node() {
     location.floor = Third;
     location.section = A;
 }
+
+//====== Parameterized Constructor Implementation ======//
+Node::Node(unsigned int x1, struct Location x2,
+           Node *x3, Node *x4, Node *x5, Node *x6,
+           unsigned int x7, bool x8) {
+    id = x1;
+    location.floor = x2.floor;
+    location.section = x2.section;
+    upNode = x3;
+    downNode = x4;
+    leftNode = x5;
+    rightNode = x6;
+    peopleWaiting = x7;
+    btnCalled = x8;
+}
+
 //====== isElevatorHere(...) Method Implementation ======//
 bool Node::isElevatorHere(Elevator * elevator){
     if(elevator->location == this->location) return true;

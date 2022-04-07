@@ -69,7 +69,7 @@ private:
     Node* downNode;
     Node* leftNode;
     Node* rightNode;
-    unsigned short int id;
+    unsigned int id;
     unsigned int peopleWaiting;
 
 public:
@@ -78,35 +78,37 @@ public:
     struct Node::Location location{};
 
     //====== PUBLIC METHODS ======//
-    // Default Constructor
+    // Default Node Constructor
     Node();
 
-    // Need to add parameterized constructor???
-    // Yeeeees
-    Node(   unsigned int id, struct Location location,
-            Node *upNode = nullptr, Node *rightNode = nullptr, Node *leftNode = nullptr, Node *downNode = nullptr,
-            unsigned int peopleWaiting = 0, bool btnCalled = false);
+    // Parameterized Node Constructor
+    Node(unsigned int x1, struct Location x2,
+         Node *x3, Node *x4, Node *x5, Node *x6,
+         unsigned int x7, bool x8);
 
-    // isElevatorHere() checks to see if the elevator resides in the current node this method is called at
+    // isElevatorHere() Method Prototype
+    // Checks to see if the elevator resides in the current node this method is called at.
     bool isElevatorHere(Elevator * elevator);
         // Need to come up with some if conditions to properly return true or false
         // Possibly compare elevator's known position vs. current node location
             // ^^ that's exactly how we'll do it
 
-    // nearbyNodes() lists the nodes immediately upwards, downwards, left, and right of the current node
+    // nearbyNodes() Method Prototype
+    // Lists the nodes immediately upwards, downwards, left, and right of the current node
     std::vector<NodeDirection> nearbyNodes();
         // Should return empty vector if there are no nodes residing next to the current node
         // Tentative if we return the nearby nodes' IDs or the nearby nodes' locations
 
-    // addNode(...) will add a node in the required direction relative to the current node
+    // addNode(...)
+    // Adds a node in the required direction relative to the current node.
     int addNode(Node* node, enum Direction direction);
 
-    // Not too sure what this method does or what's different than the previous addNode(...)
-        // It's the same thing just with the NodeDirection struct.
+    // This version of addNode(...) completed the same goal as the previous addNode(...) method in a different manner.
+    // This is just to offer some versatility and ease of programming in case one method does not work.
     int addNode(NodeDirection nodeDirect);
 
-    // Used to print the status of the current node
-    // I'm only using this to test the default constructor right now but we can keep it later if we need
+    // Overloaded << Method.
+    // This prints out the current node instance's status.
     friend std::ostream& operator<<(std::ostream &out, const Node &node);
 };
 
