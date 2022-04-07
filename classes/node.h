@@ -48,6 +48,8 @@ public:
     //====== PUBLIC STRUCTURES (SHARED WITH ELEVATOR CLASS) ======//
     // Node Direction Structure
     struct NodeDirection {
+        NodeDirection(Node *n, Direction d) : node(n), direction(d) {}
+
         Node* node;
         enum Direction direction;
     };
@@ -91,7 +93,7 @@ public:
 
     // isElevatorHere() Method Prototype
     // Checks to see if the elevator resides in the current node this method is called at.
-    bool isElevatorHere(Elevator * elevator);
+    bool isElevatorHere(Elevator * elevator) const;
         // Need to come up with some if conditions to properly return true or false
         // Possibly compare elevator's known position vs. current node location
             // ^^ that's exactly how we'll do it

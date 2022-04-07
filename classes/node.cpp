@@ -48,7 +48,7 @@ Node::Node(unsigned int x1, struct Location x2,
 }
 
 //====== isElevatorHere(...) Method Implementation ======//
-bool Node::isElevatorHere(Elevator * elevator){
+bool Node::isElevatorHere(Elevator * elevator) const{
     if(elevator->location == this->location) return true;
     else return false;
 }
@@ -66,4 +66,63 @@ std::ostream &operator<<(std::ostream &out, const Node &node) {
         << "\tSection Location of Node: " << node.location.section << "\n" << std::endl;
     return out;
 }
+// nearbyNodes() will return the nodes, and their directions relative to the source node,
+// that are directly next to the source node.
+std::vector<Node::NodeDirection> Node::nearbyNodes() {
+    std::vector<NodeDirection> nodes;
+
+    if(upNode != nullptr) nodes.push_back(NodeDirection(upNode, Up));
+    if(downNode != nullptr) nodes.push_back(NodeDirection(downNode, Down));
+    if(leftNode != nullptr) nodes.push_back(NodeDirection(leftNode, Left));
+    if(rightNode != nullptr) nodes.push_back(NodeDirection(rightNode, Right));
+
+    return nodes;
+}
+
+// addNode() will add a node in the direction specified relative to the source node
+int Node::addNode(Node *node, enum Direction direction) {
+    switch(direction){
+        case Up:
+            this->upNode = node;
+            node->downNode = this;
+            break;
+        case Down:
+            this->downNode = node;
+            node->upNode = this;
+            break;
+        case Left:
+            this->leftNode = node;
+            node->rightNode = this;
+            break;
+        case Right:
+            this->rightNode = node;
+            node->leftNode = this;
+            break;
+    }
+    return 0;
+}
+
+// addNode() will add a node in the direction specified relative to the source node
+int Node::addNode(Node::NodeDirection nodeDirect) {
+    switch(nodeDirect.direction){
+        case Up:
+            this->upNode = nodeDirect.node;
+            nodeDirect.node->downNode = this;
+            break;
+        case Down:
+            this->downNode = nodeDirect.node;
+            nodeDirect.node->upNode = this;
+            break;
+        case Left:
+            this->leftNode = nodeDirect.node;
+            nodeDirect.node->rightNode = this;
+            break;
+        case Right:
+            this->rightNode = nodeDirect.node;
+            nodeDirect.node->leftNode = this;
+            break;
+    }
+    return 0;
+}
+
 
