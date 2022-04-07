@@ -13,12 +13,8 @@ int main() {
     std::cout << testNode1;
 
     std::cout << "-CREATING TEST NODE (PARAMETERIZED CONSTRUCTOR)..." << std::endl;
-    Node::Location tempLoc = {
-            A,
-            First
-    };
 
-    Node testNode2 = Node(22, tempLoc, nullptr, nullptr, nullptr, nullptr, 27, false);
+    Node testNode2 = Node(22, Node::Location(A,First), nullptr, nullptr, nullptr, nullptr, 27, false);
     std::cout << "\t- TEST NODE (DEFAULT CONSTRUCTOR) SUCCESSFULLY CREATED" << std::endl;
     std::cout << "- PRINTING TEST NODE (PARAMETERIZED CONSTRUCTOR) STATUS..." << std::endl;
     std::cout << testNode2;

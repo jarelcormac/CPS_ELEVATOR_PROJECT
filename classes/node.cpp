@@ -29,8 +29,7 @@ Node::Node() {
     id = 0;
     peopleWaiting = 0;
     btnCalled = false;
-    location.floor = Third;
-    location.section = A;
+    location = Location(A,First);
 }
 
 //====== Parameterized Constructor Implementation ======//
