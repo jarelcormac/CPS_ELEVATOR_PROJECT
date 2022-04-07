@@ -40,26 +40,44 @@ Elevator::Elevator(struct Node::Location* x1, bool* x2[3][3], bool x3, unsigned 
 }
 
 int Elevator::openDoors() {
+    try{
+        doorsOpen = true;
+    }
+    catch(std::exception){
+        return -1; // Unsuccessful opening of doors
+    }
     return 0;
 }
 
 int Elevator::closeDoors() {
+    try{
+        doorsOpen = false;
+    }
+    catch(std::exception){
+        return -1; // Unsuccessful opening of doors
+    }
     return 0;
 }
 
 int Elevator::moveUp() {
+    location.floor = (Floor)(location.floor - 1); // minus 1 because floors work
+                                        // oppositely from vertical arrays in C++
     return 0;
 }
 
 int Elevator::moveDown() {
+    location.floor = (Floor)(location.floor + 1); // plus 1 because floors work
+                                        // oppositely from vertical arrays in C++
     return 0;
 }
 
 int Elevator::moveLeft() {
+    location.section = (Section)(location.section - 1);
     return 0;
 }
 
 int Elevator::moveRight() {
+    location.section = (Section)(location.section + 1);
     return 0;
 }
 
