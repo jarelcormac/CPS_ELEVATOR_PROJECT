@@ -16,6 +16,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include <vector>
+#include <ostream>
 #include "../standalone_headers/enumerations.h"
 //#include "elevator.h" // This will create a circular dependency error
 
@@ -45,9 +46,7 @@ class Elevator; // Forward declares Elevator so the compiler knows what it is wi
 class Node {
 public:
     //====== PUBLIC STRUCTURES (SHARED WITH ELEVATOR CLASS) ======//
-    // I made these public so that elevator.h can access these and didn't want to copy these into elevator.h
-    // Eliminated redundancy but I'm not sure if this is the best solution
-    // NodeDirection
+    // Node Direction Structure
     struct NodeDirection {
         Node* node;
         enum Direction direction;
@@ -57,7 +56,8 @@ public:
     struct Location {
         enum Section section;
         enum Floor floor;
-        bool operator==(Location const &other){
+        // Overloaded == Operator
+        bool operator==(Location const &other) const{
             if(floor == other.floor && section == other.section) return true;
             else return false;
         }
@@ -75,7 +75,7 @@ private:
 public:
     //====== PUBLIC VARIABLES ======//
     bool btnCalled;
-    struct Node::Location location;
+    struct Node::Location location{};
 
     //====== PUBLIC METHODS ======//
     // Default Constructor
@@ -104,6 +104,10 @@ public:
     // Not too sure what this method does or what's different than the previous addNode(...)
         // It's the same thing just with the NodeDirection struct.
     int addNode(NodeDirection nodeDirect);
+
+    // Used to print the status of the current node
+    // I'm only using this to test the default constructor right now but we can keep it later if we need
+    friend std::ostream& operator<<(std::ostream &out, const Node &node);
 };
 
 
