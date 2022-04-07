@@ -7,7 +7,7 @@
 // Create Date: 31 MAR 2022
 // Filename: node.cpp
 // Project Name: CPS_ELEVATOR_PROJECT
-// Description:
+// Description: Contains implementation of methods defined for the Node class.
 //
 //
 // Version 1.00 - File Created

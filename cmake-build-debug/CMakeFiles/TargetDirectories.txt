@@ -1,3 +1,0 @@
-C:/Users/shoha/CLionProjects/CPS_ELEVATOR_PROJECT/cmake-build-debug/CMakeFiles/CPS_ELEVATOR_PROJECT.dir
-C:/Users/shoha/CLionProjects/CPS_ELEVATOR_PROJECT/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/shoha/CLionProjects/CPS_ELEVATOR_PROJECT/cmake-build-debug/CMakeFiles/rebuild_cache.dir
