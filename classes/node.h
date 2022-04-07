@@ -89,9 +89,9 @@ public:
     Node();
 
     // Parameterized Node Constructor
-    Node(unsigned int x1, struct Location x2,
-         Node *x3, Node *x4, Node *x5, Node *x6,
-         unsigned int x7, bool x8);
+    Node(unsigned int nodeID, struct Location loc,
+         Node *upN, Node *downN, Node *leftN, Node *rightN,
+         unsigned int people, bool btnCall);
 
     // isElevatorHere() Method Prototype
     // Checks to see if the elevator resides in the current node this method is called at.
