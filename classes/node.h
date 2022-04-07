@@ -58,11 +58,13 @@ public:
     struct Location {
         enum Section section;
         enum Floor floor;
+
+        // Constructors
         Location():section(A), floor(First){}
         Location(enum Section s, enum Floor f) :section(s), floor(f){}
 
         // Overloaded == Operator
-        bool operator==(Location const &other) const{
+        bool operator==(Location const &other) const {
             if(floor == other.floor && section == other.section) return true;
             else return false;
         }
