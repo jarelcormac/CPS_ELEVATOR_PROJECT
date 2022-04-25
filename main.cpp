@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "classes/elevator.h"
+#include "standalone_headers/enumerations.h"
 
 
 //====== FUNCTION PROTOTYPES ======//
