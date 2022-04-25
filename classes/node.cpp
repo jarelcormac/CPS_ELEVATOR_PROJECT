@@ -55,15 +55,21 @@ bool Node::isElevatorHere(Elevator * elevator) const{
 
 //====== Overloaded << Implementation ======//
 std::ostream &operator<<(std::ostream &out, const Node &node) {
-    out << "\tNode ID: " << node.id << std::endl
-        << "\tUp Node: " << (node.upNode == nullptr ? ("empty"):(node.upNode->id)) << std::endl
-        << "\tDown Node: " << (node.downNode == nullptr ? ("empty"):(node.downNode->id)) << std::endl
-        << "\tLeft Node: " << (node.leftNode == nullptr ? ("empty"):(node.leftNode->id)) << std::endl
-        << "\tRight Node: " << (node.rightNode == nullptr ? ("empty"):(node.rightNode->id)) << std::endl
-        << "\tPeople Waiting At Node: " << node.peopleWaiting << std::endl
-        << "\tButton Called At Node: " << node.btnCalled << std::endl
-        << "\tFloor Location of Node: " << node.location.floor << std::endl
-        << "\tSection Location of Node: " << node.location.section << std::endl << std::endl;
+    out
+        << "\tNode ID: " << node.id << std::endl
+        << "\tNode Grid:" << std::endl
+        << "\t\t" << (node.upNode == nullptr ? ("--"):(node.upNode->id)) << std::endl
+        << "\t" << (node.leftNode == nullptr ? ("--"):(node.leftNode->id)) << "\t" << node.id
+        << "\t" << (node.rightNode == nullptr ? ("--"):(node.rightNode->id)) << std::endl
+        << "\t\t" << (node.downNode == nullptr ? ("--"):(node.downNode->id)) << std::endl
+//        << "\tUp Node: " << (node.upNode == nullptr ? ("-"):(node.upNode->id)) << std::endl
+//        << "\tDown Node: " << (node.downNode == nullptr ? ("-"):(node.downNode->id)) << std::endl
+//        << "\tLeft Node: " << (node.leftNode == nullptr ? ("-"):(node.leftNode->id)) << std::endl
+//        << "\tRight Node: " << (node.rightNode == nullptr ? ("-"):(node.rightNode->id)) << std::endl
+        << "\tPeople Waiting At " << node.id << ": " << node.peopleWaiting << std::endl
+        << "\tButton Called At " << node.id << ": " << (node.btnCalled ? ("Yes"):("No")) << std::endl;
+//        << "\tFloor Location of Node: " << node.location.floor << std::endl
+//        << "\tSection Location of Node: " << node.location.section << std::endl << std::endl;
     return out;
 }
 // nearbyNodes() will return the nodes, and their directions relative to the source node,
