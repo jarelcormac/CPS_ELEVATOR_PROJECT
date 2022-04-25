@@ -60,26 +60,42 @@ int Elevator::closeDoors() {
     return 0;
 }
 
+// Attempts to move elevator up by one node.
+// Returns 1 if successful, returns 0 if unsuccessful
 int Elevator::moveUp() {
-    location.floor = (Floor)(location.floor - 1); // minus 1 because floors work
-                                        // oppositely from vertical arrays in C++
-    return 0;
+    if(location.floor != Third) {
+        location.floor = (Floor)(location.floor - 1); // minus 1 because floors work
+                                                        // oppositely from vertical arrays in C++
+        return 1;
+    } else return 0;
 }
 
+// Attempts to move elevator down by one node.
+// Returns 1 if successful, returns 0 if unsuccessful
 int Elevator::moveDown() {
-    location.floor = (Floor)(location.floor + 1); // plus 1 because floors work
-                                        // oppositely from vertical arrays in C++
-    return 0;
+    if(location.floor != First) {
+        location.floor = (Floor)(location.floor + 1); // plus 1 because floors work
+                                                      // oppositely from vertical arrays in C++
+        return 1;
+    } else return 0;
 }
 
+// Attempts to move elevator left by one node.
+// Returns 1 if successful, returns 0 if unsuccessful
 int Elevator::moveLeft() {
+    if(location.section != A) {
     location.section = (Section)(location.section - 1);
-    return 0;
+        return 1;
+    } else return 0;
 }
 
+// Attempts to move elevator right by one node.
+// Returns 1 if successful, returns 0 if unsuccessful
 int Elevator::moveRight() {
-    location.section = (Section)(location.section + 1);
-    return 0;
+    if(location.section != C) {
+        location.section = (Section)(location.section + 1);
+        return 1;
+    } else return 0;
 }
 
 int Elevator::moveHere() {
