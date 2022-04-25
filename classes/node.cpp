@@ -26,7 +26,7 @@ Node::Node() {
     downNode = nullptr;
     leftNode = nullptr;
     rightNode = nullptr;
-    id = 0;
+    id = "ID Uninitialized";
     peopleWaiting = 0;
     btnCalled = false;
     location = Location(A,First);
@@ -55,15 +55,15 @@ bool Node::isElevatorHere(Elevator * elevator) const{
 
 //====== Overloaded << Implementation ======//
 std::ostream &operator<<(std::ostream &out, const Node &node) {
-    out << "\tUp Node: " << node.upNode << "\n"
-        << "\tDown Node: " << node.downNode << "\n"
-        << "\tLeft Node: " << node.leftNode << "\n"
-        << "\tRight Node: " << node.rightNode << "\n"
-        << "\tNode ID: " << node.id << "\n"
-        << "\tPeople Waiting At Node: " << node.peopleWaiting << "\n"
-        << "\tButton Called At Node: " << node.btnCalled << "\n"
-        << "\tFloor Location of Node: " << node.location.floor << "\n"
-        << "\tSection Location of Node: " << node.location.section << "\n" << std::endl;
+    out << "\tNode ID: " << node.id << std::endl
+        << "\tUp Node: " << (node.upNode == nullptr ? ("empty"):(node.upNode->id)) << std::endl
+        << "\tDown Node: " << (node.downNode == nullptr ? ("empty"):(node.downNode->id)) << std::endl
+        << "\tLeft Node: " << (node.leftNode == nullptr ? ("empty"):(node.leftNode->id)) << std::endl
+        << "\tRight Node: " << (node.rightNode == nullptr ? ("empty"):(node.rightNode->id)) << std::endl
+        << "\tPeople Waiting At Node: " << node.peopleWaiting << std::endl
+        << "\tButton Called At Node: " << node.btnCalled << std::endl
+        << "\tFloor Location of Node: " << node.location.floor << std::endl
+        << "\tSection Location of Node: " << node.location.section << std::endl << std::endl;
     return out;
 }
 // nearbyNodes() will return the nodes, and their directions relative to the source node,

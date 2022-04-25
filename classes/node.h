@@ -17,6 +17,7 @@
 
 #include <vector>
 #include <iostream>
+#include <string.h>
 #include "../standalone_headers/enumerations.h"
 //#include "elevator.h" // This will create a circular dependency error
 
@@ -61,12 +62,29 @@ public:
 
         // Constructors
         Location():section(A), floor(First){}
-        Location(enum Section s, enum Floor f) :section(s), floor(f){}
+        Location(enum Section sec, enum Floor flr) :section(sec), floor(flr){}
 
         // Overloaded == Operator
         bool operator==(Location const &other) const {
             if(floor == other.floor && section == other.section) return true;
             else return false;
+        }
+
+        // Overloaded << Operator
+        friend std::ostream &operator<<(std::ostream &out, Location const &loc) {
+            char flr, sec;
+            switch(loc.floor){
+                case First: flr = '1'; break;
+                case Second: flr = '2'; break;
+                case Third: flr = '3'; break;
+            }
+            switch(loc.section){
+                case A: sec = 'A'; break;
+                case B: sec = 'B'; break;
+                case C: sec = 'C'; break;
+            }
+            out << flr << sec;
+            return out;
         }
     };
 
@@ -76,12 +94,13 @@ private:
     Node* downNode;
     Node* leftNode;
     Node* rightNode;
-    unsigned int id;
     unsigned int peopleWaiting;
 
 public:
     //====== PUBLIC VARIABLES ======//
+    std::string id;
     bool btnCalled;
+    unsigned int timeBtnPressed;
     struct Node::Location location;
 
     //====== PUBLIC METHODS ======//
@@ -89,9 +108,9 @@ public:
     Node();
 
     // Parameterized Node Constructor
-    Node(unsigned int nodeID, struct Location loc,
-         Node *upN, Node *downN, Node *leftN, Node *rightN,
-         unsigned int people, bool btnCall);
+    Node(std::string ID, struct Location loc,
+         Node *up = nullptr, Node *down = nullptr, Node *left = nullptr, Node *right = nullptr,
+         unsigned int pplWaiting = 0, bool buttonCalled = false);
 
     // isElevatorHere() Method Prototype
     // Checks to see if the elevator resides in the current node this method is called at.
