@@ -28,8 +28,11 @@
 class Elevator {
 private:
     //====== PRIVATE VARIABLES ======//
-    std::vector<struct Node::Location> travelBuffer;  // This stores the order in which location buttons are pressed by
-                                                // elevator patrons in order to determine the pathfinding order.
+    std::vector<struct Node::Location> pickUpBuffer;  // This buffer stores how many people are currently waiting to be
+                                                      // picked up at some node location.
+    std::vector<struct Node::Location> dropOffBuffer; // This buffer stores how many people are currently waiting to be
+                                                      // dropped off at some node location.
+    std::vector<class Person> peopleInside;   // This vector stores the people within the elevator itself.
 
     //====== PRIVATE METHODS ======//
     // Move elevator one node up
@@ -61,7 +64,9 @@ public:
     // Default Constructor
     Elevator();
 
-    Elevator(struct Node::Location* x1, bool* x2[3][3], bool x3, unsigned int x4);
+    // Parameterized Elevator Constructor
+    Elevator(struct Node::Location* loc, bool* btnPress[3][3], bool drsOpen,
+                std::vector<class Person> pplInside);
 
     // moveHere()
     // Attempts to move the elevator to any other node within the 3x3 array of nodes as efficiently as possible.
