@@ -23,20 +23,21 @@ Elevator::Elevator() {
         for(int j = 0; j < 3; j++) btnPressed[i][j] = false;
     }
     doorsOpen = false;
-    occupancy = 0;
+    peopleInside = std::vector<class Person>();
     location.section = A;
     location.floor = First;
 }
 
 //====== Parameterized Constructor Method Implementation ======//
-Elevator::Elevator(struct Node::Location* x1, bool* x2[3][3], bool x3, unsigned int x4) {
+Elevator::Elevator(struct Node::Location* loc, bool* btnPress[3][3], bool drsOpen,
+                            std::vector<class Person> pplInside) {
     for(int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) btnPressed[i][j] = x2[i][j];
+        for (int j = 0; j < 3; j++) btnPressed[i][j] = btnPress[i][j];
     }
-    doorsOpen = x3;
-    occupancy = x4;
-    location.section = x1->section;
-    location.floor = x1->floor;
+    doorsOpen = drsOpen;
+    peopleInside = pplInside;
+    location.section = loc->section;
+    location.floor = loc->floor;
 }
 
 int Elevator::openDoors() {
@@ -83,4 +84,12 @@ int Elevator::moveRight() {
 
 int Elevator::moveHere() {
     return 0;
+}
+
+void Elevator::PickUpBuff_push_back(Node::Location loc){
+    pickUpBuffer.push_back(loc);
+}
+
+void Elevator::DropOffBuff_push_back(Node::Location loc){
+    dropOffBuffer.push_back(loc);
 }

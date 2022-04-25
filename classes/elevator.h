@@ -16,6 +16,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "node.h"
+#include "person.h"
 
 #ifndef CPS_ELEVATOR_PROJECT_ELEVATOR_H
 #define CPS_ELEVATOR_PROJECT_ELEVATOR_H
@@ -25,6 +26,7 @@
  * ELEVATOR CLASS
  *
  ***************************************************/
+
 class Elevator {
 private:
     //====== PRIVATE VARIABLES ======//
@@ -58,7 +60,6 @@ public:
     struct Node::Location location;
     bool btnPressed[3][3];
     bool doorsOpen;
-    unsigned int occupancy;
 
     //====== PUBLIC METHODS ======//
     // Default Constructor
@@ -71,6 +72,10 @@ public:
     // moveHere()
     // Attempts to move the elevator to any other node within the 3x3 array of nodes as efficiently as possible.
     int moveHere();
+
+    void PickUpBuff_push_back(Node::Location loc);
+
+    void DropOffBuff_push_back(Node::Location loc);
 };
 
 
