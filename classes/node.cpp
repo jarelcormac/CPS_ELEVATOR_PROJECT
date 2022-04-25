@@ -33,18 +33,18 @@ Node::Node() {
 }
 
 //====== Parameterized Constructor Implementation ======//
-Node::Node(unsigned int nodeID, struct Location loc,
-           Node *upN, Node *downN, Node *leftN, Node *rightN,
-           unsigned int people, bool btnCall) {
-    id = nodeID;
+Node::Node(std::string ID, struct Location loc,
+           Node *up, Node *down, Node *left, Node *right,
+           unsigned int pplWaiting, bool buttonCalled) {
+    id = ID;
     location.floor = loc.floor;
     location.section = loc.section;
-    upNode = upN;
-    downNode = downN;
-    leftNode = leftN;
-    rightNode = rightN;
-    peopleWaiting = people;
-    btnCalled = btnCall;
+    upNode = up;
+    downNode = down;
+    leftNode = left;
+    rightNode = right;
+    peopleWaiting = pplWaiting;
+    btnCalled = buttonCalled;
 }
 
 //====== isElevatorHere(...) Method Implementation ======//

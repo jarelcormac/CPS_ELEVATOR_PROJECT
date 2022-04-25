@@ -41,7 +41,7 @@
  *        whether or not the button for the node has been pressed.
  *
 ******************************************************************************/
-class Elevator; // Forward declares Elevator so the compiler knows what it is without causing a circular dependency
+class Elevator; // Forward declares Elevator so the compiler knows what it is without causing a circular dependency.
 
 class Node {
 public:
