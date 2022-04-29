@@ -37,6 +37,9 @@ private:
     std::vector<class Person> peopleInside;   // This vector stores the people within the elevator itself.
 
     //====== PRIVATE METHODS ======//
+
+
+public:
     // Move elevator one node up
     int moveUp();
 
@@ -55,7 +58,6 @@ private:
     // Close elevator doors
     int closeDoors();
 
-public:
     //====== PUBLIC VARIABLES ======//
     struct Node::Location location;
     bool btnPressed[3][3];
@@ -66,8 +68,8 @@ public:
     Elevator();
 
     // Parameterized Elevator Constructor
-    Elevator(struct Node::Location* loc, bool* btnPress[3][3], bool drsOpen,
-                std::vector<class Person> pplInside);
+    Elevator(struct Node::Location loc, bool btnPress[3][3], bool drsOpen = false,
+                std::vector<class Person> pplInside = std::vector<class Person>());
 
     // moveHere()
     // Attempts to move the elevator to any other node within the 3x3 array of nodes as efficiently as possible.
@@ -76,6 +78,9 @@ public:
     void PickUpBuff_push_back(Node::Location loc);
 
     void DropOffBuff_push_back(Node::Location loc);
+
+    // Overloaded << Method
+    friend std::ostream& operator<<(std::ostream &out, const Elevator &elevator);
 };
 
 

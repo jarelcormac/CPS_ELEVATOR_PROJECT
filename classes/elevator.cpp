@@ -16,6 +16,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "elevator.h"
+#include "specialExceptions.h"
+#include <utility>
 
 //====== Default Constructor Method Implementation ======//
 Elevator::Elevator() {
@@ -29,75 +31,108 @@ Elevator::Elevator() {
 }
 
 //====== Parameterized Constructor Method Implementation ======//
-Elevator::Elevator(struct Node::Location* loc, bool* btnPress[3][3], bool drsOpen,
-                            std::vector<class Person> pplInside) {
+Elevator::Elevator(struct Node::Location loc, bool btnPress[3][3], bool drsOpen,
+                   std::vector<class Person> pplInside) {
     for(int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) btnPressed[i][j] = btnPress[i][j];
     }
     doorsOpen = drsOpen;
-    peopleInside = pplInside;
-    location.section = loc->section;
-    location.floor = loc->floor;
+    peopleInside = std::move(pplInside);
+    location.section = loc.section;
+    location.floor = loc.floor;
 }
 
+//====== openDoors() Method Implementation ======//
 int Elevator::openDoors() {
     try{
         doorsOpen = true;
     }
-    catch(std::exception){
+    catch(OpenDoorsException &e){
+        std::cout << e.what() << std::endl;
         return -1; // Unsuccessful opening of doors
     }
     return 0;
 }
 
+//====== closeDoors() Method Implementation ======//
 int Elevator::closeDoors() {
     try{
         doorsOpen = false;
     }
-    catch(std::exception){
-        return -1; // Unsuccessful opening of doors
+    catch(CloseDoorsException &e){
+        std::cout << e.what() << std::endl;
+        return -1; // Unsuccessful closing of doors
     }
     return 0;
 }
 
-// Attempts to move elevator up by one node.
-// Returns 1 if successful, returns 0 if unsuccessful
+//====== moveUp() Method Implementation ======//
+/*
+ * Attempts to move elevator up by one node.
+ * Returns 1 if successful, returns 0 if unsuccessful
+ */
 int Elevator::moveUp() {
-    if(location.floor != Third) {
-        location.floor = (Floor)(location.floor - 1); // minus 1 because floors work
+    if(doorsOpen) {
+        std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
+        return 0;
+    }
+    else if(location.floor != Third) {
+        location.floor = (Floor)(location.floor - 1);   // minus 1 because floors work
                                                         // oppositely from vertical arrays in C++
         return 1;
     } else return 0;
 }
 
-// Attempts to move elevator down by one node.
-// Returns 1 if successful, returns 0 if unsuccessful
+//====== moveDown() Method Implementation ======//
+/*
+ * Attempts to move elevator down by one node.
+ * Returns 1 if successful, returns 0 if unsuccessful
+*/
 int Elevator::moveDown() {
-    if(location.floor != First) {
+    if(doorsOpen) {
+        std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
+        return 0;
+    }
+    else if(location.floor != First) {
         location.floor = (Floor)(location.floor + 1); // plus 1 because floors work
                                                       // oppositely from vertical arrays in C++
         return 1;
     } else return 0;
 }
 
-// Attempts to move elevator left by one node.
-// Returns 1 if successful, returns 0 if unsuccessful
+//====== moveDown() Method Implementation ======//
+/*
+ * Attempts to move elevator left by one node.
+ * Returns 1 if successful, returns 0 if unsuccessful
+*/
 int Elevator::moveLeft() {
-    if(location.section != A) {
+    if(doorsOpen) {
+        std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
+        return 0;
+    }
+    else if(location.section != A) {
     location.section = (Section)(location.section - 1);
         return 1;
     } else return 0;
 }
 
-// Attempts to move elevator right by one node.
-// Returns 1 if successful, returns 0 if unsuccessful
+//====== moveRight() Method Implementation ======//
+/*
+ * Attempts to move elevator right by one node.
+ * Returns 1 if successful, returns 0 if unsuccessful
+*/
 int Elevator::moveRight() {
-    if(location.section != C) {
+    if(doorsOpen) {
+        std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
+        return 0;
+    }
+    else if(location.section != C) {
         location.section = (Section)(location.section + 1);
         return 1;
     } else return 0;
 }
 
+//====== moveHere() Method Implementation ======//
 int Elevator::moveHere() {
     return 0;
 }
@@ -108,4 +143,12 @@ void Elevator::PickUpBuff_push_back(Node::Location loc){
 
 void Elevator::DropOffBuff_push_back(Node::Location loc){
     dropOffBuffer.push_back(loc);
+}
+
+//====== Overloaded << Implementation ======//
+std::ostream &operator<<(std::ostream &out, const Elevator &elevator) {
+    out
+        << "\tElevator Location: " << elevator.location << std::endl
+        << "\t\tElevator Doors: " << (elevator.doorsOpen ? ("Opened"):("Closed")) << std::endl;
+    return out;
 }
