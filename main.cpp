@@ -51,15 +51,61 @@ int main() {
     createNodes(nodeArray, locationArray);
     std::cout << "\t\t- NODES AND GRID SYSTEM SUCCESSFULLY CREATED" << std::endl;
 
-
-    std::cout << "- PRINTING ALL NODE STATUSES..." << std::endl;
+    // Print out all current node statuses.
+    std::cout << "- PRINTING ALL NODES' STATUSES..." << std::endl;
     for(Floor x = First; x >= Third; x = (Floor)(x - 1)) {
         for(Section y = A; y <= C; y = (Section)(y + 1)) {
             std::cout << nodeArray[x][y] << std::endl;
         }
     }
 
-    std::cout << "********** STARTING TEST APPLICATION **********" << std::endl;
+    // Initialize a buttonPressed array.
+    bool buttonPressed[3][3] = {
+            false, false, false,
+            false, false, false,
+            false, false, false
+    };
+
+    // Instantiate Elevator at Node 2B.
+    std::cout << "- CREATING INSTANCE OF ELEVATOR AT NODE 2B..." << std::endl;
+    Elevator elevator = Elevator(nodeArray[1][1].location, buttonPressed);
+    std::cout << "/t- ELEVATOR INSTANTIATED AT NODE 2B" << std::endl;
+    std::cout << "- PRINTING ELEVATOR'S STATUS..." << std::endl;
+    std::cout << elevator << std::endl;
+
+    std::cout << "- TESTING ELEVATOR MOVEMENT/DOOR FUNCTIONALITIES..." << std::endl;
+
+    // Move Up
+    std::cout << "\t- MOVING UP..." << std::endl;
+    elevator.moveUp();
+    std::cout << "\t" << elevator << std::endl;
+    // Move Down
+    std::cout << "\t- MOVING DOWN..." << std::endl;
+    elevator.moveDown();
+    std::cout << "\t" << elevator << std::endl;
+    // Move Left
+    std::cout << "\t- MOVING LEFT..." << std::endl;
+    elevator.moveLeft();
+    std::cout << "\t" << elevator << std::endl;
+    // Move Right
+    std::cout << "\t- MOVING RIGHT..." << std::endl;
+    elevator.moveRight();
+    std::cout << "\t" << elevator << std::endl;
+    // Open Doors
+    std::cout << "\t- OPENING ELEVATOR DOORS..." << std::endl;
+    elevator.openDoors();
+    std::cout << "\t" << elevator << std::endl;
+    // Move Right
+    std::cout << "\t- MOVING RIGHT..." << std::endl;
+    elevator.moveRight();
+    std::cout << "\t" << elevator << std::endl;
+    // Close Doors
+    std::cout << "\t- CLOSING ELEVATOR DOORS..." << std::endl;
+    elevator.closeDoors();
+    std::cout << "\t" << elevator << std::endl;
+
+
+    std::cout << "\n********** TEST APPLICATION COMPLETED **********" << std::endl;
 
 return 0;
 }
