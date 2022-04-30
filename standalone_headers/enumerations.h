@@ -19,6 +19,11 @@
 #ifndef CPS_ELEVATOR_PROJECT_ENUMERATIONS_H
 #define CPS_ELEVATOR_PROJECT_ENUMERATIONS_H
 
+#include <iostream>
+
+#endif //CPS_ELEVATOR_PROJECT_ENUMERATIONS_H
+
+
 /******************************************************************************
  *
  * DIRECTION ENUMERATION
@@ -54,5 +59,3 @@ enum Section {
     B = 1,      // B represents the middle column of nodes.
     C = 2       // C represents the rightmost column of nodes.
 };
-
-#endif //CPS_ELEVATOR_PROJECT_ENUMERATIONS_H

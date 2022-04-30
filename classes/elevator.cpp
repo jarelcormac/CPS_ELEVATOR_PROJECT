@@ -17,7 +17,6 @@
 
 #include "elevator.h"
 #include "specialExceptions.h"
-#include <utility>
 
 //====== Default Constructor Method Implementation ======//
 Elevator::Elevator() {
@@ -31,7 +30,7 @@ Elevator::Elevator() {
 }
 
 //====== Parameterized Constructor Method Implementation ======//
-Elevator::Elevator(struct Node::Location loc, bool btnPress[3][3], bool drsOpen,
+Elevator::Elevator(struct Location loc, bool btnPress[3][3], bool drsOpen,
                    std::vector<class Person> pplInside) {
     for(int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) btnPressed[i][j] = btnPress[i][j];
@@ -137,18 +136,18 @@ int Elevator::moveHere() {
     return 0;
 }
 
-void Elevator::PickUpBuff_push_back(Node::Location loc){
+void Elevator::PickUpBuff_push_back(Location loc){
     pickUpBuffer.push_back(loc);
 }
 
-void Elevator::DropOffBuff_push_back(Node::Location loc){
+void Elevator::DropOffBuff_push_back(Location loc){
     dropOffBuffer.push_back(loc);
 }
 
 //====== Overloaded << Implementation ======//
 std::ostream &operator<<(std::ostream &out, const Elevator &elevator) {
     out
-        << "\tElevator Location: " << elevator.location << std::endl
+        << "\t\tElevator Location: " << elevator.location << std::endl
         << "\t\tElevator Doors: " << (elevator.doorsOpen ? ("Opened"):("Closed")) << std::endl;
     return out;
 }

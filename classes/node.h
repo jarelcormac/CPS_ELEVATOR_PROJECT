@@ -15,15 +15,13 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include <vector>
-#include <iostream>
-#include <string.h>
-#include "../standalone_headers/enumerations.h"
-//#include "elevator.h" // This will create a circular dependency error
-
 
 #ifndef CPS_ELEVATOR_PROJECT_NODE_H
 #define CPS_ELEVATOR_PROJECT_NODE_H
+
+#include <vector>
+#include "../standalone_headers/location.h"
+
 
 
 /******************************************************************************
@@ -42,7 +40,8 @@
  *        whether or not the button for the node has been pressed.
  *
 ******************************************************************************/
-class Elevator; // Forward declares Elevator so the compiler knows what it is without causing a circular dependency.
+
+class Elevator;
 
 class Node {
 public:
@@ -55,38 +54,6 @@ public:
         enum Direction direction;
     };
 
-    // Location Structure
-    struct Location {
-        enum Section section;
-        enum Floor floor;
-
-        // Constructors
-        Location():section(A), floor(First){}
-        Location(enum Section sec, enum Floor flr) :section(sec), floor(flr){}
-
-        // Overloaded == Operator
-        bool operator==(Location const &other) const {
-            if(floor == other.floor && section == other.section) return true;
-            else return false;
-        }
-
-        // Overloaded << Operator
-        friend std::ostream &operator<<(std::ostream &out, Location const &loc) {
-            char flr, sec;
-            switch(loc.floor){
-                case First: flr = '1'; break;
-                case Second: flr = '2'; break;
-                case Third: flr = '3'; break;
-            }
-            switch(loc.section){
-                case A: sec = 'A'; break;
-                case B: sec = 'B'; break;
-                case C: sec = 'C'; break;
-            }
-            out << flr << sec;
-            return out;
-        }
-    };
 
 private:
     //====== PRIVATE VARIABLES ======//
@@ -101,7 +68,7 @@ public:
     std::string id;
     bool btnCalled;
     unsigned int timeBtnPressed;
-    struct Node::Location location;
+    struct Location location;
 
     //====== PUBLIC METHODS ======//
     // Default Node Constructor
@@ -137,6 +104,7 @@ public:
     // This prints out the current node instance's status.
     friend std::ostream& operator<<(std::ostream &out, const Node &node);
 };
+
 
 
 #endif //CPS_ELEVATOR_PROJECT_NODE_H
