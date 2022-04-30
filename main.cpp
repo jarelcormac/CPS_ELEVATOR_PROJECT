@@ -1,7 +1,5 @@
-#include <iostream>
 #include <cstring>
 #include "classes/elevator.h"
-#include "standalone_headers/enumerations.h"
 
 
 //====== FUNCTION PROTOTYPES ======//
@@ -12,13 +10,13 @@
  *      First letter indicates column which node resides in.
  *      Second number indicates floor which node resides in.
  */
-void createLocationArray(Node::Location locArray[3][3]);
+void createLocationArray(Location locArray[3][3]);
 
 /*
  * <createNodes() Function Prototype>
  *      Function creates all nine possible nodes only using parameterized constructor.
  */
-void createNodes(Node nodesArray[3][3], Node::Location locArray[3][3]);
+void createNodes(Node nodesArray[3][3], Location locArray[3][3]);
 
 /*
  * <createNodeGrid(...) Function Prototype>
@@ -32,15 +30,15 @@ void createNodes(Node nodesArray[3][3], Node::Location locArray[3][3]);
  *           |
  *      1A---2B---2C
  */
-void createNodeGrid(Node nodeArray[3][3]);
+void createNodeGrid(Node nodes[3][3]);
 
-// BEGIN MAIN EXECUTION
+/****************** BEGIN MAIN EXECUTION ******************/
 int main() {
     std::cout << "********** STARTING TEST APPLICATION **********" << std::endl << std::endl;
 
     // Create an array holding all possible node locations.
     std::cout << "- CREATING LOCATION ARRAY..." << std::endl;
-    Node::Location locationArray[3][3];
+    Location locationArray[3][3];
     createLocationArray(locationArray);
     std::cout << "\t- LOCATION ARRAY SUCCESSFULLY CREATED" << std::endl;
 
@@ -69,7 +67,7 @@ int main() {
     // Instantiate Elevator at Node 2B.
     std::cout << "- CREATING INSTANCE OF ELEVATOR AT NODE 2B..." << std::endl;
     Elevator elevator = Elevator(nodeArray[1][1].location, buttonPressed);
-    std::cout << "/t- ELEVATOR INSTANTIATED AT NODE 2B" << std::endl;
+    std::cout << "\t- ELEVATOR INSTANTIATED AT NODE 2B" << std::endl;
     std::cout << "- PRINTING ELEVATOR'S STATUS..." << std::endl;
     std::cout << elevator << std::endl;
 
@@ -78,37 +76,42 @@ int main() {
     // Move Up
     std::cout << "\t- MOVING UP..." << std::endl;
     elevator.moveUp();
-    std::cout << "\t" << elevator << std::endl;
+    std::cout  << elevator << std::endl;
     // Move Down
     std::cout << "\t- MOVING DOWN..." << std::endl;
     elevator.moveDown();
-    std::cout << "\t" << elevator << std::endl;
+    std::cout  << elevator << std::endl;
     // Move Left
     std::cout << "\t- MOVING LEFT..." << std::endl;
     elevator.moveLeft();
-    std::cout << "\t" << elevator << std::endl;
+    std::cout  << elevator << std::endl;
     // Move Right
     std::cout << "\t- MOVING RIGHT..." << std::endl;
     elevator.moveRight();
-    std::cout << "\t" << elevator << std::endl;
+    std::cout  << elevator << std::endl;
     // Open Doors
     std::cout << "\t- OPENING ELEVATOR DOORS..." << std::endl;
     elevator.openDoors();
-    std::cout << "\t" << elevator << std::endl;
+    std::cout  << elevator << std::endl;
     // Move Right
     std::cout << "\t- MOVING RIGHT..." << std::endl;
     elevator.moveRight();
-    std::cout << "\t" << elevator << std::endl;
+    std::cout  << elevator << std::endl;
     // Close Doors
     std::cout << "\t- CLOSING ELEVATOR DOORS..." << std::endl;
     elevator.closeDoors();
-    std::cout << "\t" << elevator << std::endl;
+    std::cout  << elevator << std::endl;
+
+    Person patron1 = Person();
+
+    std::cout << patron1 << std::endl;
 
 
     std::cout << "\n********** TEST APPLICATION COMPLETED **********" << std::endl;
 
 return 0;
 }
+/****************** END MAIN EXECUTION ******************/
 
 
 //====== FUNCTION IMPLEMENTATIONS ======//
@@ -118,7 +121,7 @@ return 0;
  * <createLocationArray(...) Function Implementation>
  *
  */
-void createLocationArray(Node::Location locArray[3][3]) {
+void createLocationArray(Location locArray[3][3]) {
     int column = A;
     int floor = First;
     for(Floor x = First; x >= Third; x = (Floor)(x - 1)) {
@@ -135,7 +138,7 @@ void createLocationArray(Node::Location locArray[3][3]) {
 /*
  * <createNodes(...) Function Implementation>
  */
-void createNodes(Node nodesArray[3][3], Node::Location locArray[3][3]) {
+void createNodes(Node nodesArray[3][3], Location locArray[3][3]) {
     int column = A;
     int floor = First;
     char col = 'A';
