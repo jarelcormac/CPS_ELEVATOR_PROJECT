@@ -40,7 +40,7 @@ private:
 
     //====== PRIVATE METHODS ======//
     // Move elevator one node up
-
+    int moveUp();
 
     // Move elevator one node down
     int moveDown();
@@ -81,13 +81,15 @@ public:
 
     //====== PUBLIC METHODS ======//
 
-    int moveUp();
     // Default Constructor
     Elevator();
 
     // Parameterized Elevator Constructor
     Elevator(Node * nodeCurr, bool btnPress[3][3], bool drsOpen = false,
                 std::vector<class Person*> pplInside = std::vector<class Person*>());
+
+    // Default Destructor Method
+    ~Elevator();
 
     // moveHere()
     // Attempts to move the elevator to any other node within the 3x3 array of nodes as efficiently as possible.

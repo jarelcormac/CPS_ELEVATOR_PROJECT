@@ -45,6 +45,11 @@ Elevator::Elevator(Node * nodeCurr, bool btnPress[3][3], bool drsOpen,
     location.floor = nodeCurr->location.floor;
 }
 
+//====== Default Destructor() Method Implementation ======//
+Elevator::~Elevator() {
+    std::cout << "Elevator Destroyed. " << std::endl;
+}
+
 //====== openDoors() Method Implementation ======//
 int Elevator::openDoors() {
     try{
@@ -164,7 +169,7 @@ void Elevator::dropOff() {
     Elevator::closeDoors();
 }
 
-
+//====== pickUp() Method Implementation ======//
 void Elevator::pickUp() {
     Elevator::openDoors();
     // Moves all the people at the current node into the elevator

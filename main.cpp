@@ -127,7 +127,8 @@ int main() {
 
     std::cout << "- DELETING PERSON OBJECTS..." << std::endl;
     delete patron1;
-    std::cout << "- DELETING ELEVATOR OBJECTS..." << std::endl;
+    //std::cout << "- DELETING ELEVATOR OBJECTS..." << std::endl;
+    //delete elevator;
 
 
     std::cout << "\n\n********** TEST APPLICATION COMPLETED **********" << std::endl;
