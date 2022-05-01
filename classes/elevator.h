@@ -35,7 +35,7 @@ private:
     static unsigned short int currentTime;
     static std::vector<struct Location> nodeBtnBuffer;  // This buffer stores the order in which node buttons were pushed
     std::vector<struct Location> elevBtnBuffer; // This buffer stores the order in which elevator buttons were pushed
-    std::vector<class Person> peopleInside;   // This vector stores the people within the elevator itself
+    std::vector<class Person *> peopleInside;   // This vector stores the people within the elevator itself
     Node * currentNode;
 
     //====== PRIVATE METHODS ======//
@@ -76,7 +76,7 @@ public:
 
     //====== PUBLIC VARIABLES ======//
     struct Location location;
-    bool btnPressed[3][3];
+    bool btnPressed[3][3]; // The buttons in the elevator
     bool doorsOpen;
 
     //====== PUBLIC METHODS ======//
@@ -87,7 +87,7 @@ public:
 
     // Parameterized Elevator Constructor
     Elevator(Node * nodeCurr, bool btnPress[3][3], bool drsOpen = false,
-                std::vector<class Person> pplInside = std::vector<class Person>());
+                std::vector<class Person*> pplInside = std::vector<class Person*>());
 
     // moveHere()
     // Attempts to move the elevator to any other node within the 3x3 array of nodes as efficiently as possible.

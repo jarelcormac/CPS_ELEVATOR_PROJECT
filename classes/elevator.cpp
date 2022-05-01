@@ -27,14 +27,14 @@ Elevator::Elevator() {
         for(bool & j : i)
             j = false;
     doorsOpen = false;
-    peopleInside = std::vector<class Person>();
+    peopleInside = std::vector<class Person*>();
     location.section = A;
     location.floor = First;
 }
 
 //====== Parameterized Constructor Method Implementation ======//
 Elevator::Elevator(Node * nodeCurr, bool btnPress[3][3], bool drsOpen,
-                   std::vector<class Person> pplInside) {
+                   std::vector<class Person*> pplInside) {
     for(int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) btnPressed[i][j] = btnPress[i][j];
     }

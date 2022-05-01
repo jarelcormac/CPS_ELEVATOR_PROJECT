@@ -69,6 +69,7 @@ public:
     Node* downNode;
     Node* leftNode;
     Node* rightNode;
+    std::vector<class Person *> peopleAtNode;   // This vector stores the people at the current node
 
     //====== PUBLIC METHODS ======//
     // Default Node Constructor

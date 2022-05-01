@@ -41,7 +41,7 @@ Person::Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned i
 
 //====== Default Destructor Method Implementation ======//
 Person::~Person() {
-    std::cout << "this bitch dead, I mean... they \"got off\"" << std::endl;
+    std::cout << "Person destroyed. Was in elevator: " << inElevator << std::endl;
 }
 
 //====== callElevator() Method Implementation ======//
@@ -62,14 +62,15 @@ void Person::enteredElevator(){
 //====== sendElevator(...) Method Implementation ======//
 // Sends elevator data on which node a person wants to travel to into the dropOffBuffer.
 // Updates btnPressed status to true if not already done
-void Person::sendElevator(Node * node) {
-    currentElevator->btnPressed[node->location.floor][node->location.section] = true;
-    currentElevator->elevBtnBuff_push_back(startLoc);
+void Person::sendElevator() {
+    currentElevator->btnPressed[endLoc->location.floor][endLoc->location.section] = true;
+    currentElevator->elevBtnBuff_push_back(endLoc);
 }
 
 //====== Overloaded << Method Implementation ======//
 std::ostream &operator<<(std::ostream &out, Person &person) {
     out
+        << "\tPerson's Mem Addr: " << &person << std::endl
         << "\tPerson's Start Location: " << person.startLoc->id << std::endl
         << "\tPerson's End Location: " << person.endLoc->id << std::endl
         << "\tPerson's Current Location: " << person.currentNode->id << std::endl

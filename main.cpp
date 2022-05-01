@@ -113,7 +113,9 @@ int main() {
                             &elevator, Elevator::getTime(), false);
     std::cout << "\t- PERSON SUCCESSFULLY INSTANTIATED AT NODE 3C W/ END LOCATION OF NODE 2B" << std::endl;
     std::cout << "- PRINTING PATRON INFORMATION..." << std::endl;
-    std::cout << patron1 << std::endl;
+    std::cout << *patron1 << std::endl;
+    nodeArray[Second][B].peopleAtNode.push_back(patron1);
+
 
     std::cout << "- TESTING ELEVATOR PICK-UP/DROP-OFF FUNCTIONALITIES..." << std::endl;
     //elevator.pickUpDropOff();
