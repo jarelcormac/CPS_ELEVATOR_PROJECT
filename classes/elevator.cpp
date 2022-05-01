@@ -150,6 +150,7 @@ int Elevator::moveHere(Node * nodesArray) {
 
 //====== pickUpDropOff() Method Implementation ======//
 void Elevator::dropOff() {
+    Elevator::openDoors();
     // Deletes any people who have reached their destination; they're getting off the elevator.
     for(auto person = peopleInside.begin();
         person <= peopleInside.end() && !peopleInside.empty();
@@ -160,10 +161,12 @@ void Elevator::dropOff() {
             peopleInside.erase(person - 1);
         }
     }
+    Elevator::closeDoors();
 }
 
 
 void Elevator::pickUp() {
+    Elevator::openDoors();
     // Moves all the people at the current node into the elevator
     for(auto person = currentNode->peopleAtNode.begin();
         person != currentNode->peopleAtNode.end() && !currentNode->peopleAtNode.empty();
@@ -173,6 +176,7 @@ void Elevator::pickUp() {
         peopleInside.push_back(*person);
         currentNode->peopleAtNode.erase(person);
     }
+    Elevator::closeDoors();
 }
 
 void Elevator::nodeBtnBuff_push_back(Node * node){
@@ -194,8 +198,8 @@ void Elevator::elevBtnBuff_push_back(Node * node){
 //====== Overloaded << Implementation ======//
 std::ostream &operator<<(std::ostream &out, const Elevator &elevator) {
     out
-        << "\t\tElevator Location: " << elevator.currentNode->location << std::endl
-        << "\t\tElevator Doors: " << (elevator.doorsOpen ? ("Opened"):("Closed")) << std::endl
-        << "\t\tCurrent Time: " << Elevator::getTime() << std::endl;
+        << "\tElevator Location: " << elevator.currentNode->location << std::endl
+        << "\tElevator Doors: " << (elevator.doorsOpen ? ("Opened"):("Closed")) << std::endl
+        << "\tCurrent Time: " << Elevator::getTime() << std::endl;
     return out;
 }
