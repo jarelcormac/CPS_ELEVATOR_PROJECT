@@ -57,10 +57,6 @@ public:
 
 private:
     //====== PRIVATE VARIABLES ======//
-    Node* upNode;
-    Node* downNode;
-    Node* leftNode;
-    Node* rightNode;
     unsigned int peopleWaiting;
 
 public:
@@ -69,7 +65,10 @@ public:
     bool btnCalled;
     unsigned int timeBtnPressed;
     struct Location location;
-
+    Node* upNode;
+    Node* downNode;
+    Node* leftNode;
+    Node* rightNode;
     //====== PUBLIC METHODS ======//
     // Default Node Constructor
     Node();

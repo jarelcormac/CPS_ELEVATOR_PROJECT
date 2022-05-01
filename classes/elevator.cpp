@@ -30,15 +30,15 @@ Elevator::Elevator() {
 }
 
 //====== Parameterized Constructor Method Implementation ======//
-Elevator::Elevator(struct Location loc, bool btnPress[3][3], bool drsOpen,
+Elevator::Elevator(Node * nodeCurr, bool btnPress[3][3], bool drsOpen,
                    std::vector<class Person> pplInside) {
     for(int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) btnPressed[i][j] = btnPress[i][j];
     }
     doorsOpen = drsOpen;
     peopleInside = std::move(pplInside);
-    location.section = loc.section;
-    location.floor = loc.floor;
+    location.section = nodeCurr->location.section;
+    location.floor = nodeCurr->location.floor;
 }
 
 //====== openDoors() Method Implementation ======//
@@ -92,9 +92,9 @@ int Elevator::moveDown() {
         std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
         return 0;
     }
-    else if(location.floor != First) {
-        location.floor = (Floor)(location.floor + 1); // plus 1 because floors work
-                                                      // oppositely from vertical arrays in C++
+    else if(currentNode->location.floor != First) {
+        currentNode = currentNode->downNode;
+
         return 1;
     } else return 0;
 }
@@ -109,8 +109,8 @@ int Elevator::moveLeft() {
         std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
         return 0;
     }
-    else if(location.section != A) {
-    location.section = (Section)(location.section - 1);
+    else if(currentNode->location.section != A) {
+        currentNode = currentNode->leftNode;
         return 1;
     } else return 0;
 }
@@ -125,8 +125,8 @@ int Elevator::moveRight() {
         std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
         return 0;
     }
-    else if(location.section != C) {
-        location.section = (Section)(location.section + 1);
+    else if(currentNode->location.section != C) {
+        currentNode = currentNode->rightNode;
         return 1;
     } else return 0;
 }

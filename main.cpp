@@ -103,10 +103,12 @@ int main() {
     elevator.closeDoors();
     std::cout  << elevator << std::endl;
 
-    Person patron1 = Person(&nodeArray[1][1], &nodeArray[2][2], &nodeArray[1][1],
+    Person patron1 = Person(&nodeArray[Second][B], &nodeArray[Third][C],
                             &elevator, 0, false);
 
     std::cout << patron1 << std::endl;
+
+
 
 
     std::cout << "\n********** TEST APPLICATION COMPLETED **********" << std::endl;

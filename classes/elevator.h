@@ -71,7 +71,7 @@ public:
     Elevator();
 
     // Parameterized Elevator Constructor
-    Elevator(struct Location loc, bool btnPress[3][3], bool drsOpen = false,
+    Elevator(Node * nodeCurr, bool btnPress[3][3], bool drsOpen = false,
                 std::vector<class Person> pplInside = std::vector<class Person>());
 
     // moveHere()
