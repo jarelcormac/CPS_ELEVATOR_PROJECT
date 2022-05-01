@@ -136,12 +136,12 @@ int Elevator::moveHere() {
     return 0;
 }
 
-void Elevator::PickUpBuff_push_back(Location loc){
-    pickUpBuffer.push_back(loc);
+void Elevator::PickUpBuff_push_back(Node * node){
+    pickUpBuffer.push_back(node->location);
 }
 
-void Elevator::DropOffBuff_push_back(Location loc){
-    dropOffBuffer.push_back(loc);
+void Elevator::DropOffBuff_push_back(Node * node){
+    dropOffBuffer.push_back(node->location);
 }
 
 //====== Overloaded << Implementation ======//
