@@ -59,15 +59,19 @@ private:
 
 public:
     //====== PUBLIC STATIC METHODS ======//
+    // initializeCurrentTime() Method
+    // Initializes current time
     static void initializeCurrentTime() {
         currentTime = 0;
     }
 
+    // getTime() Method
     // Returns current time
     static unsigned short int getTime() {
         return currentTime;
     }
 
+    // incrementTime() Method
     // Increments time by 1 unit
     static void incrementTime() {
         currentTime++;
@@ -79,8 +83,8 @@ public:
     bool btnPressed[3][3]; // The buttons in the elevator
     bool doorsOpen;
 
-    //====== PUBLIC METHODS ======//
 
+    //====== PUBLIC METHODS ======//
     // Default Constructor
     Elevator();
 
@@ -106,9 +110,11 @@ public:
     // pickUp() Method
     void pickUp();
 
+    // nodeBtnBuff_push_back(...) Method
     // Push a node into the nodeBtnBuffer.
     static void nodeBtnBuff_push_back(Node * node);
 
+    // elevBtnBuff_push_back(...)
     // Push a node into the elevBtnBuffer.
     void elevBtnBuff_push_back(Node * Node);
 

@@ -56,7 +56,7 @@ public:
     // sendElevator() Method Prototype
     void sendElevator();
 
-    // addPersonToNode(...)
+    // addPersonToNode(...) Method
     void addPersonToNode(Node * node);
 
     // Overload << Method Prototype

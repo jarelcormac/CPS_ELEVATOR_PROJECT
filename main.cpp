@@ -123,7 +123,7 @@ int main() {
     std::cout << "\t- DROPPING OFF PATRONS..." << std::endl;
     elevator->dropOff();
     std::cout << *patron1 << std::endl;
-    std::cout << "\t- PICK-UP/DROP-OFF FUNCTIONALITIES PASSED\n\n" << std::endl;
+    std::cout << "\t\t- PICK-UP/DROP-OFF FUNCTIONALITIES PASSED\n\n" << std::endl;
 
     std::cout << "- DELETING PERSON OBJECTS..." << std::endl;
     delete patron1;

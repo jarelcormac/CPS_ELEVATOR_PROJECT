@@ -151,8 +151,6 @@ int Elevator::moveHere(Node * nodesArray) {
     return 0;
 }
 
-
-
 //====== pickUpDropOff() Method Implementation ======//
 void Elevator::dropOff() {
     Elevator::openDoors();
@@ -177,17 +175,18 @@ void Elevator::pickUp() {
         person != currentNode->peopleAtNode.end() && !currentNode->peopleAtNode.empty();
         person++){
         (*person)->enteredElevator();
-        //nodeArr[this->currentNode->location.floor][this->currentNode->location.section].peopleAtNode.push_back(*person);
         peopleInside.push_back(*person);
         currentNode->peopleAtNode.erase(person);
     }
     Elevator::closeDoors();
 }
 
+//====== nodeBtnBuff_push_back(...) Method Implementation ======//
 void Elevator::nodeBtnBuff_push_back(Node * node){
     nodeBtnBuffer.push_back(node->location);
 }
 
+//====== elevBtnBuff_push_back(...) Method Implementation ======//
 void Elevator::elevBtnBuff_push_back(Node * node){
     elevBtnBuffer.push_back(node->location);
 }

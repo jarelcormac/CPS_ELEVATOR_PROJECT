@@ -81,33 +81,46 @@ public:
          bool buttonCalled = false);
 
     // isElevatorHere() Method Prototype
-    // Checks to see if the elevator resides in the current node this method is called at.
+    /*
+     * Checks to see if the elevator resides in the current node this method is called at.
+     */
     bool isElevatorHere(Elevator * elevator) const;
         // Need to come up with some if conditions to properly return true or false
         // Possibly compare elevator's known position vs. current node location
             // ^^ that's exactly how we'll do it
 
     // nearbyNodes() Method Prototype
-    // Lists the nodes immediately upwards, downwards, left, and right of the current node
+    /*
+     * Lists the nodes immediately upwards, downwards, left, and right of the current node
+     */
     std::vector<NodeDirection> nearbyNodes();
         // Should return empty vector if there are no nodes residing next to the current node
         // Tentative if we return the nearby nodes' IDs or the nearby nodes' locations
 
-    // addNode(...)
-    // Adds a node in the required direction relative to the current node.
+    // addNode(...) Method
+    /*
+     * Adds a node in the required direction relative to the current node.
+     */
     int addNode(Node* node, enum Direction direction);
 
-    // This version of addNode(...) completed the same goal as the previous addNode(...) method in a different manner.
-    // This is just to offer some versatility and ease of programming in case one method does not work.
+    // addNode(...) Method
+    /*
+     * This version of addNode(...) completed the same goal as the previous addNode(...) method in a different manner.
+     * This is just to offer some versatility and ease of programming in case one method does not work.
+     */
     int addNode(NodeDirection nodeDirect);
 
     // callElevator() Method
-    // This method will call the Elevator by pressing the node button
+    /*
+     * This method will call the Elevator by pressing the node button
+     */
     void callElevator();
 
 
-    // Overloaded << Method.
-    // This prints out the current node instance's status.
+    // Overloaded << Method
+    /*
+     * This prints out the current node instance's status.
+     */
     friend std::ostream& operator<<(std::ostream &out, const Node &node);
 };
 

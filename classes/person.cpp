@@ -52,10 +52,12 @@ void Person::callElevator() {
     Elevator::nodeBtnBuff_push_back(startLoc);
 }
 
+//====== exitedElevator() Method Implementation ======//
 void Person::exitedElevator() {
     inElevator = false;
 }
 
+//====== enteredElevator() Method Implementation ======//
 void Person::enteredElevator(){
     inElevator = true;
 }

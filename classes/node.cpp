@@ -75,6 +75,7 @@ std::ostream &operator<<(std::ostream &out, const Node &node) {
     return out;
 }
 
+//====== nearbyNodes() Method Implementation ======//
 // nearbyNodes() will return the nodes, and their directions relative to the source node,
 // that are directly next to the source node.
 std::vector<Node::NodeDirection> Node::nearbyNodes() {
@@ -88,6 +89,7 @@ std::vector<Node::NodeDirection> Node::nearbyNodes() {
     return nodes;
 }
 
+//====== addNodes(...) Method Implementation ======//
 // addNode() will add a node in the direction specified relative to the source node
 int Node::addNode(Node *node, enum Direction direction) {
     switch(direction){
@@ -111,6 +113,7 @@ int Node::addNode(Node *node, enum Direction direction) {
     return 0;
 }
 
+//====== addNodes(...) Implementation ======//
 // addNode() will add a node in the direction specified relative to the source node
 int Node::addNode(Node::NodeDirection nodeDirect) {
     switch(nodeDirect.direction){
@@ -134,6 +137,7 @@ int Node::addNode(Node::NodeDirection nodeDirect) {
     return 0;
 }
 
+//====== callElevator() Method Implementation ======//
 void Node::callElevator(){
     if(!elevatorCalled) { // checks if the elevator is already called
         elevatorCalled = true;
