@@ -48,7 +48,7 @@ public:
     void callElevator();
 
     // sendElevator() Method Prototype
-    void sendElevator();
+    void sendElevator(Node * node);
 
     // Overload << Method Prototype
     friend std::ostream &operator<<(std::ostream &out, Person &person);

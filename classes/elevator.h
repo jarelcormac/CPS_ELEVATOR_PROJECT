@@ -78,9 +78,9 @@ public:
     // Attempts to move the elevator to any other node within the 3x3 array of nodes as efficiently as possible.
     int moveHere();
 
-    void PickUpBuff_push_back(Location loc);
+    void PickUpBuff_push_back(Node * node);
 
-    void DropOffBuff_push_back(Location loc);
+    void DropOffBuff_push_back(Node * node);
 
     // Overloaded << Method
     friend std::ostream& operator<<(std::ostream &out, const Elevator &elevator);

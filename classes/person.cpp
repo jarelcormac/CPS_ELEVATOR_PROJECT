@@ -21,8 +21,8 @@
 
 //====== Default Constructor Method Implementation ======//
 Person::Person() {
-    startLoc = &Node();
-    endLoc = ;
+    startLoc = nullptr;
+    endLoc = nullptr;
     startTime = 0;
     inElevator = false;
     currentNode = nullptr;
@@ -51,11 +51,9 @@ void Person::callElevator() {
 //====== sendElevator(...) Method Implementation ======//
 // Sends elevator data on which node a person wants to travel to into the dropOffBuffer.
 // Updates btnPressed status to true if not already done
-void Person::sendElevator() {
-    currentElevator->btnPressed[endLoc.floor][endLoc.section] = true;
+void Person::sendElevator(Node * node) {
+    currentElevator->btnPressed[node->location.floor][node->location.section] = true;
     currentElevator->DropOffBuff_push_back(startLoc);
-
-
 }
 
 
