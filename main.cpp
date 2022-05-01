@@ -109,14 +109,18 @@ int main() {
 
     // Introduce some people into the elevator.
     std::cout << "- INSTANTIATING A PATRON INTO THE ELEVATOR SYSTEM..." << std::endl;
-    Person patron1 = Person(&nodeArray[Third][B], &nodeArray[Second][B],
-                            &elevator, 0, false);
+    auto patron1 = new Person(&nodeArray[Second][B], &nodeArray[Second][B],
+                            &elevator, Elevator::getTime(), false);
     std::cout << "\t- PERSON SUCCESSFULLY INSTANTIATED AT NODE 3C W/ END LOCATION OF NODE 2B" << std::endl;
     std::cout << "- PRINTING PATRON INFORMATION..." << std::endl;
     std::cout << patron1 << std::endl;
 
     std::cout << "- TESTING ELEVATOR PICK-UP/DROP-OFF FUNCTIONALITIES..." << std::endl;
-
+    //elevator.pickUpDropOff();
+    //std::cout << patron1 << std::endl;
+    elevator.pickUpDropOff();
+    std::cout << *patron1 << std::endl;
+    delete patron1;
 
 
 

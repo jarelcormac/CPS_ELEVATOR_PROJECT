@@ -48,9 +48,16 @@ Person::~Person() {
 // This method will "call" the elevator and set btnCalled at the node it is at to true
 void Person::callElevator() {
     currentNode->elevatorCalled = true;
-    currentElevator->nodeBtnBuff_push_back(startLoc);
+    Elevator::nodeBtnBuff_push_back(startLoc);
 }
 
+void Person::exitedElevator() {
+    inElevator = false;
+}
+
+void Person::enteredElevator(){
+    inElevator = true;
+}
 
 //====== sendElevator(...) Method Implementation ======//
 // Sends elevator data on which node a person wants to travel to into the dropOffBuffer.

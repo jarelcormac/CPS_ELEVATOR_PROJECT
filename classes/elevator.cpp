@@ -135,8 +135,37 @@ int Elevator::moveRight() {
 }
 
 //====== moveHere() Method Implementation ======//
-int Elevator::moveHere() {
+int Elevator::moveHere(Node * nodesArray) {
+    Node * nextNode;
+    //if()
+    for(Floor flr = First; flr >= Third; flr = (Floor)(flr - 1)) {
+        for(Section col = A; col <= C; col = (Section)(col + 1)) {
+
+        }
+    }
     return 0;
+}
+
+
+
+//====== pickUpDropOff() Method Implementation ======//
+void Elevator::pickUpDropOff(){
+    // Deletes any people who have reached their destination; they're getting off the elevator.
+    for (auto person = peopleInside.begin(); person != peopleInside.end(); person++) {
+        if ((*person)->endLoc == currentNode) {
+            (*person)->exitedElevator();
+            peopleInside.erase(person);
+        }
+    }
+    // Moves all the people at the current node into the elevator
+    for(auto person = currentNode->peopleAtNode.begin();
+    person != currentNode->peopleAtNode.end() && !currentNode->peopleAtNode.empty();
+    person++){
+        (*person)->enteredElevator();
+
+        peopleInside.push_back(*person);
+        currentNode->peopleAtNode.erase(person);
+    }
 }
 
 void Elevator::nodeBtnBuff_push_back(Node * node){

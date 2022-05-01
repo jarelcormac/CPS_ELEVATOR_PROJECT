@@ -44,6 +44,10 @@ public:
     // Default Person Destructor
     ~Person();
 
+    void exitedElevator();
+
+    void enteredElevator();
+
     // callElevator() Method Prototype
     // This method will "call" the elevator by incrementing the count of people waiting at the node where the elevator
     // was called.

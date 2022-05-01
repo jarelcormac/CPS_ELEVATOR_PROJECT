@@ -57,7 +57,6 @@ public:
 
 private:
     //====== PRIVATE VARIABLES ======//
-    unsigned int peopleWaiting;
 
 public:
     //====== PUBLIC VARIABLES ======//
@@ -78,7 +77,7 @@ public:
     // Parameterized Node Constructor
     Node(std::string ID, struct Location loc,
          Node *up = nullptr, Node *down = nullptr, Node *left = nullptr, Node *right = nullptr,
-         unsigned int pplWaiting = 0, bool buttonCalled = false);
+         bool buttonCalled = false);
 
     // isElevatorHere() Method Prototype
     // Checks to see if the elevator resides in the current node this method is called at.
@@ -104,6 +103,7 @@ public:
     // callElevator() Method
     // This method will call the Elevator by pressing the node button
     void callElevator();
+
 
     // Overloaded << Method.
     // This prints out the current node instance's status.

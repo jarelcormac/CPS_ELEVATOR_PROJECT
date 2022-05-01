@@ -40,7 +40,7 @@ private:
 
     //====== PRIVATE METHODS ======//
     // Move elevator one node up
-    int moveUp();
+
 
     // Move elevator one node down
     int moveDown();
@@ -80,6 +80,8 @@ public:
     bool doorsOpen;
 
     //====== PUBLIC METHODS ======//
+
+    int moveUp();
     // Default Constructor
     Elevator();
 
@@ -89,9 +91,15 @@ public:
 
     // moveHere()
     // Attempts to move the elevator to any other node within the 3x3 array of nodes as efficiently as possible.
-    int moveHere();
+    int moveHere(Node * nodesArray);
 
+    // updateNodeBtnBuffer() Method
+    // ...
     void updateNodeBtnBuffer();
+
+    // pickUpDropOff() Method
+    // Picks up / drops off any people at the current node
+    void pickUpDropOff();
 
     // Push a node into the nodeBtnBuffer.
     static void nodeBtnBuff_push_back(Node * node);

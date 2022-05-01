@@ -25,15 +25,17 @@ Node::Node() {
     leftNode = nullptr;
     rightNode = nullptr;
     id = "ID Uninitialized";
-    peopleWaiting = 0;
     elevatorCalled = false;
     location = Location(A,First);
+    peopleAtNode = std::vector<class Person*>();
+    timeCalled = 0;
+    timeBtnPressed = 0;
 }
 
 //====== Parameterized Constructor Implementation ======//
 Node::Node(std::string ID, struct Location loc,
            Node *up, Node *down, Node *left, Node *right,
-           unsigned int pplWaiting, bool elevCalled) {
+           bool elevCalled) {
     id = ID;
     location.floor = loc.floor;
     location.section = loc.section;
@@ -41,8 +43,10 @@ Node::Node(std::string ID, struct Location loc,
     downNode = down;
     leftNode = left;
     rightNode = right;
-    peopleWaiting = pplWaiting;
     elevatorCalled = elevCalled;
+    peopleAtNode = std::vector<class Person*>();
+    timeCalled = 0;
+    timeBtnPressed = 0;
 }
 
 //====== isElevatorHere(...) Method Implementation ======//
@@ -64,7 +68,7 @@ std::ostream &operator<<(std::ostream &out, const Node &node) {
 //        << "\tDown Node: " << (node.downNode == nullptr ? ("-"):(node.downNode->id)) << std::endl
 //        << "\tLeft Node: " << (node.leftNode == nullptr ? ("-"):(node.leftNode->id)) << std::endl
 //        << "\tRight Node: " << (node.rightNode == nullptr ? ("-"):(node.rightNode->id)) << std::endl
-        << "\tPeople Waiting At " << node.id << ": " << node.peopleWaiting << std::endl
+        << "\tPeople Waiting At " << node.id << ": " << node.peopleAtNode.size() << std::endl
         << "\tElevator Called To " << node.id << ": " << (node.elevatorCalled ? ("Yes"):("No")) << std::endl;
 //        << "\tFloor Location of Node: " << node.location.floor << std::endl
 //        << "\tSection Location of Node: " << node.location.section << std::endl << std::endl;
