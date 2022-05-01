@@ -56,6 +56,9 @@ public:
     // sendElevator() Method Prototype
     void sendElevator();
 
+    // addPersonToNode(...)
+    void addPersonToNode(Node * node);
+
     // Overload << Method Prototype
     friend std::ostream &operator<<(std::ostream &out, Person &person);
 };

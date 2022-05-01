@@ -99,13 +99,13 @@ public:
 
     // pickUpDropOff() Method
     // Picks up / drops off any people at the current node
-    void pickUpDropOff();
+    void pickUpDropOff(Node nodeArr[3][3]);
 
     // Push a node into the nodeBtnBuffer.
     static void nodeBtnBuff_push_back(Node * node);
 
     // Push a node into the elevBtnBuffer.
-    void elevBtnBuff_push_back(Node * node);
+    void elevBtnBuff_push_back(Node * Node);
 
     // Overloaded << Method
     friend std::ostream& operator<<(std::ostream &out, const Elevator &elevator);

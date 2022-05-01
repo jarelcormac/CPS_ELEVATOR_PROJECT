@@ -37,6 +37,7 @@ Person::Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned i
     inElevator = inElev;
     currentNode = nodeStart;
     currentElevator = elevator;
+    addPersonToNode(nodeStart);
 }
 
 //====== Default Destructor Method Implementation ======//
@@ -65,6 +66,11 @@ void Person::enteredElevator(){
 void Person::sendElevator() {
     currentElevator->btnPressed[endLoc->location.floor][endLoc->location.section] = true;
     currentElevator->elevBtnBuff_push_back(endLoc);
+}
+
+//====== addPersonToNode(...) Method Implementation ======//
+void Person::addPersonToNode(Node * node) {
+    node->peopleAtNode.push_back(this);
 }
 
 //====== Overloaded << Method Implementation ======//
