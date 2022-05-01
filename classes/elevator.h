@@ -97,9 +97,12 @@ public:
     // ...
     void updateNodeBtnBuffer();
 
-    // pickUpDropOff() Method
-    // Picks up / drops off any people at the current node
-    void pickUpDropOff(Node nodeArr[3][3]);
+    // dropOff() Method
+    // Drops off any people at the current node
+    void dropOff();
+
+    // pickUp() Method
+    void pickUp();
 
     // Push a node into the nodeBtnBuffer.
     static void nodeBtnBuff_push_back(Node * node);

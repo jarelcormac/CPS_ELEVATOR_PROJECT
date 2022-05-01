@@ -149,18 +149,25 @@ int Elevator::moveHere(Node * nodesArray) {
 
 
 //====== pickUpDropOff() Method Implementation ======//
-void Elevator::pickUpDropOff(Node nodeArr[3][3]){
+void Elevator::dropOff() {
     // Deletes any people who have reached their destination; they're getting off the elevator.
-    for (auto person = peopleInside.begin(); person != peopleInside.end(); person++) {
+    for(auto person = peopleInside.begin();
+        person <= peopleInside.end() && !peopleInside.empty();
+        person++) {
         if ((*person)->endLoc == currentNode) {
             (*person)->exitedElevator();
-            peopleInside.erase(person);
+            currentNode->peopleAtNode.push_back(*person);
+            peopleInside.erase(person - 1);
         }
     }
+}
+
+
+void Elevator::pickUp() {
     // Moves all the people at the current node into the elevator
     for(auto person = currentNode->peopleAtNode.begin();
-    person != currentNode->peopleAtNode.end() && !currentNode->peopleAtNode.empty();
-    person++){
+        person != currentNode->peopleAtNode.end() && !currentNode->peopleAtNode.empty();
+        person++){
         (*person)->enteredElevator();
         //nodeArr[this->currentNode->location.floor][this->currentNode->location.section].peopleAtNode.push_back(*person);
         peopleInside.push_back(*person);
