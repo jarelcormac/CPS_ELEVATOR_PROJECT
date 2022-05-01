@@ -62,13 +62,15 @@ private:
 public:
     //====== PUBLIC VARIABLES ======//
     std::string id;
-    bool btnCalled;
+    bool elevatorCalled;
+    unsigned short int timeCalled;
     unsigned int timeBtnPressed;
     struct Location location;
     Node* upNode;
     Node* downNode;
     Node* leftNode;
     Node* rightNode;
+
     //====== PUBLIC METHODS ======//
     // Default Node Constructor
     Node();

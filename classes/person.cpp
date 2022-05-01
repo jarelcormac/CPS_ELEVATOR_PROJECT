@@ -39,6 +39,11 @@ Person::Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned i
     currentElevator = elevator;
 }
 
+//====== Default Destructor Method Implementation ======//
+Person::~Person() {
+    std::cout << "this bitch dead, I mean... they \"got off\"" << std::endl;
+}
+
 //====== callElevator() Method Implementation ======//
 // This method will "call" the elevator and set btnCalled at the node it is at to true
 void Person::callElevator() {
@@ -55,7 +60,7 @@ void Person::sendElevator(Node * node) {
     currentElevator->elevBtnBuff_push_back(startLoc);
 }
 
-
+//====== Overloaded << Method Implementation ======//
 std::ostream &operator<<(std::ostream &out, Person &person) {
     out
         << "\tPerson's Start Location: " << person.startLoc->id << std::endl
@@ -64,5 +69,7 @@ std::ostream &operator<<(std::ostream &out, Person &person) {
         << "\tPerson in Elevator: " << (person.inElevator ? ("Yes"):("No")) << std::endl;
     return out;
 }
+
+
 
 

@@ -26,14 +26,14 @@ Node::Node() {
     rightNode = nullptr;
     id = "ID Uninitialized";
     peopleWaiting = 0;
-    btnCalled = false;
+    elevatorCalled = false;
     location = Location(A,First);
 }
 
 //====== Parameterized Constructor Implementation ======//
 Node::Node(std::string ID, struct Location loc,
            Node *up, Node *down, Node *left, Node *right,
-           unsigned int pplWaiting, bool buttonCalled) {
+           unsigned int pplWaiting, bool elevCalled) {
     id = ID;
     location.floor = loc.floor;
     location.section = loc.section;
@@ -42,7 +42,7 @@ Node::Node(std::string ID, struct Location loc,
     leftNode = left;
     rightNode = right;
     peopleWaiting = pplWaiting;
-    btnCalled = buttonCalled;
+    elevatorCalled = elevCalled;
 }
 
 //====== isElevatorHere(...) Method Implementation ======//
@@ -65,11 +65,12 @@ std::ostream &operator<<(std::ostream &out, const Node &node) {
 //        << "\tLeft Node: " << (node.leftNode == nullptr ? ("-"):(node.leftNode->id)) << std::endl
 //        << "\tRight Node: " << (node.rightNode == nullptr ? ("-"):(node.rightNode->id)) << std::endl
         << "\tPeople Waiting At " << node.id << ": " << node.peopleWaiting << std::endl
-        << "\tButton Called At " << node.id << ": " << (node.btnCalled ? ("Yes"):("No")) << std::endl;
+        << "\tElevator Called To " << node.id << ": " << (node.elevatorCalled ? ("Yes"):("No")) << std::endl;
 //        << "\tFloor Location of Node: " << node.location.floor << std::endl
 //        << "\tSection Location of Node: " << node.location.section << std::endl << std::endl;
     return out;
 }
+
 // nearbyNodes() will return the nodes, and their directions relative to the source node,
 // that are directly next to the source node.
 std::vector<Node::NodeDirection> Node::nearbyNodes() {

@@ -18,6 +18,9 @@
 #include "elevator.h"
 #include "specialExceptions.h"
 
+unsigned short int Elevator::currentTime = 0;
+std::vector<struct Location> Elevator::nodeBtnBuffer = std::vector<struct Location>();
+
 //====== Default Constructor Method Implementation ======//
 Elevator::Elevator() {
     for(auto & i : btnPressed)

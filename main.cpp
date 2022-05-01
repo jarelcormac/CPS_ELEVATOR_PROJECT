@@ -74,6 +74,7 @@ int main() {
     std::cout << "- PRINTING ELEVATOR'S STATUS..." << std::endl;
     std::cout << elevator << std::endl;
 
+/*
     std::cout << "- TESTING ELEVATOR MOVEMENT/DOOR FUNCTIONALITIES..." << std::endl;
 
     // Move Up
@@ -104,16 +105,24 @@ int main() {
     std::cout << "\t- CLOSING ELEVATOR DOORS..." << std::endl;
     elevator.closeDoors();
     std::cout  << elevator << std::endl;
+*/
 
-    Person patron1 = Person(&nodeArray[Second][B], &nodeArray[Third][C],
+    // Introduce some people into the elevator.
+    std::cout << "- INSTANTIATING A PATRON INTO THE ELEVATOR SYSTEM..." << std::endl;
+    Person patron1 = Person(&nodeArray[Third][B], &nodeArray[Second][B],
                             &elevator, 0, false);
-
+    std::cout << "\t- PERSON SUCCESSFULLY INSTANTIATED AT NODE 3C W/ END LOCATION OF NODE 2B" << std::endl;
+    std::cout << "- PRINTING PATRON INFORMATION..." << std::endl;
     std::cout << patron1 << std::endl;
 
+    std::cout << "- TESTING ELEVATOR PICK-UP/DROP-OFF FUNCTIONALITIES..." << std::endl;
 
 
 
-    std::cout << "\n********** TEST APPLICATION COMPLETED **********" << std::endl;
+
+
+
+    std::cout << "\n\n********** TEST APPLICATION COMPLETED **********" << std::endl;
 
 return 0;
 }

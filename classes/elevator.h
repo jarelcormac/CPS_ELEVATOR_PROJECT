@@ -16,7 +16,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 #ifndef CPS_ELEVATOR_PROJECT_ELEVATOR_H
 #define CPS_ELEVATOR_PROJECT_ELEVATOR_H
 
@@ -40,7 +39,23 @@ private:
     Node * currentNode;
 
     //====== PRIVATE METHODS ======//
+    // Move elevator one node up
+    int moveUp();
 
+    // Move elevator one node down
+    int moveDown();
+
+    // Move elevator one node left
+    int moveLeft();
+
+    // Move elevator one node right
+    int moveRight();
+
+    // Open elevator doors
+    int openDoors();
+
+    // Close elevator doors
+    int closeDoors();
 
 public:
     //====== PUBLIC STATIC METHODS ======//
