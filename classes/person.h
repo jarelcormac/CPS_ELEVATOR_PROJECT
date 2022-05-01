@@ -30,8 +30,8 @@ private:
 
 public:
     //====== PUBLIC VARIABLES ======//
-    struct Location startLoc;
-    struct Location endLoc;
+    Node * startLoc;
+    Node * endLoc;
     unsigned int startTime;
 
     //====== PUBLIC METHODS ======//
@@ -39,8 +39,8 @@ public:
     Person();
 
     // Parameterized Person Constructor
-    Person(struct Location startLocation, struct Location endLocation,
-           Node * node, Elevator * elevator, unsigned int stTime = 0, bool inElev = false);
+    Person(Node * nodeStart, Node * nodeEnd, Node * nodeCurr,
+           Elevator * elevator, unsigned int stTime = 0, bool inElev = false);
 
     // callElevator() Method Prototype
     // This method will "call" the elevator by incrementing the count of people waiting at the node where the elevator

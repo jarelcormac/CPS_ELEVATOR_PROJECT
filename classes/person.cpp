@@ -21,8 +21,8 @@
 
 //====== Default Constructor Method Implementation ======//
 Person::Person() {
-    startLoc = Location(A, First);
-    endLoc = Location(C, Third);
+    startLoc = &Node();
+    endLoc = ;
     startTime = 0;
     inElevator = false;
     currentNode = nullptr;
@@ -30,13 +30,13 @@ Person::Person() {
 }
 
 //====== Parameterized Constructor Method Implementation ======//
-Person::Person(struct Location startLocation, struct Location endLocation,
-                            Node * node, Elevator * elevator, unsigned int stTime, bool inElev) {
-    startLoc = startLocation;
-    endLoc = endLocation;
+Person::Person(Node * nodeStart, Node * nodeEnd, Node * nodeCurr,
+               Elevator * elevator, unsigned int stTime, bool inElev) {
+    startLoc = nodeStart;
+    endLoc = nodeEnd;
     startTime = stTime;
     inElevator = inElev;
-    currentNode = node;
+    currentNode = nodeCurr;
     currentElevator = elevator;
 }
 
@@ -63,7 +63,7 @@ std::ostream &operator<<(std::ostream &out, Person &person) {
     out
         << "Person's Start Location: " << person.startLoc << std::endl
         << "Person's End Location: " << person.endLoc << std::endl
-        << "Person's Current Location: " << person.currentNode << std::endl
+        << "Person's Current Location: " << person.currentNode->id << std::endl
         << "Person in Elevator: " << (person.inElevator ? ("Yes"):("No")) << std::endl;
     return out;
 }

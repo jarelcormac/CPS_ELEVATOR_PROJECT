@@ -1,5 +1,6 @@
 #include <cstring>
 #include "classes/elevator.h"
+#include "classes/person.h"
 
 
 //====== FUNCTION PROTOTYPES ======//
@@ -102,7 +103,8 @@ int main() {
     elevator.closeDoors();
     std::cout  << elevator << std::endl;
 
-    Person patron1 = Person();
+    Person patron1 = Person(&nodeArray[1][1], &nodeArray[2][2], &nodeArray[1][1],
+                            &elevator, 0, false);
 
     std::cout << patron1 << std::endl;
 
