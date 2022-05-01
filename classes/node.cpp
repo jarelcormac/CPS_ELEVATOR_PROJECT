@@ -129,4 +129,11 @@ int Node::addNode(Node::NodeDirection nodeDirect) {
     return 0;
 }
 
-
+void Node::callElevator(){
+    if(!elevatorCalled) { // checks if the elevator is already called
+        elevatorCalled = true;
+        timeCalled = Elevator::getTime();
+        Elevator::nodeBtnBuff_push_back(this);
+        Elevator::incrementTime();
+    }
+}

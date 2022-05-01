@@ -33,33 +33,31 @@
 class Elevator {
 private:
     //====== PRIVATE VARIABLES ======//
-    std::vector<struct Location> pickUpBuffer;  // This buffer stores how many people are currently waiting to be
-                                                      // picked up at some node location.
-    std::vector<struct Location> dropOffBuffer; // This buffer stores how many people are currently waiting to be
-                                                      // dropped off at some node location.
-    std::vector<class Person> peopleInside;   // This vector stores the people within the elevator itself.
+    static unsigned short int currentTime;
+    static std::vector<struct Location> nodeBtnBuffer;  // This buffer stores the order in which node buttons were pushed
+    std::vector<struct Location> elevBtnBuffer; // This buffer stores the order in which elevator buttons were pushed
+    std::vector<class Person> peopleInside;   // This vector stores the people within the elevator itself
+    Node * currentNode;
 
     //====== PRIVATE METHODS ======//
 
 
 public:
-    // Move elevator one node up
-    int moveUp();
+    //====== PUBLIC STATIC METHODS ======//
+    static void initializeCurrentTime() {
+        currentTime = 0;
+    }
 
-    // Move elevator one node down
-    int moveDown();
+    // Returns current time
+    static unsigned short int getTime() {
+        return currentTime;
+    }
 
-    // Move elevator one node left
-    int moveLeft();
+    // Increments time by 1 unit
+    static void incrementTime() {
+        currentTime++;
+    }
 
-    // Move elevator one node right
-    int moveRight();
-
-    // Open elevator doors
-    int openDoors();
-
-    // Close elevator doors
-    int closeDoors();
 
     //====== PUBLIC VARIABLES ======//
     struct Location location;
@@ -78,9 +76,13 @@ public:
     // Attempts to move the elevator to any other node within the 3x3 array of nodes as efficiently as possible.
     int moveHere();
 
-    void PickUpBuff_push_back(Node * node);
+    void updateNodeBtnBuffer();
 
-    void DropOffBuff_push_back(Node * node);
+    // Push a node into the nodeBtnBuffer.
+    static void nodeBtnBuff_push_back(Node * node);
+
+    // Push a node into the elevBtnBuffer.
+    void elevBtnBuff_push_back(Node * node);
 
     // Overloaded << Method
     friend std::ostream& operator<<(std::ostream &out, const Elevator &elevator);

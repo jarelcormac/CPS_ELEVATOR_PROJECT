@@ -99,6 +99,10 @@ public:
     // This is just to offer some versatility and ease of programming in case one method does not work.
     int addNode(NodeDirection nodeDirect);
 
+    // callElevator() Method
+    // This method will call the Elevator by pressing the node button
+    void callElevator();
+
     // Overloaded << Method.
     // This prints out the current node instance's status.
     friend std::ostream& operator<<(std::ostream &out, const Node &node);

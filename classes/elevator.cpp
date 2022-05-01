@@ -20,9 +20,9 @@
 
 //====== Default Constructor Method Implementation ======//
 Elevator::Elevator() {
-    for(int i = 0; i < 3; i++) {
-        for(int j = 0; j < 3; j++) btnPressed[i][j] = false;
-    }
+    for(auto & i : btnPressed)
+        for(bool & j : i)
+            j = false;
     doorsOpen = false;
     peopleInside = std::vector<class Person>();
     location.section = A;
@@ -35,6 +35,7 @@ Elevator::Elevator(Node * nodeCurr, bool btnPress[3][3], bool drsOpen,
     for(int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) btnPressed[i][j] = btnPress[i][j];
     }
+    currentNode = nodeCurr;
     doorsOpen = drsOpen;
     peopleInside = std::move(pplInside);
     location.section = nodeCurr->location.section;
@@ -75,9 +76,8 @@ int Elevator::moveUp() {
         std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
         return 0;
     }
-    else if(location.floor != Third) {
-        location.floor = (Floor)(location.floor - 1);   // minus 1 because floors work
-                                                        // oppositely from vertical arrays in C++
+    else if(currentNode->location.floor != Third) {
+        currentNode = currentNode->upNode;
         return 1;
     } else return 0;
 }
@@ -136,18 +136,27 @@ int Elevator::moveHere() {
     return 0;
 }
 
-void Elevator::PickUpBuff_push_back(Node * node){
-    pickUpBuffer.push_back(node->location);
+void Elevator::nodeBtnBuff_push_back(Node * node){
+    nodeBtnBuffer.push_back(node->location);
 }
 
-void Elevator::DropOffBuff_push_back(Node * node){
-    dropOffBuffer.push_back(node->location);
+void Elevator::elevBtnBuff_push_back(Node * node){
+    elevBtnBuffer.push_back(node->location);
 }
+
+//unsigned short int Elevator::getTime(){
+//    return currentTime;
+//}
+
+//void Elevator::incrementTime(){
+//    currentTime++;
+//}
 
 //====== Overloaded << Implementation ======//
 std::ostream &operator<<(std::ostream &out, const Elevator &elevator) {
     out
-        << "\t\tElevator Location: " << elevator.location << std::endl
-        << "\t\tElevator Doors: " << (elevator.doorsOpen ? ("Opened"):("Closed")) << std::endl;
+        << "\t\tElevator Location: " << elevator.currentNode->location << std::endl
+        << "\t\tElevator Doors: " << (elevator.doorsOpen ? ("Opened"):("Closed")) << std::endl
+        << "\t\tCurrent Time: " << Elevator::getTime() << std::endl;
     return out;
 }

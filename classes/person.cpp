@@ -30,21 +30,20 @@ Person::Person() {
 }
 
 //====== Parameterized Constructor Method Implementation ======//
-Person::Person(Node * nodeStart, Node * nodeEnd, Node * nodeCurr,
-               Elevator * elevator, unsigned int stTime, bool inElev) {
+Person::Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned int stTime, bool inElev) {
     startLoc = nodeStart;
     endLoc = nodeEnd;
     startTime = stTime;
     inElevator = inElev;
-    currentNode = nodeCurr;
+    currentNode = nodeStart;
     currentElevator = elevator;
 }
 
 //====== callElevator() Method Implementation ======//
 // This method will "call" the elevator and set btnCalled at the node it is at to true
 void Person::callElevator() {
-    currentNode->btnCalled = true;
-    currentElevator->PickUpBuff_push_back(startLoc);
+    currentNode->elevatorCalled = true;
+    currentElevator->nodeBtnBuff_push_back(startLoc);
 }
 
 
@@ -53,16 +52,16 @@ void Person::callElevator() {
 // Updates btnPressed status to true if not already done
 void Person::sendElevator(Node * node) {
     currentElevator->btnPressed[node->location.floor][node->location.section] = true;
-    currentElevator->DropOffBuff_push_back(startLoc);
+    currentElevator->elevBtnBuff_push_back(startLoc);
 }
 
 
 std::ostream &operator<<(std::ostream &out, Person &person) {
     out
-        << "Person's Start Location: " << person.startLoc << std::endl
-        << "Person's End Location: " << person.endLoc << std::endl
-        << "Person's Current Location: " << person.currentNode->id << std::endl
-        << "Person in Elevator: " << (person.inElevator ? ("Yes"):("No")) << std::endl;
+        << "\tPerson's Start Location: " << person.startLoc->id << std::endl
+        << "\tPerson's End Location: " << person.endLoc->id << std::endl
+        << "\tPerson's Current Location: " << person.currentNode->id << std::endl
+        << "\tPerson in Elevator: " << (person.inElevator ? ("Yes"):("No")) << std::endl;
     return out;
 }
 

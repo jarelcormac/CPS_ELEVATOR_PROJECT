@@ -67,7 +67,9 @@ int main() {
 
     // Instantiate Elevator at Node 2B.
     std::cout << "- CREATING INSTANCE OF ELEVATOR AT NODE 2B..." << std::endl;
-    Elevator elevator = Elevator(nodeArray[1][1].location, buttonPressed);
+    Elevator elevator = Elevator(&nodeArray[Second][B], buttonPressed);
+    Elevator::initializeCurrentTime();
+    Elevator::getTime();
     std::cout << "\t- ELEVATOR INSTANTIATED AT NODE 2B" << std::endl;
     std::cout << "- PRINTING ELEVATOR'S STATUS..." << std::endl;
     std::cout << elevator << std::endl;

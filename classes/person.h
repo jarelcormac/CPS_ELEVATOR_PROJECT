@@ -39,8 +39,10 @@ public:
     Person();
 
     // Parameterized Person Constructor
-    Person(Node * nodeStart, Node * nodeEnd, Node * nodeCurr,
-           Elevator * elevator, unsigned int stTime = 0, bool inElev = false);
+    Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned int stTime = 0, bool inElev = false);
+
+    // Default Person Destructor
+    ~Person();
 
     // callElevator() Method Prototype
     // This method will "call" the elevator by incrementing the count of people waiting at the node where the elevator
