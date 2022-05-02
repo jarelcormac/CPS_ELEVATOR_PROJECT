@@ -32,6 +32,7 @@ public:
     //====== PUBLIC VARIABLES ======//
     Node * startLoc;
     Node * endLoc;
+    bool droppedOff;
     unsigned int startTime;
 
     //====== PUBLIC METHODS ======//
@@ -39,7 +40,7 @@ public:
     Person();
 
     // Parameterized Person Constructor
-    Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned int stTime = 0, bool inElev = false);
+    Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned int stTime = 0, bool inElev = false, bool dropOff = false);
 
     // Default Person Destructor
     ~Person();
