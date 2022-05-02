@@ -107,26 +107,81 @@ int main() {
     std::cout  << elevator << std::endl;
 */
 
+/*
     // Introduce some people into the elevator.
     std::cout << "- INSTANTIATING A PATRON INTO THE ELEVATOR SYSTEM..." << std::endl;
     auto patron1 = new Person(&nodeArray[Second][B], &nodeArray[Second][B],
                               &elevator, Elevator::getTime(), false);
-    std::cout << "\t- PERSON SUCCESSFULLY INSTANTIATED AT NODE 3C W/ END LOCATION OF NODE 2B" << std::endl;
+    auto patron2 = new Person(&nodeArray[Second][B], &nodeArray[Third][B],
+                              &elevator, Elevator::getTime(), false);
+    std::cout << "\t- TWO PEOPLE SUCCESSFULLY INSTANTIATED AT NODE 2B W/ END LOCATION OF NODE 2B" << std::endl;
     std::cout << "- PRINTING PATRON INFORMATION..." << std::endl;
     std::cout << *patron1 << std::endl;
+    patron1->callElevator();
+    std::cout << *patron2 << std::endl;
+    patron2->callElevator();
 
     // Test elevator pick-up/drop-off functions.
     std::cout << "- TESTING ELEVATOR PICK-UP/DROP-OFF FUNCTIONALITIES..." << std::endl;
     std::cout << "\t- PICKING UP PATRONS..." << std::endl;
     elevator.pickUp();
     std::cout << *patron1 << std::endl;
+    std::cout << *patron2 << std::endl;
     std::cout << "\t- DROPPING OFF PATRONS..." << std::endl;
     elevator.dropOff();
     std::cout << *patron1 << std::endl;
+    std::cout << "\t- THIS IS THE SECOND PATRON" << std::endl;
+    std::cout << *patron2 << std::endl;
+    std::cout << "\t- INTRODUCING THIRD PATRON..." << std::endl;
+    auto patron3 = new Person(&nodeArray[Second][B], &nodeArray[First][B],
+                              &elevator, Elevator::getTime(), false);
+    patron3->callElevator();
+    std::cout << "- PRINTING PATRON 3 INFORMATION..." << std::endl;
+    std::cout << *patron3 << std::endl;
+    std::cout << "- PICKING UP THIRD PATRON..." << std::endl;
+    elevator.pickUp();
+    std::cout << *patron3 << std::endl;
+    elevator.dropOff();
+    std::cout << "- DROPPING OFF THIRD PATRON..." << std::endl;
+    std::cout << *patron3 << std::endl;
     std::cout << "\t\t- PICK-UP/DROP-OFF FUNCTIONALITIES PASSED\n\n" << std::endl;
+*/
 
-    std::cout << "- DELETING PERSON OBJECTS..." << std::endl;
-    delete patron1;
+    std::cout << "- INSTANTIATING A PATRON INTO THE ELEVATOR SYSTEM..." << std::endl;
+    auto patron1 = new Person(&nodeArray[First][A], &nodeArray[Second][A],
+                              &elevator, Elevator::getTime(), false);
+    std::cout << "\t- SUCCESSFULLY INSTANTIATED PATRON W/ NODE START 1A" << std::endl;
+    std::cout << "- PRINTING PATRON 1 INFORMATION..." << std::endl;
+    std::cout << *patron1 << std::endl;
+    std::cout << "- SYSTEM TEST: PICK UP PATRON 1 AT NODE 1A/DROP PATRON OFF AT NODE 2A" << std::endl;
+    std::cout << "\t- PICKING UP PATRON 1..." << std::endl;
+    elevator.moveHere(&nodeArray[First][A]);
+    std::cout << "\t- PATRON 1 SUCCESSFULLY PICKED UP" << std::endl;
+    std::cout << "\t- PATRON 1:" << std::endl;
+    std::cout << *patron1 << std::endl;
+    std::cout << "- INTRODUCING ANOTHER PATRON TO SYSTEM AT W/ PICKUP AT NODE 1B/DROPOFF AT NODE 2A" << std::endl;
+    auto patron2 = new Person(&nodeArray[First][B], &nodeArray[Second][A],
+                              &elevator, Elevator::getTime(), false);
+    std::cout << "\t- PATRON 2:" << std::endl;
+    std::cout << *patron2 << std::endl;
+    std::cout << "\t- PICKING UP PATRON 2..." << std::endl;
+    elevator.moveHere(&nodeArray[First][B]);
+    std::cout << "\t- PATRON 2 SUCCESSFULLY PICKED UP" << std::endl;
+    std::cout << "\t- PATRON 1:" << std::endl;
+    std::cout << *patron1 << std::endl;
+    std::cout << "\t- PATRON 2:" << std::endl;
+    std::cout << *patron2 << std::endl;
+    std::cout << "- ATTEMPTING TO DROPOFF BOTH PATRON 1 AND 2 AT NODE 2A..." << std::endl;
+    elevator.moveHere(&nodeArray[Second][A]);
+    std::cout << "\t- DROPOFF SUCCESSFUL!" << std::endl;
+    std::cout << "\t- PATRON 1:" << std::endl;
+    std::cout << *patron1 << std::endl;
+    std::cout << "\t- PATRON 2:" << std::endl;
+    std::cout << *patron2 << std::endl;
+
+
+
+
 
 
     std::cout << "\n\n********** TEST APPLICATION COMPLETED **********" << std::endl;

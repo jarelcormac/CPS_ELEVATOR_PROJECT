@@ -100,8 +100,8 @@ public:
     int moveHere(Node * nodesArray);
 
     // updateNodeBtnBuffer() Method
-    // ...
-    void updateNodeBtnBuffer();
+    // Updates the nodeBtnBuffer every time a node hop occurs.
+    void updateNodeBtnBuffer(Node * node);
 
     // dropOff() Method
     // Drops off any people at the current node

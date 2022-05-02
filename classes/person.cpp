@@ -48,8 +48,14 @@ Person::~Person() {
 //====== callElevator() Method Implementation ======//
 // This method will "call" the elevator and set btnCalled at the node it is at to true
 void Person::callElevator() {
-    currentNode->elevatorCalled = true;
-    Elevator::nodeBtnBuff_push_back(startLoc);
+    if(currentNode->elevatorCalled) {
+        std::cout << "Elevator has already been called to Node " << currentNode->id << std::endl;
+    }
+    else {
+        currentNode->elevatorCalled = true;
+        Elevator::nodeBtnBuff_push_back(startLoc);
+        std::cout << "Elevator has now been called to Node " << currentNode->id << std::endl;
+    }
 }
 
 //====== exitedElevator() Method Implementation ======//

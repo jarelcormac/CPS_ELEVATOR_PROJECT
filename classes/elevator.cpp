@@ -102,7 +102,7 @@ int Elevator::moveDown() {
         std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
         return 0;
     }
-    else if(currentNode->location.floor != First) {
+    else if(currentNode->location.floor != First && currentNode->downNode != nullptr) {
         currentNode = currentNode->downNode;
 
         return 1;
@@ -153,19 +153,50 @@ int Elevator::moveHere(Node * nodesArray) {
     return 0;
 }
 
-//====== pickUpDropOff() Method Implementation ======//
+void updateNodeBtnBuffer(Elevator * elevator) {
+
+}
+
+//====== dropOff() Method Implementation ======//
 void Elevator::dropOff() {
     Elevator::openDoors();
-    // Deletes any people who have reached their destination; they're getting off the elevator.
-    for(auto person = peopleInside.begin();
-        person <= peopleInside.end() && !peopleInside.empty();
-        person++) {
+    // Deletes any people who have reached their destination; they're getting off the elevator
+    std::vector<class Person *> temp;
+    unsigned int count = peopleInside.size() - 1;
+    for(auto person = peopleInside.end() - 1;
+        !peopleInside.empty() && person != peopleInside.begin() - 1;
+        person--, count--) {
         if ((*person)->endLoc == currentNode) {
+            //temp.insert(temp.end(), std::make_move_iterator(peopleInside.at(count)), std::make_move_iterator(peopleInside.at(count)));
             (*person)->exitedElevator();
-            currentNode->peopleAtNode.push_back(*person);
-            peopleInside.erase(person - 1);
+            peopleInside.erase(person);
+        }
+//        count++;
+    }
+//    for(auto p : temp){
+//        peopleInside.erase(temp);
+//    }
+
+    // Update the node button buffer
+    for(auto node = begin(nodeBtnBuffer);
+        !nodeBtnBuffer.empty() && node != end(nodeBtnBuffer); node++) {
+        if(*node == currentNode->location) {
+            nodeBtnBuffer.erase(node);
         }
     }
+
+    // Update the elevator button buffer
+    for(auto loc = begin(elevBtnBuffer);
+        !elevBtnBuffer.empty() && loc != end(elevBtnBuffer); loc++) {
+        if(currentNode->location == *loc && btnPressed[loc->floor][loc->section]) {
+            btnPressed[loc->floor][loc->section] = false;
+            elevBtnBuffer.erase(loc);
+        }
+    }
+
+    std::cout << "Elevator Button Buffer AFTER DROP OFF: " << std::endl;
+    if(elevBtnBuffer.empty()) std::cout << "Buffer is empty" << std::endl;
+    else for(auto i : elevBtnBuffer) std::cout << i << std::endl;
     Elevator::closeDoors();
 }
 
@@ -173,13 +204,40 @@ void Elevator::dropOff() {
 void Elevator::pickUp() {
     Elevator::openDoors();
     // Moves all the people at the current node into the elevator
-    for(auto person = currentNode->peopleAtNode.begin();
-        person != currentNode->peopleAtNode.end() && !currentNode->peopleAtNode.empty();
-        person++){
-        (*person)->enteredElevator();
-        peopleInside.push_back(*person);
-        currentNode->peopleAtNode.erase(person);
+    if(!currentNode->peopleAtNode.empty()) {
+        auto temp = peopleInside.size();
+        bool existsFlag = false;
+        // Move all people waiting at node into the elevator
+        peopleInside.insert(peopleInside.end(), std::make_move_iterator(currentNode->peopleAtNode.begin()), std::make_move_iterator(currentNode->peopleAtNode.end()));
+        for(auto person = peopleInside.begin() + temp;
+            person != peopleInside.end();
+            person++) {
+            (*person)->enteredElevator();
+            // Check if elevBtnBuffer is empty; if so, add the current person's end location to buffer.
+            if(elevBtnBuffer.empty()) {
+                btnPressed[(*person)->endLoc->location.floor][(*person)->endLoc->location.section] = true;
+                elevBtnBuff_push_back((*person)->endLoc);
+            }
+            // Else, if the buffer is empty, check if any elevator buttons that a person needs to go to is already in the buffer;
+            // If not, add
+            else {
+                for(const auto loc : elevBtnBuffer) {
+                    if(loc == (*person)->endLoc->location) {
+                        existsFlag = true;
+                        break;
+                    }
+                }
+                if(!existsFlag) {
+                    btnPressed[(*person)->endLoc->location.floor][(*person)->endLoc->location.section] = true;
+                    elevBtnBuff_push_back((*person)->endLoc);
+                }
+            }
+        }
+        currentNode->peopleAtNode.erase(currentNode->peopleAtNode.begin(), currentNode->peopleAtNode.end());
     }
+    std::cout << "Elevator Button Buffer AFTER PICK UP: " << std::endl;
+    if(elevBtnBuffer.empty()) std::cout << "Buffer is empty" << std::endl;
+    else for(auto i : elevBtnBuffer) std::cout << i << std::endl;
     Elevator::closeDoors();
 }
 
