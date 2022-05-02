@@ -129,6 +129,7 @@ int main() {
     std::cout << *patron2 << std::endl;
     std::cout << "\t- DROPPING OFF PATRONS..." << std::endl;
     elevator.dropOff();
+    std::cout << "\t- THIS IS THE FIRST PATRON" << std::endl;
     std::cout << *patron1 << std::endl;
     std::cout << "\t- THIS IS THE SECOND PATRON" << std::endl;
     std::cout << *patron2 << std::endl;

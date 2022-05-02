@@ -97,7 +97,7 @@ public:
 
     // moveHere()
     // Attempts to move the elevator to any other node within the 3x3 array of nodes as efficiently as possible.
-    int moveHere(Node * nodesArray);
+    int moveHere(Node * node);
 
     // updateNodeBtnBuffer() Method
     // Updates the nodeBtnBuffer every time a node hop occurs.

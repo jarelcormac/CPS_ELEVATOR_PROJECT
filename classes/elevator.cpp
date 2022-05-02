@@ -86,7 +86,7 @@ int Elevator::moveUp() {
         std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
         return 0;
     }
-    else if(currentNode->location.floor != Third) {
+    else if(currentNode->location.floor != Third && currentNode->upNode != nullptr) {
         currentNode = currentNode->upNode;
         return 1;
     } else return 0;
@@ -119,7 +119,7 @@ int Elevator::moveLeft() {
         std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
         return 0;
     }
-    else if(currentNode->location.section != A) {
+    else if(currentNode->location.section != A && currentNode->leftNode != nullptr) {
         currentNode = currentNode->leftNode;
         return 1;
     } else return 0;
@@ -135,22 +135,107 @@ int Elevator::moveRight() {
         std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
         return 0;
     }
-    else if(currentNode->location.section != C) {
+    else if(currentNode->location.section != C && currentNode->rightNode != nullptr) {
         currentNode = currentNode->rightNode;
         return 1;
     } else return 0;
 }
 
 //====== moveHere() Method Implementation ======//
-int Elevator::moveHere(Node * nodesArray) {
-    Node * nextNode;
-    //if()
-    for(Floor flr = First; flr >= Third; flr = (Floor)(flr - 1)) {
-        for(Section col = A; col <= C; col = (Section)(col + 1)) {
+/*
+ * This algorithm will have an issue where it will not know the previous locations
+ * it was at and may back track to a node where it has already proven to be a dead
+ * end.
+ * One way to fix this would be to keep track of the nodes that are definite dead
+ * ends and make note of the nodes that have a branching path it can return to.
+*/
+int Elevator::moveHere(Node * node) {
+    // nearbyNodes is necessary to take the correct path when there isn't a direct
+    // link to the destination.
+    std::vector<Node::NodeDirection> nearbyNodes;
 
+    for(;;) {
+        // Checks if destination node's floor is higher than current node's floor
+        if (node->location.floor < currentNode->location.floor) {
+            if (!moveUp()) { // If so, attempt to move up
+                nearbyNodes = node->nearbyNodes(); // check for nearby nodes if unsuccessful
+                if (nearbyNodes.size() == 1) {
+                    switch (nearbyNodes[0].direction) {
+                        case Up:    moveUp();       continue;
+                        case Down:  moveDown();     continue;
+                        case Left:  moveLeft();     continue;
+                        case Right: moveRight();    continue;
+                    }
+                }
+                for (auto nodeDirec: nearbyNodes) {
+                    if (abs(nodeDirec.node->location.section - node->location.section) <
+                        abs(nodeDirec.node->location.section - currentNode->location.section)) {
+
+                    }
+                }
+            }
+        }
+            // Checks if destination node's floor is lower than current node's floor
+        else if (node->location.floor > currentNode->location.floor) {
+            if (!moveDown()) { // If so, attempt to move down
+                nearbyNodes = node->nearbyNodes(); // check for nearby nodes if unsuccessful
+                if (nearbyNodes.size() == 1) {
+                    switch (nearbyNodes[0].direction) {
+                        case Up:    moveUp();       continue;
+                        case Down:  moveDown();     continue;
+                        case Left:  moveLeft();     continue;
+                        case Right: moveRight();    continue;
+                    }
+                }
+                for (auto nodeDirec: nearbyNodes) {
+                    if (abs(nodeDirec.node->location.section - node->location.section) <
+                        abs(nodeDirec.node->location.section - currentNode->location.section)) {
+
+                    }
+                }
+            }
+        }
+            // This means destination node is on the same floor as the current node.
+        else {
+            // Checks if destination node's section is left of current node's section
+            if (node->location.section < currentNode->location.section) {
+                if (!moveLeft()) { // If so, attempt to move left
+                    nearbyNodes = node->nearbyNodes(); // check for nearby nodes if unsuccessful
+                    if (nearbyNodes.size() == 1) {
+                        switch (nearbyNodes[0].direction) {
+                            case Up:    moveUp();       continue;
+                            case Down:  moveDown();     continue;
+                            case Left:  moveLeft();     continue;
+                            case Right: moveRight();    continue;
+                        }
+                    }
+                }
+            }
+                // Checks if destination node's section is right of current node's section
+            else if (node->location.section > currentNode->location.section) {
+                if (!moveRight()) { // If so, attempt to move right
+                    nearbyNodes = node->nearbyNodes(); // check for nearby nodes if unsuccessful
+                    if (nearbyNodes.size() == 1) {
+                        switch (nearbyNodes[0].direction) {
+                            case Up:    moveUp();       continue;
+                            case Down:  moveDown();     continue;
+                            case Left:  moveLeft();     continue;
+                            case Right: moveRight();    continue;
+                        }
+                    }
+                }
+            }
+                // This means the destination node is both on the same floor and same section as the current node.
+                // TL;DR: The destination was reached.
+            else {
+                std::cout << "-Destination Reached-" << std::endl;
+                Elevator::pickUp();
+                Elevator::dropOff();
+                return 1; // successfully reached destination
+            }
         }
     }
-    return 0;
+    return 0; // if unsuccessful
 }
 
 void updateNodeBtnBuffer(Elevator * elevator) {
