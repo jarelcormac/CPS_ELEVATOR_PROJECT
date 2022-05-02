@@ -397,3 +397,8 @@ std::ostream &operator<<(std::ostream &out, const Elevator &elevator) {
         << "\tElevator Doors: " << (elevator.doorsOpen ? ("Opened"):("Closed")) << std::endl;
     return out;
 }
+
+// Getter for Node * currentNode
+Node * Elevator::getCurrentNode(){
+    return currentNode;
+}
