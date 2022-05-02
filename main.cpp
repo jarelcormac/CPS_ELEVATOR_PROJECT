@@ -1,4 +1,6 @@
 #include <cstring>
+#include <iostream>
+#include <iomanip>
 #include "classes/elevator.h"
 #include "classes/person.h"
 
@@ -32,6 +34,13 @@ void createNodes(Node nodesArray[3][3], Location locArray[3][3]);
  *      1A---2B---2C
  */
 void createNodeGrid(Node nodes[3][3]);
+
+/*
+ * <createNodeGrid(...) Function Prototype>
+ *      Will print out a 2D visualization of the elevator system in an easy to understand way.
+ */
+void printElevatorSystem(Elevator & elevator, Node nodes[3][3]);
+
 
 /****************** BEGIN MAIN EXECUTION ******************/
 int main() {
@@ -137,6 +146,8 @@ int main() {
 
     std::cout << "\n\n********** TEST APPLICATION COMPLETED **********" << std::endl;
 
+    printElevatorSystem(elevator, nodeArray);
+
 return 0;
 }
 /****************** END MAIN EXECUTION ******************/
@@ -211,3 +222,45 @@ void createNodeGrid(Node nodes[3][3]) {
     nodes[Second][B].addNode(&nodes[First][B], Down);
 
 };
+
+/*
+ * Will print out a 2D visualization of the elevator system in an easy to understand way.
+ * Should look similar to this:
+ *      3A=====3B=====3C
+ *    [ {} ] [    ] [    ]
+ *             ||
+ *      2A=====2B=====2C
+ *    [    ] [    ] [    ]
+ *             ||
+ *      1A=====1B=====1C
+ *    [    ] [    ] [    ]
+ */
+void printElevatorSystem(Elevator & elevator, Node nodes[3][3]) {
+    Floor tempFlr = elevator.getCurrentNode()->location.floor;
+    Section tempSec = elevator.getCurrentNode()->location.section;
+    std::cout << "  3A=====3B=====3C"   << std::endl
+              << "         ||"   << std::endl
+              << "[ " << std::setw(2) << ((tempFlr == Third && tempSec == A) ? "{}" :
+                          std::to_string(nodes[Third][A].peopleAtNode.size())) << " ] "
+              << "[ " << std::setw(2) <<  ((tempFlr == Third && tempSec == B) ? "{}" :
+                          std::to_string(nodes[Third][B].peopleAtNode.size())) << " ] "
+              << "[ " <<  std::setw(2) << ((tempFlr == Third && tempSec == C) ? "{}" :
+                          std::to_string(nodes[Third][C].peopleAtNode.size())) << " ] "  << std::endl
+              << "         ||"   << std::endl
+              << "  2A=====2B=====2C"   << std::endl
+              << "         ||"   << std::endl
+              << "[ " <<  std::setw(2) << ((tempFlr == Second && tempSec == A) ? "{}" :
+                        std::to_string(nodes[Second][A].peopleAtNode.size())) << " ] "
+              << "[ " <<  std::setw(2) << ((tempFlr == Second && tempSec == B) ? "{}" :
+                        std::to_string(nodes[Second][B].peopleAtNode.size())) << " ] "
+              << "[ " <<  std::setw(2) << ((tempFlr == Second && tempSec == C) ? "{}" :
+                        std::to_string(nodes[Second][C].peopleAtNode.size())) << " ] "  << std::endl
+              << "         ||"   << std::endl
+              << "  1A=====1B=====1C"   << std::endl
+              << "[ " <<  std::setw(2) << ((tempFlr == First && tempSec == A) ? "{}" :
+                        std::to_string(nodes[First][A].peopleAtNode.size())) << " ] "
+              << "[ " <<  std::setw(2) << ((tempFlr == First && tempSec == B) ? "{}" :
+                        std::to_string(nodes[First][B].peopleAtNode.size())) << " ] "
+              << "[ " <<  std::setw(2) << ((tempFlr == First && tempSec == C) ? "{}" :
+                        std::to_string(nodes[First][C].peopleAtNode.size())) << " ] "  << std::endl;
+}
