@@ -78,6 +78,7 @@ public:
     }
 
 
+
     //====== PUBLIC VARIABLES ======//
     struct Location location;
     bool btnPressed[3][3]; // The buttons in the elevator
@@ -125,6 +126,9 @@ public:
     // sendElevator() Method Prototype
     // Activates the push button in the elevator
     void sendElevator(__gnu_cxx::__normal_iterator<Person **, std::vector<Person *>> obj);
+
+    // Getter for Node * currentNode
+    Node * getCurrentNode();
 
     // Overloaded << Method
     friend std::ostream& operator<<(std::ostream &out, const Elevator &elevator);
