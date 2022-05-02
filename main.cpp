@@ -37,20 +37,20 @@ void createNodeGrid(Node nodes[3][3]);
 int main() {
     std::cout << "********** STARTING TEST APPLICATION **********" << std::endl << std::endl;
 
-    // Create an array holding all possible node locations.
+    // Create an array holding all possible node locations
     std::cout << "- CREATING LOCATION ARRAY..." << std::endl;
     Location locationArray[3][3];
     createLocationArray(locationArray);
     std::cout << "\t- LOCATION ARRAY SUCCESSFULLY CREATED" << std::endl;
 
-    // Form the grid system.
+    // Form the grid system
     std::cout << "- CREATING NODE GRID SYSTEM..." << std::endl;
     std::cout << "\t- CREATING NODES..." << std::endl;
     Node nodeArray[3][3];
     createNodes(nodeArray, locationArray);
     std::cout << "\t\t- NODES AND GRID SYSTEM SUCCESSFULLY CREATED" << std::endl;
 
-    // Print out all current node statuses.
+    // Print out all current node statuses
     std::cout << "- PRINTING ALL NODES' STATUSES..." << std::endl;
     for(Floor x = First; x >= Third; x = (Floor)(x - 1)) {
         for(Section y = A; y <= C; y = (Section)(y + 1)) {
@@ -58,14 +58,14 @@ int main() {
         }
     }
 
-    // Initialize a buttonPressed array.
+    // Initialize a buttonPressed array
     bool buttonPressed[3][3] = {
             false, false, false,
             false, false, false,
             false, false, false
     };
 
-    // Instantiate Elevator at Node 2B.
+    // Instantiate an elevator object at Node 2B
     std::cout << "- CREATING INSTANCE OF ELEVATOR AT NODE 2B..." << std::endl;
     Elevator elevator = Elevator(&nodeArray[Second][B], buttonPressed);
     Elevator::initializeCurrentTime();
@@ -74,107 +74,47 @@ int main() {
     std::cout << "- PRINTING ELEVATOR'S STATUS..." << std::endl;
     std::cout << elevator << std::endl;
 
-/*
-    std::cout << "- TESTING ELEVATOR MOVEMENT/DOOR FUNCTIONALITIES..." << std::endl;
-
-    // Move Up
-    std::cout << "\t- MOVING UP..." << std::endl;
-    elevator.moveUp();
-    std::cout  << elevator << std::endl;
-    // Move Down
-    std::cout << "\t- MOVING DOWN..." << std::endl;
-    elevator.moveDown();
-    std::cout  << elevator << std::endl;
-    // Move Left
-    std::cout << "\t- MOVING LEFT..." << std::endl;
-    elevator.moveLeft();
-    std::cout  << elevator << std::endl;
-    // Move Right
-    std::cout << "\t- MOVING RIGHT..." << std::endl;
-    elevator.moveRight();
-    std::cout  << elevator << std::endl;
-    // Open Doors
-    std::cout << "\t- OPENING ELEVATOR DOORS..." << std::endl;
-    elevator.openDoors();
-    std::cout  << elevator << std::endl;
-    // Move Right
-    std::cout << "\t- MOVING RIGHT..." << std::endl;
-    elevator.moveRight();
-    std::cout  << elevator << std::endl;
-    // Close Doors
-    std::cout << "\t- CLOSING ELEVATOR DOORS..." << std::endl;
-    elevator.closeDoors();
-    std::cout  << elevator << std::endl;
-*/
-
-/*
-    // Introduce some people into the elevator.
-    std::cout << "- INSTANTIATING A PATRON INTO THE ELEVATOR SYSTEM..." << std::endl;
-    auto patron1 = new Person(&nodeArray[Second][B], &nodeArray[Second][B],
-                              &elevator, Elevator::getTime(), false);
-    auto patron2 = new Person(&nodeArray[Second][B], &nodeArray[Third][B],
-                              &elevator, Elevator::getTime(), false);
-    std::cout << "\t- TWO PEOPLE SUCCESSFULLY INSTANTIATED AT NODE 2B W/ END LOCATION OF NODE 2B" << std::endl;
-    std::cout << "- PRINTING PATRON INFORMATION..." << std::endl;
-    std::cout << *patron1 << std::endl;
-    patron1->callElevator();
-    std::cout << *patron2 << std::endl;
-    patron2->callElevator();
-
-    // Test elevator pick-up/drop-off functions.
-    std::cout << "- TESTING ELEVATOR PICK-UP/DROP-OFF FUNCTIONALITIES..." << std::endl;
-    std::cout << "\t- PICKING UP PATRONS..." << std::endl;
-    elevator.pickUp();
-    std::cout << *patron1 << std::endl;
-    std::cout << *patron2 << std::endl;
-    std::cout << "\t- DROPPING OFF PATRONS..." << std::endl;
-    elevator.dropOff();
-    std::cout << "\t- THIS IS THE FIRST PATRON" << std::endl;
-    std::cout << *patron1 << std::endl;
-    std::cout << "\t- THIS IS THE SECOND PATRON" << std::endl;
-    std::cout << *patron2 << std::endl;
-    std::cout << "\t- INTRODUCING THIRD PATRON..." << std::endl;
-    auto patron3 = new Person(&nodeArray[Second][B], &nodeArray[First][B],
-                              &elevator, Elevator::getTime(), false);
-    patron3->callElevator();
-    std::cout << "- PRINTING PATRON 3 INFORMATION..." << std::endl;
-    std::cout << *patron3 << std::endl;
-    std::cout << "- PICKING UP THIRD PATRON..." << std::endl;
-    elevator.pickUp();
-    std::cout << *patron3 << std::endl;
-    elevator.dropOff();
-    std::cout << "- DROPPING OFF THIRD PATRON..." << std::endl;
-    std::cout << *patron3 << std::endl;
-    std::cout << "\t\t- PICK-UP/DROP-OFF FUNCTIONALITIES PASSED\n\n" << std::endl;
-*/
-
+    // Instantiate a Patron into the node system.
     std::cout << "- INSTANTIATING A PATRON INTO THE ELEVATOR SYSTEM..." << std::endl;
     auto patron1 = new Person(&nodeArray[First][A], &nodeArray[Second][A],
                               &elevator, Elevator::getTime(), false);
     std::cout << "\t- SUCCESSFULLY INSTANTIATED PATRON W/ NODE START 1A" << std::endl;
+
+    // Print Patron 1's Information
     std::cout << "- PRINTING PATRON 1 INFORMATION..." << std::endl;
     std::cout << *patron1 << std::endl;
+
+    /*
+     * System Test designed to test the movement, pick-up, and drop-off functionalities of the elevator
+     */
     std::cout << "- SYSTEM TEST: PICK UP PATRON 1 AT NODE 1A/DROP PATRON OFF AT NODE 2A" << std::endl;
+
+    // Pick up Patron 1
     std::cout << "\t- PICKING UP PATRON 1..." << std::endl;
     elevator.moveHere(&nodeArray[First][A]);
     std::cout << "\t- PATRON 1 SUCCESSFULLY PICKED UP" << std::endl;
+    // Reprint Patron 1's information with after it gets picked up
     std::cout << "\t- PATRON 1:" << std::endl;
     std::cout << *patron1 << std::endl;
+
+    // Introduce another patron into the system BEFORE the elevator is sent to the destination node.
     std::cout << "- INTRODUCING ANOTHER PATRON TO SYSTEM AT W/ PICKUP AT NODE 1B/DROPOFF AT NODE 2A" << std::endl;
     auto patron2 = new Person(&nodeArray[First][B], &nodeArray[Second][A],
                               &elevator, Elevator::getTime(), false);
+    // Print out Patron 2's information
     std::cout << "\t- PATRON 2:" << std::endl;
     std::cout << *patron2 << std::endl;
-    std::cout << "\t- PICKING UP PATRON 2..." << std::endl;
-    elevator.moveHere(&nodeArray[First][B]);
-    std::cout << "\t- PATRON 2 SUCCESSFULLY PICKED UP" << std::endl;
-    std::cout << "\t- PATRON 1:" << std::endl;
-    std::cout << *patron1 << std::endl;
-    std::cout << "\t- PATRON 2:" << std::endl;
-    std::cout << *patron2 << std::endl;
+
+    /*
+     * Since Patron 2's node is on the way to Patron 1's destination node, the elevator picks up Patron 2 on the way
+     */
+
+    // Attempt to drop off Patron 1 and Patron 2 at Node 2A
     std::cout << "- ATTEMPTING TO DROPOFF BOTH PATRON 1 AND 2 AT NODE 2A..." << std::endl;
     elevator.moveHere(&nodeArray[Second][A]);
     std::cout << "\t- DROPOFF SUCCESSFUL!" << std::endl;
+
+    // Reprint Patron 1 and Patron 2's statuses
     std::cout << "\t- PATRON 1:" << std::endl;
     std::cout << *patron1 << std::endl;
     std::cout << "\t- PATRON 2:" << std::endl;
