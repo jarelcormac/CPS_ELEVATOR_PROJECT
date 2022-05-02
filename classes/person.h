@@ -53,8 +53,7 @@ public:
     // was called.
     void callElevator();
 
-    // sendElevator() Method Prototype
-    void sendElevator();
+    void sendElevator(__gnu_cxx::__normal_iterator<Person **, std::vector<Person *>> obj);
 
     // addPersonToNode(...) Method
     void addPersonToNode(Node * node);

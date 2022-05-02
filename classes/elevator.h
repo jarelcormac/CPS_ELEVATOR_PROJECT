@@ -114,9 +114,17 @@ public:
     // Push a node into the nodeBtnBuffer.
     static void nodeBtnBuff_push_back(Node * node);
 
-    // elevBtnBuff_push_back(...)
+    // elevBtnBuff_push_back(...) Method
     // Push a node into the elevBtnBuffer.
     void elevBtnBuff_push_back(Node * Node);
+
+    // isNodeBtnBuffEmpty() Method
+    // Returns true or false if nodeBtnBuffer vector is empty or not
+    static bool isNodeBtnBuffEmpty();
+
+    // sendElevator() Method Prototype
+    // Activates the push button in the elevator
+    void sendElevator(__gnu_cxx::__normal_iterator<Person **, std::vector<Person *>> obj);
 
     // Overloaded << Method
     friend std::ostream& operator<<(std::ostream &out, const Elevator &elevator);

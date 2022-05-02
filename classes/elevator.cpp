@@ -229,8 +229,6 @@ int Elevator::moveHere(Node * node) {
                 // TL;DR: The destination was reached.
             else {
                 std::cout << "-Destination Reached-" << std::endl;
-                Elevator::pickUp();
-                Elevator::dropOff();
                 return 1; // successfully reached destination
             }
         }
@@ -246,11 +244,9 @@ void updateNodeBtnBuffer(Elevator * elevator) {
 void Elevator::dropOff() {
     Elevator::openDoors();
     // Deletes any people who have reached their destination; they're getting off the elevator
-    std::vector<class Person *> temp;
-    unsigned int count = peopleInside.size() - 1;
     for(auto person = peopleInside.end() - 1;
         !peopleInside.empty() && person != peopleInside.begin() - 1;
-        person--, count--) {
+        person--) {
         if ((*person)->endLoc == currentNode) {
             //temp.insert(temp.end(), std::make_move_iterator(peopleInside.at(count)), std::make_move_iterator(peopleInside.at(count)));
             (*person)->exitedElevator();
@@ -313,8 +309,8 @@ void Elevator::pickUp() {
                     }
                 }
                 if(!existsFlag) {
-                    btnPressed[(*person)->endLoc->location.floor][(*person)->endLoc->location.section] = true;
-                    elevBtnBuff_push_back((*person)->endLoc);
+                    const auto currentPerson = person;
+                    sendElevator(currentPerson);
                 }
             }
         }
@@ -343,6 +339,18 @@ void Elevator::elevBtnBuff_push_back(Node * node){
 //void Elevator::incrementTime(){
 //    currentTime++;
 //}
+
+//====== isNodeBtnBuffEmpty() Method Implementation ======//
+bool Elevator::isNodeBtnBuffEmpty(){
+    return nodeBtnBuffer.empty();
+}
+
+//====== sendElevator() Method Implementation ======//
+void Elevator::sendElevator(__gnu_cxx::__normal_iterator<Person **, std::vector<Person *>> obj) {
+    btnPressed[(*obj)->endLoc->location.floor][(*obj)->endLoc->location.section] = true;
+    elevBtnBuff_push_back((*obj)->endLoc);
+}
+
 
 //====== Overloaded << Implementation ======//
 std::ostream &operator<<(std::ostream &out, const Elevator &elevator) {

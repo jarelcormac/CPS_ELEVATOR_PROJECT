@@ -71,7 +71,7 @@ void Person::enteredElevator(){
 //====== sendElevator(...) Method Implementation ======//
 // Sends elevator data on which node a person wants to travel to into the dropOffBuffer.
 // Updates btnPressed status to true if not already done
-void Person::sendElevator() {
+void Person::sendElevator(__gnu_cxx::__normal_iterator<Person **, std::vector<Person *>> obj) {
     currentElevator->btnPressed[endLoc->location.floor][endLoc->location.section] = true;
     currentElevator->elevBtnBuff_push_back(endLoc);
 }

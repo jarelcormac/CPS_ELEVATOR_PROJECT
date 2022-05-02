@@ -183,6 +183,16 @@ int main() {
 
 
 
+//    while(!Elevator::isNodeBtnBuffEmpty()) {
+//        if(!Elevator::isNodeBtnBuffEmpty()){
+//            elevator.move();
+//        }
+//        // Statement that creates a new person and adds them to the system using variable iterations.
+//        // autonomous system runs in while loop.
+//        // everytime the while-loop restarts, add another person.
+//    }
+
+    // Detect if there's any people in the system; if so, run the algorithm
 
 
     std::cout << "\n\n********** TEST APPLICATION COMPLETED **********" << std::endl;
