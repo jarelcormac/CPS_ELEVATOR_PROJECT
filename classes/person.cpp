@@ -66,9 +66,10 @@ Person::Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned i
 }
 
 //====== Default Destructor Method Implementation ======//
-Person::~Person() {
-    std::cout << "Person destroyed. Was in elevator: " << inElevator << std::endl;
-}
+Person::~Person() = default;
+//{
+//    std::cout << "Person destroyed. Was in elevator: " << inElevator << std::endl;
+//}
 
 //====== callElevator() Method Implementation ======//
 void Person::callElevator() {

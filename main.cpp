@@ -123,6 +123,7 @@ int main() {
     std::vector<class Person> personVector;
     personVector.reserve(10);
     for(int i = 0; i < 10; i++) {
+        std::cout << "\t";
         personVector.emplace_back(&nodeArray[dist(rdNum)][dist(rdNum)], &nodeArray[dist(rdNum)][dist(rdNum)],
                                       &elevator, 0, false, false);
     }
@@ -131,20 +132,20 @@ int main() {
         std::cout << personVector.at(i) << std::endl;
     }
 
-    // std::cout << "ORDER OF NODES:" << std::endl;
+    std::cout << "- INITIAL STATE OF ELEVATOR SYSTEM:" << std::endl;
     elevator.printSystem();
 
-    std::cout << "- MOVING ELEVATOR TO SERVICE EACH PATRON" << std::endl;
+    std::cout << "- MOVING ELEVATOR TO SERVICE EACH PATRON..." << std::endl;
     while(!Elevator::nodeButtonBufferEmpty() || !Elevator::elevatorButtonBufferEmpty()){
         elevator.moveHere(Elevator::nextBufferLocation());
-        for(int i = 0; i < 10; i++) {
-            std::cout << personVector.at(i) << std::endl;
-        }
+    }
+    std::cout << "\t- ALL PATRONS SUCCESSFULLY DROPPED OFF" << std::endl;
+    std::cout << "- PRINTING CURRENT PATRON INFORMATION..." << std::endl;
+    for(int i = 0; i < 10; i++) {
+        std::cout << personVector.at(i) << std::endl;
     }
     std::cout << "~SYSTEM TEST #5 SUCCESSFUL~" << std::endl << std::endl;
     //======== END SYSTEM TEST #5 ========//
-
-    elevator.printSystem();
 
 
     std::cout << "\n\n********** TEST APPLICATION COMPLETED **********" << std::endl;
