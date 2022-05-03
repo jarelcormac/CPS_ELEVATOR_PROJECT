@@ -104,6 +104,7 @@ void Person::sendElevator(__gnu_cxx::__normal_iterator<Person **, std::vector<Pe
 //====== addPersonToNode(...) Method Implementation ======//
 void Person::addPersonToNode(Node * node) {
     node->peopleAtNode.push_back(this);
+    currentElevator->nodeArray[node->location.floor][node->location.section].peopleAtNode.push_back(this);
 }
 
 //====== Overloaded << Method Implementation ======//
