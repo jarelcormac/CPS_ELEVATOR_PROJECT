@@ -28,12 +28,6 @@ int main() {
 
     //======== Start system initialization stage. ========//
     std::cout << "=== INITIALIZING SYSTEM ===" << std::endl << std::endl;
-    // Initialize a buttonPressed array
-    bool buttonPressed[3][3] = {
-            false, false, false,
-            false, false, false,
-            false, false, false
-    };
 
     // Create an array holding all possible node locations
     std::cout << "- CREATING LOCATION ARRAY..." << std::endl;
@@ -47,6 +41,21 @@ int main() {
     Node nodeArray[3][3];
     createNodes(nodeArray, locationArray);
     std::cout << "\t\t- NODES AND GRID SYSTEM SUCCESSFULLY CREATED" << std::endl;
+
+    // Print out all current node statuses
+    std::cout << "- PRINTING ALL NODES' STATUSES..." << std::endl;
+    for(Floor x = First; x >= Third; x = (Floor)(x - 1)) {
+        for(Section y = A; y <= C; y = (Section)(y + 1)) {
+            std::cout << nodeArray[x][y] << std::endl;
+        }
+    }
+
+    // Initialize a buttonPressed array
+    bool buttonPressed[3][3] = {
+            false, false, false,
+            false, false, false,
+            false, false, false
+    };
 
     // Instantiate an elevator object at Node 2B
     std::cout << "- CREATING INSTANCE OF ELEVATOR AT NODE 2B..." << std::endl;
@@ -108,13 +117,13 @@ int main() {
     // Random number generator code used from Microsoft c++ documentation
     // https://docs.microsoft.com/en-us/cpp/standard-library/random?view=msvc-170
     std::random_device rdNum;    // Creates a non-deterministic generator
-    std::mt19937 gen(rdNum());// Seeds mersenne twister
+//    std::mt19937 gen(rdNum());// Seeds mersenne twister
     std::uniform_int_distribution<> dist(0,2); // Will distribute a result between 0 and 2 inclusive
     // To generate a random number use dist(gen).
     std::vector<class Person> personVector;
     personVector.reserve(10);
     for(int i = 0; i < 10; i++) {
-        personVector.emplace_back(&nodeArray[dist(gen)][dist(gen)], &nodeArray[dist(gen)][dist(gen)],
+        personVector.emplace_back(&nodeArray[dist(rdNum)][dist(rdNum)], &nodeArray[dist(rdNum)][dist(rdNum)],
                                       &elevator, 0, false, false);
     }
     std::cout << "- 10 PATRONS SPAWNED. PRINTING PATRON INFORMATION..." << std::endl;
@@ -123,6 +132,7 @@ int main() {
     }
 
     // std::cout << "ORDER OF NODES:" << std::endl;
+    elevator.printSystem();
 
     std::cout << "- MOVING ELEVATOR TO SERVICE EACH PATRON" << std::endl;
     while(!Elevator::nodeButtonBufferEmpty() || !Elevator::elevatorButtonBufferEmpty()){

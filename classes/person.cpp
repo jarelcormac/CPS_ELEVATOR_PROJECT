@@ -120,5 +120,3 @@ std::ostream &operator<<(std::ostream &out, Person &person) {
 }
 
 
-
-

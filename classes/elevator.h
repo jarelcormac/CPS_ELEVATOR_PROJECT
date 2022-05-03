@@ -21,6 +21,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
 #ifndef CPS_ELEVATOR_PROJECT_ELEVATOR_H
 #define CPS_ELEVATOR_PROJECT_ELEVATOR_H
 
@@ -63,6 +64,9 @@ private:
 
 
     //====== PRIVATE METHODS ======//
+
+
+public:
     // Move elevator one node up
     int moveUp();
 
