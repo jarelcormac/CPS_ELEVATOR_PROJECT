@@ -21,6 +21,7 @@
 
 #include "person.h"
 #include "node.h"
+#include <iomanip>
 
 
 /****************************************************
@@ -127,8 +128,13 @@ public:
     // Activates the push button in the elevator
     void sendElevator(__gnu_cxx::__normal_iterator<Person **, std::vector<Person *>> obj);
 
-    // Getter for Node * currentNode
+    // getCurrentNode() Method
+    // Gets the value of the current node elevator resides in
     Node * getCurrentNode();
+
+    // printSystem(...) Method
+    // Prints out the current state of the elevator system.
+    void printSystem(Node nodeArray[3][3], Floor floor, Section section);
 
     // Overloaded << Method
     friend std::ostream& operator<<(std::ostream &out, const Elevator &elevator);

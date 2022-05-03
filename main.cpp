@@ -1,6 +1,4 @@
-#include <cstring>
 #include <iostream>
-#include <iomanip>
 #include "classes/elevator.h"
 #include "classes/person.h"
 
@@ -210,12 +208,12 @@ void createNodes(Node nodesArray[3][3], Location locArray[3][3]) {
  */
 void createNodeGrid(Node nodes[3][3]) {
     // Creates horizontal section connections every floor
-    nodes[Third][A].addNode(&nodes[Third][B], Right);
-    nodes[Third][B].addNode(&nodes[Third][C], Right);
+    nodes[Third] [A].addNode(&nodes[Third] [B], Right);
+    nodes[Third] [B].addNode(&nodes[Third] [C], Right);
     nodes[Second][A].addNode(&nodes[Second][B], Right);
     nodes[Second][B].addNode(&nodes[Second][C], Right);
-    nodes[First][A].addNode(&nodes[First][B], Right);
-    nodes[First][B].addNode(&nodes[First][C], Right);\
+    nodes[First] [A].addNode(&nodes[First] [B], Right);
+    nodes[First] [B].addNode(&nodes[First] [C], Right);
 
     // Creates vertical section connections for only the center column
     nodes[Second][B].addNode(&nodes[Third][B], Up);
@@ -224,7 +222,7 @@ void createNodeGrid(Node nodes[3][3]) {
 };
 
 /*
- * Will print out a 2D visualization of the elevator system in an easy to understand way.
+ * Will print out a 2D visualization of the elevator system in an easy-to-understand way.
  * Should look similar to this:
  *      3A=====3B=====3C
  *    [ {} ] [    ] [    ]
@@ -236,31 +234,7 @@ void createNodeGrid(Node nodes[3][3]) {
  *    [    ] [    ] [    ]
  */
 void printElevatorSystem(Elevator & elevator, Node nodes[3][3]) {
-    Floor tempFlr = elevator.getCurrentNode()->location.floor;
-    Section tempSec = elevator.getCurrentNode()->location.section;
-    std::cout << "  3A=====3B=====3C"   << std::endl
-              << "         ||"   << std::endl
-              << "[ " << std::setw(2) << ((tempFlr == Third && tempSec == A) ? "{}" :
-                          std::to_string(nodes[Third][A].peopleAtNode.size())) << " ] "
-              << "[ " << std::setw(2) <<  ((tempFlr == Third && tempSec == B) ? "{}" :
-                          std::to_string(nodes[Third][B].peopleAtNode.size())) << " ] "
-              << "[ " <<  std::setw(2) << ((tempFlr == Third && tempSec == C) ? "{}" :
-                          std::to_string(nodes[Third][C].peopleAtNode.size())) << " ] "  << std::endl
-              << "         ||"   << std::endl
-              << "  2A=====2B=====2C"   << std::endl
-              << "         ||"   << std::endl
-              << "[ " <<  std::setw(2) << ((tempFlr == Second && tempSec == A) ? "{}" :
-                        std::to_string(nodes[Second][A].peopleAtNode.size())) << " ] "
-              << "[ " <<  std::setw(2) << ((tempFlr == Second && tempSec == B) ? "{}" :
-                        std::to_string(nodes[Second][B].peopleAtNode.size())) << " ] "
-              << "[ " <<  std::setw(2) << ((tempFlr == Second && tempSec == C) ? "{}" :
-                        std::to_string(nodes[Second][C].peopleAtNode.size())) << " ] "  << std::endl
-              << "         ||"   << std::endl
-              << "  1A=====1B=====1C"   << std::endl
-              << "[ " <<  std::setw(2) << ((tempFlr == First && tempSec == A) ? "{}" :
-                        std::to_string(nodes[First][A].peopleAtNode.size())) << " ] "
-              << "[ " <<  std::setw(2) << ((tempFlr == First && tempSec == B) ? "{}" :
-                        std::to_string(nodes[First][B].peopleAtNode.size())) << " ] "
-              << "[ " <<  std::setw(2) << ((tempFlr == First && tempSec == C) ? "{}" :
-                        std::to_string(nodes[First][C].peopleAtNode.size())) << " ] "  << std::endl;
+    Floor tempFloor = elevator.getCurrentNode()->location.floor;
+    Section tempSection = elevator.getCurrentNode()->location.section;
+    elevator.printSystem(nodes, tempFloor, tempSection);
 }

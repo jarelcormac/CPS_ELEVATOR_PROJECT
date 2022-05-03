@@ -390,7 +390,7 @@ void Elevator::sendElevator(__gnu_cxx::__normal_iterator<Person **, std::vector<
 }
 
 
-//====== Overloaded << Implementation ======//
+//====== Overloaded << Method Implementation ======//
 std::ostream &operator<<(std::ostream &out, const Elevator &elevator) {
     out
         << "\tElevator Location: " << elevator.currentNode->location << std::endl
@@ -398,7 +398,39 @@ std::ostream &operator<<(std::ostream &out, const Elevator &elevator) {
     return out;
 }
 
-// Getter for Node * currentNode
+//====== getCurrentNode() Implementation ======//
 Node * Elevator::getCurrentNode(){
     return currentNode;
 }
+
+//====== printSystem(...) Method Implementation ======//
+void Elevator::printSystem(Node nodes[3][3], Floor floor, Section section) {
+    std::cout << "  3A=====3B=====3C"   << std::endl
+              << "         ||"   << std::endl
+              << "[ " << std::setw(2) << ((floor == Third && section == A) ? "{}" :
+                                          std::to_string(nodes[Third][A].peopleAtNode.size())) << " ] "
+              << "[ " << std::setw(2) <<  ((floor == Third && section == B) ? "{}" :
+                                           std::to_string(nodes[Third][B].peopleAtNode.size())) << " ] "
+              << "[ " << std::setw(2) << ((floor == Third && section == C) ? "{}" :
+                                          std::to_string(nodes[Third][C].peopleAtNode.size())) << " ] "  << std::endl
+              << "         ||"   << std::endl
+              << "  2A=====2B=====2C"   << std::endl
+              << "         ||"   << std::endl
+              << "[ " << std::setw(2) << ((floor == Second && section == A) ? "{}" :
+                                          std::to_string(nodes[Second][A].peopleAtNode.size())) << " ] "
+              << "[ " << std::setw(2) << ((floor == Second && section == B) ? "{}" :
+                                          std::to_string(nodes[Second][B].peopleAtNode.size())) << " ] "
+              << "[ " << std::setw(2) << ((floor == Second && section == C) ? "{}" :
+                                          std::to_string(nodes[Second][C].peopleAtNode.size())) << " ] "  << std::endl
+              << "         ||"   << std::endl
+              << "  1A=====1B=====1C"   << std::endl
+              << "[ " << std::setw(2) << ((floor == First && section == A) ? "{}" :
+                                          std::to_string(nodes[First][A].peopleAtNode.size())) << " ] "
+              << "[ " << std::setw(2) << ((floor == First && section == B) ? "{}" :
+                                          std::to_string(nodes[First][B].peopleAtNode.size())) << " ] "
+              << "[ " << std::setw(2) << ((floor == First && section == C) ? "{}" :
+                                          std::to_string(nodes[First][C].peopleAtNode.size())) << " ] "  << std::endl;
+}
+
+
+
