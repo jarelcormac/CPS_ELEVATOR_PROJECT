@@ -4,7 +4,7 @@
 // Engineer: Jarel-John Cortel Macanas
 //           Shoh Allan Sewell
 //
-// Create Date: 31 MAR 2022
+// Create Date: 10 APR 2022
 // Filename: elevator.cpp
 // Project Name: CPS_ELEVATOR_PROJECT
 // Description: Contains implementation of methods defined for the Elevator class.
@@ -18,8 +18,12 @@
 #include "elevator.h"
 #include "specialExceptions.h"
 
+/*
+ * Initializing static variables.
+ */
 unsigned short int Elevator::currentTime = 0;
 std::vector<struct Location> Elevator::nodeBtnBuffer = std::vector<struct Location>();
+
 
 //====== Default Constructor Method Implementation ======//
 Elevator::Elevator() {
@@ -77,21 +81,21 @@ int Elevator::closeDoors() {
 }
 
 //====== moveUp() Method Implementation ======//
-/*
- * Attempts to move elevator up by one node.
- * Returns 1 if successful, returns 0 if unsuccessful
- */
 int Elevator::moveUp() {
+    // Check if elevator doors are open.
     if(doorsOpen) {
         std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
         return 0;
     }
+    // Else, change the elevator's current node to the node directly upwards of the elevator's current position.
     else if(currentNode->location.floor != Third && currentNode->upNode != nullptr) {
         currentNode = currentNode->upNode;
-        // If the elevator is not empty, check to see if there are any people inside that need to be dropped off at current node
+        // If the elevator is not empty, check to see if there are any people inside that need to be dropped off
+        // at the current node.
         if(!currentNode->peopleAtNode.empty()) {
             pickUp();
         }
+        // If the elevator itself is not empty, then check if there is any one that needs to get dropped off.
         if(!peopleInside.empty()) {
             for(auto person = peopleInside.end() - 1;
                 !peopleInside.empty() && person != peopleInside.begin() - 1;
@@ -107,20 +111,21 @@ int Elevator::moveUp() {
 }
 
 //====== moveDown() Method Implementation ======//
-/*
- * Attempts to move elevator down by one node.
- * Returns 1 if successful, returns 0 if unsuccessful
-*/
 int Elevator::moveDown() {
+    // Check if elevator doors are open.
     if(doorsOpen) {
         std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
         return 0;
     }
+    // Else, change the elevator's current node to the node directly upwards of the elevator's current position.
     else if(currentNode->location.floor != First && currentNode->downNode != nullptr) {
         currentNode = currentNode->downNode;
+        // If the elevator is not empty, check to see if there are any people inside that need to be dropped off
+        // at the current node.
         if(!currentNode->peopleAtNode.empty()) {
             pickUp();
         }
+        // If the elevator itself is not empty, then check if there is any one that needs to get dropped off.
         if(!peopleInside.empty()) {
             for(auto person = peopleInside.end() - 1;
                 !peopleInside.empty() && person != peopleInside.begin() - 1;
@@ -135,21 +140,22 @@ int Elevator::moveDown() {
     } else return 0;
 }
 
-//====== moveDown() Method Implementation ======//
-/*
- * Attempts to move elevator left by one node.
- * Returns 1 if successful, returns 0 if unsuccessful
-*/
+//====== moveLeft() Method Implementation ======//
 int Elevator::moveLeft() {
+    // Check if elevator doors are open.
     if(doorsOpen) {
         std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
         return 0;
     }
+    // Else, change the elevator's current node to the node directly upwards of the elevator's current position.
     else if(currentNode->location.section != A && currentNode->leftNode != nullptr) {
         currentNode = currentNode->leftNode;
+        // If the elevator is not empty, check to see if there are any people inside that need to be dropped off
+        // at the current node.
         if(!currentNode->peopleAtNode.empty()) {
             pickUp();
         }
+        // If the elevator itself is not empty, then check if there is any one that needs to get dropped off.
         if(!peopleInside.empty()) {
             for(auto person = peopleInside.end() - 1;
                 !peopleInside.empty() && person != peopleInside.begin() - 1;
@@ -165,20 +171,21 @@ int Elevator::moveLeft() {
 }
 
 //====== moveRight() Method Implementation ======//
-/*
- * Attempts to move elevator right by one node.
- * Returns 1 if successful, returns 0 if unsuccessful
-*/
 int Elevator::moveRight() {
+    // Check if elevator doors are open.
     if(doorsOpen) {
         std::cout << "************** DANGER: ELEVATOR DOORS ARE OPEN - WILL NOT MOVE. **************" << std::endl;
         return 0;
     }
+    // Else, change the elevator's current node to the node directly upwards of the elevator's current position.
     else if(currentNode->location.section != C && currentNode->rightNode != nullptr) {
         currentNode = currentNode->rightNode;
+        // If the elevator is not empty, check to see if there are any people inside that need to be dropped off
+        // at the current node.
         if(!currentNode->peopleAtNode.empty()) {
             pickUp();
         }
+        // If the elevator itself is not empty, then check if there is any one that needs to get dropped off.
         if(!peopleInside.empty()) {
             for(auto person = peopleInside.end() - 1;
                 !peopleInside.empty() && person != peopleInside.begin() - 1;
@@ -194,23 +201,16 @@ int Elevator::moveRight() {
 }
 
 //====== moveHere() Method Implementation ======//
-/*
- * This algorithm will have an issue where it will not know the previous locations
- * it was at and may back track to a node where it has already proven to be a dead
- * end.
- * One way to fix this would be to keep track of the nodes that are definite dead
- * ends and make note of the nodes that have a branching path it can return to.
-*/
 int Elevator::moveHere(Node * node) {
-    // nearbyNodes is necessary to take the correct path when there isn't a direct
-    // link to the destination.
+    // nearbyNodes is necessary to take the correct path when there isn't a direct link to the destination.
     std::vector<Node::NodeDirection> nearbyNodes;
 
+    // Loops until the elevator reaches its calculated destination node.
     for(;;) {
-        // Checks if destination node's floor is higher than current node's floor
+        // Checks if destination node's floor is higher than current node's floor.
         if (node->location.floor < currentNode->location.floor) {
-            if (!moveUp()) { // If so, attempt to move up
-                nearbyNodes = node->nearbyNodes(); // check for nearby nodes if unsuccessful
+            if (!moveUp()) { // If so, attempt to move up.
+                nearbyNodes = node->nearbyNodes(); // Checks for nearby nodes if unsuccessful.
                 if (nearbyNodes.size() == 1) {
                     switch (nearbyNodes[0].direction) {
                         case Up:    moveUp();       continue;
@@ -227,10 +227,10 @@ int Elevator::moveHere(Node * node) {
                 }
             }
         }
-            // Checks if destination node's floor is lower than current node's floor
+        // Checks if destination node's floor is lower than current node's floor.
         else if (node->location.floor > currentNode->location.floor) {
             if (!moveDown()) { // If so, attempt to move down
-                nearbyNodes = node->nearbyNodes(); // check for nearby nodes if unsuccessful
+                nearbyNodes = node->nearbyNodes(); // Checks for nearby nodes if unsuccessful.
                 if (nearbyNodes.size() == 1) {
                     switch (nearbyNodes[0].direction) {
                         case Up:    moveUp();       continue;
@@ -247,12 +247,12 @@ int Elevator::moveHere(Node * node) {
                 }
             }
         }
-            // This means destination node is on the same floor as the current node.
+        // Else, this means the destination node is on the same floor as the current node.
         else {
-            // Checks if destination node's section is left of current node's section
+            // Checks if destination node's section is left of current node's section.
             if (node->location.section < currentNode->location.section) {
-                if (!moveLeft()) { // If so, attempt to move left
-                    nearbyNodes = node->nearbyNodes(); // check for nearby nodes if unsuccessful
+                if (!moveLeft()) { // If so, attempt to move left.
+                    nearbyNodes = node->nearbyNodes(); // Checks for nearby nodes if unsuccessful.
                     if (nearbyNodes.size() == 1) {
                         switch (nearbyNodes[0].direction) {
                             case Up:    moveUp();       continue;
@@ -263,10 +263,10 @@ int Elevator::moveHere(Node * node) {
                     }
                 }
             }
-                // Checks if destination node's section is right of current node's section
+            // Checks if destination node's section is right of current node's section.
             else if (node->location.section > currentNode->location.section) {
                 if (!moveRight()) { // If so, attempt to move right
-                    nearbyNodes = node->nearbyNodes(); // check for nearby nodes if unsuccessful
+                    nearbyNodes = node->nearbyNodes(); // Checks for nearby nodes if unsuccessful.
                     if (nearbyNodes.size() == 1) {
                         switch (nearbyNodes[0].direction) {
                             case Up:    moveUp();       continue;
@@ -277,24 +277,24 @@ int Elevator::moveHere(Node * node) {
                     }
                 }
             }
-                // This means the destination node is both on the same floor and same section as the current node.
-                // TL;DR: The destination was reached.
+            // This means the destination node is both on the same floor and same section as the current node.
+            // TL;DR: The destination was reached.
             else {
-                return 1; // successfully reached destination
+                return 1; // Successfully reached destination.
             }
         }
     }
     return 0; // if unsuccessful
 }
 
-void updateNodeBtnBuffer(Elevator * elevator) {
-
-}
 
 //====== dropOff() Method Implementation ======//
 void Elevator::dropOff() {
     Elevator::openDoors();
-    // Deletes any people who have reached their destination; they're getting off the elevator
+    /*
+     * Deletes any people who have reached their destination.
+     * They're getting off the elevator. Duh.
+     */
     for(auto person = peopleInside.end() - 1;
         !peopleInside.empty() && person != peopleInside.begin() - 1;
         person--) {
@@ -305,15 +305,25 @@ void Elevator::dropOff() {
         }
     }
 
-    // Update the node button buffer
-    for(auto node = begin(nodeBtnBuffer);
-        !nodeBtnBuffer.empty() && node != end(nodeBtnBuffer); node++) {
-        if(*node == currentNode->location) {
-            nodeBtnBuffer.erase(node);
+    /*
+     * Updates the node buffer by scanning the vector buffer and removing the location from the vector if there's a
+     *  match between one of the elements of the buffer and the current location of the elevator.
+     * This one took a while to be honest.
+     */
+    for(auto loc = begin(nodeBtnBuffer);
+        !nodeBtnBuffer.empty() && loc != end(nodeBtnBuffer); loc++) {
+        if(*loc == currentNode->location) {
+            nodeBtnBuffer.erase(loc);
         }
     }
 
-    // Update the elevator button buffer
+    /*
+     * Updates the node buffer by scanning the vector buffer and removing the location from the vector if there's a
+     *  match between one of the elements of the buffer and the current location of the elevator.
+     * Also updates btnPressed to be false at the location where the patrons were dropped off.
+     * Basically, we turned off one of the LED lights for a button in the elevator letting it know that this
+     *  destination was reached, and it should move on.
+     */
     for(auto loc = begin(elevBtnBuffer);
         !elevBtnBuffer.empty() && loc != end(elevBtnBuffer); loc++) {
         if(currentNode->location == *loc && btnPressed[loc->floor][loc->section]) {
@@ -325,12 +335,19 @@ void Elevator::dropOff() {
 
 //====== pickUp() Method Implementation ======//
 void Elevator::pickUp() {
-    // Moves all the people at the current node into the elevator
+    // Check if there are people waiting at the node the elevator is at.
     if(!currentNode->peopleAtNode.empty()) {
         auto temp = peopleInside.size();
         bool existsFlag = false;
-        // Move all people waiting at node into the elevator
+        // Move all people waiting at node into the elevator.
         peopleInside.insert(peopleInside.end(), std::make_move_iterator(currentNode->peopleAtNode.begin()), std::make_move_iterator(currentNode->peopleAtNode.end()));
+        /*
+         * This checks if the people who just entered the elevator already have a destination node in the node button
+         *  buffer.
+         * Effectively, this means that it checks if the button for each person's end location has already been pushed
+         *  to prevent duplicate nodes that the elevator needs to travel to from being added to the buffer.
+         * This one had me running for my money.
+         */
         for(auto person = peopleInside.begin() + temp;
             person != peopleInside.end();
             person++) {
@@ -340,8 +357,10 @@ void Elevator::pickUp() {
                 btnPressed[(*person)->endLoc->location.floor][(*person)->endLoc->location.section] = true;
                 elevBtnBuff_push_back((*person)->endLoc);
             }
-            // Else, if the buffer is empty, check if any elevator buttons that a person needs to go to is already in the buffer;
-            // If not, add
+            /*
+             * Else, if the buffer is empty, check if any elevator buttons that a person needs to go to is already in the buffer;
+             * If not, add it to the buffer and move on with your day.
+             */
             else {
                 for(const auto loc : elevBtnBuffer) {
                     if(loc == (*person)->endLoc->location) {
@@ -355,6 +374,10 @@ void Elevator::pickUp() {
                 }
             }
         }
+        /*
+         * Resets the number of people at the node, indicating that the node is now empty, and no one is waiting
+         * at the node.
+         */
         currentNode->peopleAtNode.erase(currentNode->peopleAtNode.begin(), currentNode->peopleAtNode.end());
     }
     Elevator::closeDoors();
@@ -373,15 +396,12 @@ void Elevator::elevBtnBuff_push_back(Node * node){
 //unsigned short int Elevator::getTime(){
 //    return currentTime;
 //}
-
+//
 //void Elevator::incrementTime(){
 //    currentTime++;
 //}
 
-//====== isNodeBtnBuffEmpty() Method Implementation ======//
-bool Elevator::isNodeBtnBuffEmpty(){
-    return nodeBtnBuffer.empty();
-}
+
 
 //====== sendElevator() Method Implementation ======//
 void Elevator::sendElevator(__gnu_cxx::__normal_iterator<Person **, std::vector<Person *>> obj) {
@@ -431,6 +451,5 @@ void Elevator::printSystem(Node nodes[3][3], Floor floor, Section section) {
               << "[ " << std::setw(2) << ((floor == First && section == C) ? "{}" :
                                           std::to_string(nodes[First][C].peopleAtNode.size())) << " ] "  << std::endl;
 }
-
 
 

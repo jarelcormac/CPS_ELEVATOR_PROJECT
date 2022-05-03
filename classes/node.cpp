@@ -64,14 +64,8 @@ std::ostream &operator<<(std::ostream &out, const Node &node) {
         << "\t" << (node.leftNode == nullptr ? ("--"):(node.leftNode->id)) << "\t" << node.id
         << "\t" << (node.rightNode == nullptr ? ("--"):(node.rightNode->id)) << std::endl
         << "\t\t" << (node.downNode == nullptr ? ("--"):(node.downNode->id)) << std::endl
-//        << "\tUp Node: " << (node.upNode == nullptr ? ("-"):(node.upNode->id)) << std::endl
-//        << "\tDown Node: " << (node.downNode == nullptr ? ("-"):(node.downNode->id)) << std::endl
-//        << "\tLeft Node: " << (node.leftNode == nullptr ? ("-"):(node.leftNode->id)) << std::endl
-//        << "\tRight Node: " << (node.rightNode == nullptr ? ("-"):(node.rightNode->id)) << std::endl
         << "\tPeople Waiting At " << node.id << ": " << node.peopleAtNode.size() << std::endl
         << "\tElevator Called To " << node.id << ": " << (node.elevatorCalled ? ("Yes"):("No")) << std::endl;
-//        << "\tFloor Location of Node: " << node.location.floor << std::endl
-//        << "\tSection Location of Node: " << node.location.section << std::endl << std::endl;
     return out;
 }
 
@@ -90,7 +84,6 @@ std::vector<Node::NodeDirection> Node::nearbyNodes() {
 }
 
 //====== addNodes(...) Method Implementation ======//
-// addNode() will add a node in the direction specified relative to the source node
 int Node::addNode(Node *node, enum Direction direction) {
     switch(direction){
         case Up:
@@ -113,8 +106,7 @@ int Node::addNode(Node *node, enum Direction direction) {
     return 0;
 }
 
-//====== addNodes(...) Implementation ======//
-// addNode() will add a node in the direction specified relative to the source node
+//====== addNode(...) Implementation ======//
 int Node::addNode(Node::NodeDirection nodeDirect) {
     switch(nodeDirect.direction){
         case Up:
@@ -139,7 +131,8 @@ int Node::addNode(Node::NodeDirection nodeDirect) {
 
 //====== callElevator() Method Implementation ======//
 void Node::callElevator(){
-    if(!elevatorCalled) { // checks if the elevator is already called
+    // Checks if the elevator is already called.
+    if(!elevatorCalled) {
         elevatorCalled = true;
         timeCalled = Elevator::getTime();
         Elevator::nodeBtnBuff_push_back(this);

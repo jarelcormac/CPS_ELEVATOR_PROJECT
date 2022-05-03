@@ -4,7 +4,7 @@
 // Engineer: Jarel-John Cortel Macanas
 //           Shoh Allan Sewell
 //
-// Create Date: 31 MAR 2022
+// Create Date: 20 APR 2022
 // Filename: person.cpp
 // Project Name: CPS_ELEVATOR_PROJECT
 // Description: Contains implementation of methods defined for the Person class.
@@ -14,6 +14,25 @@
 // Additional Comments:
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/******************************************************************************
+ *
+ * PERSON CLASS
+ *
+ * Notes: This class defines the properties and methods of a Node when created.
+ *
+ *        Each node has its own unique ID and the counter that keeps track of
+ *        the number of people waiting for the elevator to stop at that node.
+ *
+ *        Each node keeps track of the immediate nodes on the left, right,
+ *        upwards, and downwards (relative to current node).
+ *
+ *        Each node has an assigned location and a boolean variable indicating
+ *        whether or not the button for the node has been pressed.
+ *
+ ******************************************************************************/
+
 
 #include "person.h"
 #include "elevator.h"
@@ -48,11 +67,12 @@ Person::~Person() {
 }
 
 //====== callElevator() Method Implementation ======//
-// This method will "call" the elevator and set btnCalled at the node it is at to true
 void Person::callElevator() {
+    // If the elevator has already been called, output the following statement.
     if(currentNode->elevatorCalled) {
         std::cout << "Elevator has already been called to Node " << currentNode->id << std::endl;
     }
+    // Else, push the node location to the node button buffer and change elevatorCalled for the current node to true.
     else {
         currentNode->elevatorCalled = true;
         Elevator::nodeBtnBuff_push_back(startLoc);
@@ -71,8 +91,6 @@ void Person::enteredElevator(){
 }
 
 //====== sendElevator(...) Method Implementation ======//
-// Sends elevator data on which node a person wants to travel to into the dropOffBuffer.
-// Updates btnPressed status to true if not already done
 void Person::sendElevator(__gnu_cxx::__normal_iterator<Person **, std::vector<Person *>> obj) {
     currentElevator->btnPressed[endLoc->location.floor][endLoc->location.section] = true;
     currentElevator->elevBtnBuff_push_back(endLoc);
@@ -86,7 +104,7 @@ void Person::addPersonToNode(Node * node) {
 //====== Overloaded << Method Implementation ======//
 std::ostream &operator<<(std::ostream &out, Person &person) {
     out
-        << "\tPerson's Mem Addr: " << &person << std::endl
+        << "\tPerson's Memory Address: " << &person << std::endl
         << "\tPerson's Start Location: " << person.startLoc->id << std::endl
         << "\tPerson's End Location: " << person.endLoc->id << std::endl
         << "\tPerson Picked Up: " << (person.inElevator ? ("Yes"):("No")) << std::endl
