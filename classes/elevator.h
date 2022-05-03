@@ -52,9 +52,10 @@ private:
     //====== PRIVATE VARIABLES ======//
     static unsigned short int currentTime;
     static std::vector<struct Location> nodeBtnBuffer;  // This buffer stores the order in which node buttons were pushed
-    std::vector<struct Location> elevBtnBuffer; // This buffer stores the order in which elevator buttons were pushed
+    static std::vector<struct Location> elevBtnBuffer; // This buffer stores the order in which elevator buttons were pushed
     std::vector<class Person *> peopleInside;   // This vector stores the people within the elevator itself
     Node * currentNode;
+
 
 
 /**********************************************************************************************************************
@@ -120,6 +121,7 @@ public:
     struct Location location;
     bool btnPressed[3][3]; // This array simulates the actual buttons inside the elevator that patrons may press.
     bool doorsOpen;
+    Node nodeArray[3][3];
 
 
     //====== PUBLIC METHODS ======//
@@ -133,7 +135,7 @@ public:
      * <Elevator Parameterized Constructor>
      *      Constructs an elevator object based on user's input arguments.
      */
-    Elevator(Node * nodeCurr, bool btnPress[3][3], bool drsOpen = false,
+    Elevator(Node * nodeCurr, bool btnPress[3][3], Node nodeArr[3][3], bool drsOpen = false,
                 std::vector<class Person*> pplInside = std::vector<class Person*>());
 
     /*
@@ -150,7 +152,7 @@ public:
      *      At each node hop, it also can determine if a person/people need to get dropped-off or picked-up at the
      *       current node, even if the current node is not the elevator's calculated destination node.
      */
-    int moveHere(Node * node);
+    int moveHere(Location loc);
 
     /*
      * <dropOff() Method>
@@ -207,7 +209,38 @@ public:
      * printSystem(...) Method
      *      Prints out the current state of the elevator system to the console via 2D representation.
      */
-    void printSystem(Node nodeArray[3][3], Floor floor, Section section);
+    void printSystem();
+
+    /*
+     * <getNodeBtnBufferFirst() Method>
+     *      Returns first vector element of getNodeBtnBuffer.
+     */
+    static Location getNodeBtnBufferFirst();
+
+    /*
+     * <nodeButtonBufferEmpty() Method>
+     *      Returns true if nodeBtnBuffer is empty.
+     */
+    static bool nodeButtonBufferEmpty();
+
+    /*
+     * <elevatorButtonBufferEmpty() Method>
+     *      Returns true if elevBtnBuffer is empty.
+     */
+    static bool elevatorButtonBufferEmpty();
+
+    /*
+     * <nextBufferLocation() Method>
+     *      Returns the location of the next element.
+     *      First it checks the elevBtnBuffer as priority and if not empty, return first element of elevBtnBuffer
+     */
+    static Location nextBufferLocation();
+
+    /*
+     * <getNodeBtnBuffer() Method>
+     *      Returns entire node button buffer.
+     */
+    static Location getNodeBtnBuffer();
 
     /*
      * <Overloaded << Method>

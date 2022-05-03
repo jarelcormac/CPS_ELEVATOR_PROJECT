@@ -47,10 +47,12 @@ Person::Person() {
     currentNode = nullptr;
     currentElevator = nullptr;
     droppedOff = false;
+    pickedUp = false;
 }
 
 //====== Parameterized Constructor Method Implementation ======//
-Person::Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned int stTime, bool inElev, bool dropOff) {
+Person::Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned int stTime,
+               bool inElev, bool dropOff, bool pickUp) {
     startLoc = nodeStart;
     endLoc = nodeEnd;
     startTime = stTime;
@@ -58,7 +60,9 @@ Person::Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned i
     currentNode = nodeStart;
     currentElevator = elevator;
     droppedOff = dropOff;
+    pickedUp = pickUp;
     addPersonToNode(nodeStart);
+    callElevator();
 }
 
 //====== Default Destructor Method Implementation ======//
@@ -87,6 +91,7 @@ void Person::exitedElevator() {
 
 //====== enteredElevator() Method Implementation ======//
 void Person::enteredElevator(){
+    pickedUp = true;
     inElevator = true;
 }
 
@@ -107,7 +112,8 @@ std::ostream &operator<<(std::ostream &out, Person &person) {
         << "\tPerson's Memory Address: " << &person << std::endl
         << "\tPerson's Start Location: " << person.startLoc->id << std::endl
         << "\tPerson's End Location: " << person.endLoc->id << std::endl
-        << "\tPerson Picked Up: " << (person.inElevator ? ("Yes"):("No")) << std::endl
+        << "\tPerson In Elevator: " << (person.inElevator ? ("Yes"):("No")) << std::endl
+        << "\tPerson Picked Up: " << (person.pickedUp ? ("Yes"):("No")) << std::endl
         << "\tPerson Reached Destination: " << (person.droppedOff ? ("Yes"):("No")) << std::endl;
     return out;
 }

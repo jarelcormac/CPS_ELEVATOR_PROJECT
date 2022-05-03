@@ -57,13 +57,6 @@ void createNodes(Node nodesArray[3][3], Location locArray[3][3]);
  */
 void createNodeGrid(Node nodes[3][3]);
 
-/*
- * <printElevatorSystem(...) Function Prototype>
- *      Function will print out a 2D visualization of the elevator system in an easy-to-understand way onto the
- *       console.
- */
-void printElevatorSystem(Elevator & elevator, Node nodes[3][3]);
-
 
 /**********************************************************************************************************************
  *********************************************************************************************************************/
@@ -136,22 +129,5 @@ void createNodeGrid(Node nodes[3][3]) {
     nodes[Second][B].addNode(&nodes[First][B], Down);
 };
 
-/*
- * Will print out a 2D visualization of the elevator system in an easy-to-understand way.
- * Should look similar to this:
- *      3A=====3B=====3C
- *    [ {} ] [    ] [    ]
- *             ||
- *      2A=====2B=====2C
- *    [    ] [    ] [    ]
- *             ||
- *      1A=====1B=====1C
- *    [    ] [    ] [    ]
- */
-void printElevatorSystem(Elevator & elevator, Node nodes[3][3]) {
-    Floor tempFloor = elevator.getCurrentNode()->location.floor;
-    Section tempSection = elevator.getCurrentNode()->location.section;
-    elevator.printSystem(nodes, tempFloor, tempSection);
-}
 
 #endif //CPS_ELEVATOR_PROJECT_MAINFUNCTIONS_H

@@ -57,6 +57,7 @@ public:
     Node * startLoc;
     Node * endLoc;
     bool droppedOff;
+    bool pickedUp;
     unsigned int startTime;
 
 
@@ -75,7 +76,8 @@ public:
      * <Person Parameterized Constructor>
      *      Constructs an elevator object based on user's input arguments.
      */
-    Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned int stTime = 0, bool inElev = false, bool dropOff = false);
+    Person(Node * nodeStart, Node * nodeEnd, Elevator * elevator, unsigned int stTime = 0,
+           bool inElev = false, bool dropOff = false, bool pickUp = false);
 
     /*
      * <Elevator Destructor Method>
