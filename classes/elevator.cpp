@@ -480,24 +480,23 @@ void Elevator::printSystem() {
               << "[ " << std::setw(2) << ((floor == Third && section == A) ? "{}" :
                                           std::to_string(nodeArray[Third][A].peopleAtNode.size())) << " ] "
               << "[ " << std::setw(2) <<  ((floor == Third && section == B) ? "{}" :
-                                           std::to_string(nodes[Third][B].peopleAtNode.size())) << " ] "
+                                           std::to_string(nodeArray[Third][B].peopleAtNode.size())) << " ] "
               << "[ " << std::setw(2) << ((floor == Third && section == C) ? "{}" :
-                                          std::to_string(nodes[Third][C].peopleAtNode.size())) << " ] "  << std::endl
+                                          std::to_string(nodeArray[Third][C].peopleAtNode.size())) << " ] "  << std::endl
               << "         ||"   << std::endl
               << "  2A=====2B=====2C"   << std::endl
-              << "         ||"   << std::endl
               << "[ " << std::setw(2) << ((floor == Second && section == A) ? "{}" :
-                                          std::to_string(nodes[Second][A].peopleAtNode.size())) << " ] "
+                                          std::to_string(nodeArray[Second][A].peopleAtNode.size())) << " ] "
               << "[ " << std::setw(2) << ((floor == Second && section == B) ? "{}" :
-                                          std::to_string(nodes[Second][B].peopleAtNode.size())) << " ] "
+                                          std::to_string(nodeArray[Second][B].peopleAtNode.size())) << " ] "
               << "[ " << std::setw(2) << ((floor == Second && section == C) ? "{}" :
-                                          std::to_string(nodes[Second][C].peopleAtNode.size())) << " ] "  << std::endl
+                                          std::to_string(nodeArray[Second][C].peopleAtNode.size())) << " ] "  << std::endl
               << "         ||"   << std::endl
               << "  1A=====1B=====1C"   << std::endl
               << "[ " << std::setw(2) << ((floor == First && section == A) ? "{}" :
-                                          std::to_string(nodes[First][A].peopleAtNode.size())) << " ] "
+                                          std::to_string(nodeArray[First][A].peopleAtNode.size())) << " ] "
               << "[ " << std::setw(2) << ((floor == First && section == B) ? "{}" :
-                                          std::to_string(nodes[First][B].peopleAtNode.size())) << " ] "
+                                          std::to_string(nodeArray[First][B].peopleAtNode.size())) << " ] "
               << "[ " << std::setw(2) << ((floor == First && section == C) ? "{}" :
                                           std::to_string(nodeArray[First][C].peopleAtNode.size())) << " ] "  << std::endl
               << std::endl;
