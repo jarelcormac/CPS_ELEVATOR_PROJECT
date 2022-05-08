@@ -64,7 +64,7 @@ Elevator::Elevator(Node * nodeCurr, bool btnPress[3][3], Node nodeArr[3][3], boo
 
 //====== Default Destructor() Method Implementation ======//
 Elevator::~Elevator() {
-    std::cout << "Elevator Destroyed. " << std::endl;
+    //std::cout << "Elevator Destroyed. " << std::endl;
 }
 
 //====== openDoors() Method Implementation ======//
@@ -475,7 +475,7 @@ Location Elevator::getNodeBtnBuffer() {
 void Elevator::printSystem() {
     Floor floor = currentNode->location.floor;
     Section section = currentNode->location.section;
-    std::cout << std::endl
+    std::cout << "--------------------" << std::endl
               << "  3A=====3B=====3C"   << std::endl
               << "[ " << std::setw(2) << ((floor == Third && section == A) ? "{}" :
                                           std::to_string(nodeArray[Third][A].peopleAtNode.size())) << " ] "
@@ -499,7 +499,7 @@ void Elevator::printSystem() {
                                           std::to_string(nodeArray[First][B].peopleAtNode.size())) << " ] "
               << "[ " << std::setw(2) << ((floor == First && section == C) ? "{}" :
                                           std::to_string(nodeArray[First][C].peopleAtNode.size())) << " ] "  << std::endl
-              << std::endl;
+            << "--------------------" << std::endl;
 }
 
 

@@ -42,13 +42,13 @@ int main() {
     createNodes(nodeArray, locationArray);
     std::cout << "\t\t- NODES AND GRID SYSTEM SUCCESSFULLY CREATED" << std::endl;
 
-    // Print out all current node statuses
-    std::cout << "- PRINTING ALL NODES' STATUSES..." << std::endl;
-    for(Floor x = First; x >= Third; x = (Floor)(x - 1)) {
-        for(Section y = A; y <= C; y = (Section)(y + 1)) {
-            std::cout << nodeArray[x][y] << std::endl;
-        }
-    }
+//    // Print out all current node statuses
+//    std::cout << "- PRINTING ALL NODES' STATUSES..." << std::endl;
+//    for(Floor x = First; x >= Third; x = (Floor)(x - 1)) {
+//        for(Section y = A; y <= C; y = (Section)(y + 1)) {
+//            std::cout << nodeArray[x][y] << std::endl;
+//        }
+//    }
 
     // Initialize a buttonPressed array
     bool buttonPressed[3][3] = {
@@ -66,13 +66,13 @@ int main() {
     std::cout << "- PRINTING ELEVATOR'S STATUS..." << std::endl;
     std::cout << elevator << std::endl;
 
-    // Print out all current node statuses
-    std::cout << "- PRINTING ALL NODES' STATUSES..." << std::endl;
-    for(Floor x = First; x >= Third; x = (Floor)(x - 1)) {
-        for(Section y = A; y <= C; y = (Section)(y + 1)) {
-            std::cout << nodeArray[x][y] << std::endl;
-        }
-    }
+//    // Print out all current node statuses
+//    std::cout << "- PRINTING ALL NODES' STATUSES..." << std::endl;
+//    for(Floor x = First; x >= Third; x = (Floor)(x - 1)) {
+//        for(Section y = A; y <= C; y = (Section)(y + 1)) {
+//            std::cout << nodeArray[x][y] << std::endl;
+//        }
+//    }
     std::cout << "=== SYSTEM INITIALIZATION DONE ===" << std::endl << std::endl << std::endl;
     //========= FINISHED SYSTEM INITIALIZATION ========//
 
@@ -80,6 +80,7 @@ int main() {
     //======== BEGIN SYSTEM TEST #1 ========//
     std::cout << "SYSTEM TEST #1 | MOVEMENT FROM ONE NODE TO ANOTHER NODE (ONE HOP)" << std::endl;
     std::cout << "- MOVING ELEVATOR FROM NODE 2B to 2C" << std::endl;
+    elevator.printSystem();
     elevator.moveHere({C, Second});
     std::cout << "~SYSTEM TEST #1 SUCCESSFUL~" << std::endl << std::endl;
     //======== END SYSTEM TEST #1 ========//
@@ -88,8 +89,10 @@ int main() {
     //======== BEGIN SYSTEM TEST #2 ========//
     std::cout << "SYSTEM TEST #2 | MOVEMENT FROM ONE NODE TO ANOTHER NODE OF MORE THAN ONE HOP" << std::endl;
     std::cout << "- MOVING ELEVATOR FROM NODE 2C to 2B" << std::endl;
+    elevator.printSystem();
     elevator.moveHere({B, Second});
     std::cout << "- MOVING ELEVATOR FROM NODE 2B to 3B" << std::endl;
+    elevator.printSystem();
     elevator.moveHere({B, Third});
     std::cout << "~SYSTEM TEST #2 SUCCESSFUL~" << std::endl << std::endl;
     //======== BEGIN SYSTEM TEST #2 ========//
@@ -98,6 +101,7 @@ int main() {
     //======== BEGIN SYSTEM TEST #3 ========//
     std::cout << "SYSTEM TEST #3 | CALLING THE ELEVATOR CAR FROM ANY NODE TO A DESTINATION NODE OF N HOPS MULTIPLE TIMES" << std::endl;
     std::cout << "- MOVING ELEVATOR FROM NODE 3B TO 1A" << std::endl;
+    elevator.printSystem();
     elevator.moveHere({A, First});
     std::cout << "~SYSTEM TEST #3 SUCCESSFUL~" << std::endl << std::endl;
     //======== END SYSTEM TEST #3 ========//
@@ -106,6 +110,7 @@ int main() {
     //======== BEGIN SYSTEM TEST #4 ========//
     std::cout << "SYSTEM TEST #4 | CALLING THE ELEVATOR CAR FROM ANY NODE TO A DESTINATION NODE IN A COMPLEX ARRANGEMENT OF NODES" << std::endl;
     std::cout << "- MOVING ELEVATOR FROM NODE 1A to 3C" << std::endl;
+    elevator.printSystem();
     elevator.moveHere({C, Third});
     std::cout << "~SYSTEM TEST #4 SUCCESSFUL~" << std::endl << std::endl;
     //======== END SYSTEM TEST #4 ========//
@@ -148,7 +153,7 @@ int main() {
     //======== END SYSTEM TEST #5 ========//
 
 
-    std::cout << "\n\n********** TEST APPLICATION COMPLETED **********" << std::endl;
+    std::cout << "********** TEST APPLICATION COMPLETED **********" << std::endl;
 
 
 return 0;
